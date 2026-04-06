@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/headercat/erdn-lang/internal/ast"
 	"github.com/headercat/erdn-lang/internal/output"
 	"github.com/headercat/erdn-lang/internal/parser"
 	"github.com/headercat/erdn-lang/internal/render"
@@ -37,19 +38,20 @@ func printUsage() {
 	fmt.Fprintln(os.Stderr, `erdn - erdn-lang schema toolchain
 
 Usage:
-  erdn render <schema.erdn> [--out <file>] [--format png|pdf]
+  erdn render <schema.erdn> [--out <file>]
   erdn validate <schema.erdn>
   erdn dot <schema.erdn> [--out <file>]`)
 }
 
-func loadAndValidate(schemaFile string) (string, error) {
+// loadAndValidate parses and semantically validates a schema file.
+func loadAndValidate(schemaFile string) (*ast.Program, error) {
 	data, err := os.ReadFile(schemaFile)
 	if err != nil {
-		return "", fmt.Errorf("reading %s: %w", schemaFile, err)
+		return nil, fmt.Errorf("reading %s: %w", schemaFile, err)
 	}
 	prog, err := parser.ParseString(string(data))
 	if err != nil {
-		return "", fmt.Errorf("parse error: %w", err)
+		return nil, fmt.Errorf("parse error: %w", err)
 	}
 	errs := semantic.Validate(prog)
 	if len(errs) > 0 {
@@ -57,16 +59,14 @@ func loadAndValidate(schemaFile string) (string, error) {
 		for _, e := range errs {
 			msgs = append(msgs, e.Error())
 		}
-		return "", fmt.Errorf("validation errors:\n%s", strings.Join(msgs, "\n"))
+		return nil, fmt.Errorf("validation errors:\n%s", strings.Join(msgs, "\n"))
 	}
-	dot := render.GenerateDOT(prog)
-	return dot, nil
+	return prog, nil
 }
 
 func runRender(args []string) {
 	fs := flag.NewFlagSet("render", flag.ExitOnError)
-	outFlag := fs.String("out", "", "output file path")
-	formatFlag := fs.String("format", "png", "output format: png or pdf")
+	outFlag := fs.String("out", "", "output file path (default: <schema>.svg)")
 	if err := fs.Parse(args); err != nil {
 		os.Exit(1)
 	}
@@ -76,7 +76,7 @@ func runRender(args []string) {
 	}
 	schemaFile := fs.Arg(0)
 
-	dotContent, err := loadAndValidate(schemaFile)
+	prog, err := loadAndValidate(schemaFile)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -85,19 +85,10 @@ func runRender(args []string) {
 	outPath := *outFlag
 	if outPath == "" {
 		base := strings.TrimSuffix(schemaFile, filepath.Ext(schemaFile))
-		outPath = base + "." + *formatFlag
+		outPath = base + ".svg"
 	}
 
-	switch *formatFlag {
-	case "png":
-		err = output.RenderPNG(dotContent, outPath)
-	case "pdf":
-		err = output.RenderPDF(dotContent, outPath)
-	default:
-		fmt.Fprintf(os.Stderr, "unsupported format: %s\n", *formatFlag)
-		os.Exit(1)
-	}
-	if err != nil {
+	if err := output.RenderSVG(render.GenerateSVG(prog), outPath); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
@@ -147,12 +138,13 @@ func runDot(args []string) {
 	}
 	schemaFile := fs.Arg(0)
 
-	dotContent, err := loadAndValidate(schemaFile)
+	prog, err := loadAndValidate(schemaFile)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
+	dotContent := render.GenerateDOT(prog)
 	if *outFlag != "" {
 		if err := output.RenderDOT(dotContent, *outFlag); err != nil {
 			fmt.Fprintln(os.Stderr, err)

@@ -25,23 +25,20 @@ jobs:
       - name: Build erdn
         run: go build -o erdn ./cmd/erdn
 
-      - name: Install Graphviz
-        run: sudo apt-get update -qq && sudo apt-get install -y graphviz
-
-      - name: Render examples to PNG
+      - name: Render examples to SVG
         run: |
           for f in examples/*.erdn; do
-            out="${f%.erdn}.png"
-            ./erdn render "$f" --format png --out "$out"
+            out="${f%.erdn}.svg"
+            ./erdn render "$f" --out "$out"
             echo "rendered: $out"
           done
 
-      - name: Upload PNG diagrams
+      - name: Upload SVG diagrams
         id: upload
         uses: actions/upload-artifact@v4
         with:
           name: er-diagrams
-          path: examples/*.png
+          path: examples/*.svg
           if-no-files-found: error
 
       - name: Comment on PR
@@ -54,21 +51,20 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            // Collect rendered PNGs and their DOT sources
+            // Collect rendered SVGs and their sources
             const examplesDir = 'examples';
             const erdn = fs.readdirSync(examplesDir).filter(f => f.endsWith('.erdn'));
 
             let sections = '';
             for (const file of erdn) {
               const name = path.basename(file, '.erdn');
-              const pngPath = path.join(examplesDir, `${name}.png`);
-              const pngExists = fs.existsSync(pngPath);
+              const svgPath = path.join(examplesDir, `${name}.svg`);
+              const svgExists = fs.existsSync(svgPath);
 
-              // Read DOT source via CLI output (stored earlier)
               sections += `\n### \`${file}\`\n\n`;
-              if (pngExists) {
-                const pngSize = fs.statSync(pngPath).size;
-                sections += `PNG rendered successfully (${(pngSize / 1024).toFixed(1)} KB)\n\n`;
+              if (svgExists) {
+                const svgSize = fs.statSync(svgPath).size;
+                sections += `SVG rendered successfully (${(svgSize / 1024).toFixed(1)} KB)\n\n`;
               }
             }
 
@@ -82,7 +78,7 @@ jobs:
               sections.trim(),
               '',
               '---',
-              `📦 **[Download PNG diagrams](${artifactUrl})** — open the workflow run and expand *Artifacts* to download \`er-diagrams.zip\`.`,
+              `📦 **[Download SVG diagrams](${artifactUrl})** — open the workflow run and expand *Artifacts* to download \`er-diagrams.zip\`.`,
             ].join('\n');
 
             // Find existing bot comment and update it, or create a new one
