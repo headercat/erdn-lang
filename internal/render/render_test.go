@@ -68,7 +68,7 @@ func TestDOTModifiers(t *testing.T) {
 	if !strings.Contains(dot, "PK") {
 		t.Error("expected PK modifier")
 	}
-	if !strings.Contains(dot, "auto") {
-		t.Error("expected auto modifier")
+	if !strings.Contains(dot, "AI") {
+		t.Error("expected AI modifier")
 	}
 }
