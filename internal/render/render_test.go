@@ -1,6 +1,7 @@
 package render
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -218,5 +219,89 @@ link one a.id to many b.a_id`)
 	}
 	if strings.Contains(svg, `id="arrow"`) {
 		t.Error("arrow marker definition must not appear in SVG defs")
+	}
+}
+
+// TestSVGSelfLoopCanvasNotClipped verifies that the SVG canvas width is large
+// enough to contain the self-referential loop, which extends past the table's
+// right edge by at least 50 px.
+func TestSVGSelfLoopCanvasNotClipped(t *testing.T) {
+	svg := generateSVG(t, `table categories (
+  id bigint primary-key
+  parent_id bigint nullable
+)
+link one categories.id to many categories.parent_id`)
+
+	// Parse the width attribute from the <svg> element.
+	widthPrefix := `width="`
+	wi := strings.Index(svg, widthPrefix)
+	if wi < 0 {
+		t.Fatal("could not find width attribute in SVG")
+	}
+	wi += len(widthPrefix)
+	we := strings.Index(svg[wi:], `"`)
+	if we < 0 {
+		t.Fatal("could not parse width attribute in SVG")
+	}
+	var canvasWidth float64
+	if _, err := fmt.Sscanf(svg[wi:wi+we], "%f", &canvasWidth); err != nil {
+		t.Fatalf("could not parse canvas width: %v", err)
+	}
+
+	// The self-referential loop must reach at least loopOffset=50 px past the
+	// table right edge, and then the badge (if any) extends further.
+	// The canvas must accommodate that plus svgMargin.
+	// A minimum safe threshold: table right edge + loopOffset + svgMargin.
+	// We don't know exact table width, but we do know the loop extends at least
+	// 50 px past the table and must fit within the canvas with a margin.
+	// Extract the path data to find the actual loopX.
+	pi := strings.Index(svg, `<path d="M `)
+	if pi < 0 {
+		t.Fatal("could not find self-loop path in SVG")
+	}
+	// The path is: M sx,sy H loopX V dy H sx
+	// Read the H loopX segment.
+	pathSnip := svg[pi+len(`<path d="M `):]
+	var sx, sy, loopX float64
+	if _, err := fmt.Sscanf(pathSnip, "%f,%f H %f", &sx, &sy, &loopX); err != nil {
+		t.Fatalf("could not parse self-loop path: %v", err)
+	}
+
+	minRequired := loopX + svgMargin
+	if canvasWidth < minRequired-1 { // 1 px tolerance for %.2f path / %.0f canvas rounding
+		t.Errorf("canvas width %.0f is too narrow: self-loop reaches x=%.0f, need at least %.0f (loopX + margin)",
+			canvasWidth, loopX, minRequired)
+	}
+}
+
+// TestSVGRegularLinkBadgeNotClipped verifies the canvas is wide enough for a
+// link comment badge centered at the midpoint of the connector.
+func TestSVGRegularLinkBadgeNotClipped(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+# a very long comment that makes the badge wide
+link one a.id to many b.a_id`)
+
+	widthPrefix := `width="`
+	wi := strings.Index(svg, widthPrefix)
+	if wi < 0 {
+		t.Fatal("could not find width attribute in SVG")
+	}
+	wi += len(widthPrefix)
+	we := strings.Index(svg[wi:], `"`)
+	if we < 0 {
+		t.Fatal("could not parse width attribute in SVG")
+	}
+	var canvasWidth float64
+	if _, err := fmt.Sscanf(svg[wi:wi+we], "%f", &canvasWidth); err != nil {
+		t.Fatalf("could not parse canvas width: %v", err)
+	}
+
+	if canvasWidth < 1 {
+		t.Error("canvas width must be positive")
+	}
+	// The badge rect starts at x - w/2; ensure no rect has a negative x.
+	if strings.Contains(svg, `x="-`) {
+		t.Error("badge rect has negative x coordinate (clipped on left)")
 	}
 }

@@ -67,6 +67,59 @@ func GenerateSVG(prog *ast.Program) string {
 			ch = b
 		}
 	}
+
+	// Expand canvas to cover link geometry that extends beyond table boxes:
+	// self-referential loops, badge extents, and crow's foot arms.
+	const bh = 16.0
+	for _, lnk := range prog.Links {
+		src := ltMap[lnk.FromTable]
+		dst := ltMap[lnk.ToTable]
+		if src == nil || dst == nil {
+			continue
+		}
+		sy, syOK := src.portY[lnk.FromColumn]
+		dy, dyOK := dst.portY[lnk.ToColumn]
+		if !syOK || !dyOK {
+			continue
+		}
+		badgeW := svgLinkBadgeWidth(lnk)
+
+		if lnk.FromTable == lnk.ToTable {
+			// Self-referential loop: extends right past the table's right edge.
+			loopOffset := svgLoopOffset(sy, dy, badgeW)
+			loopX := src.x + src.width + loopOffset
+			if r := loopX + badgeW/2 + svgMargin; r > cw {
+				cw = r
+			}
+			// Badge may be pushed below the last table.
+			commentY := svgSafeBadgeY((sy+dy)/2, loopX, badgeW/2, bh, layouts)
+			if b := commentY + bh/2 + svgMargin; b > ch {
+				ch = b
+			}
+		} else {
+			var sx, dx float64
+			if src.x+src.width/2 <= dst.x+dst.width/2 {
+				sx = src.x + src.width
+				dx = dst.x
+			} else {
+				sx = src.x
+				dx = dst.x + dst.width
+			}
+			midX := (sx + dx) / 2
+			// Badge horizontal extent.
+			if badgeW > 0 {
+				if r := midX + badgeW/2 + svgMargin; r > cw {
+					cw = r
+				}
+			}
+			// Badge may be pushed below the last table.
+			commentY := svgSafeBadgeY((sy+dy)/2, midX, badgeW/2, bh, layouts)
+			if b := commentY + bh/2 + svgMargin; b > ch {
+				ch = b
+			}
+		}
+	}
+
 	if cw < 1 {
 		cw = 1
 	}
@@ -390,6 +443,25 @@ func svgWriteNullCell(sb *strings.Builder, cx, cy float64, col *ast.Column) {
 	}
 }
 
+// svgLinkBadgeWidth returns the rendered badge width for a link (0 if no comments).
+func svgLinkBadgeWidth(lnk *ast.Link) float64 {
+	if len(lnk.Comments) == 0 {
+		return 0
+	}
+	return svgTextWidth(strings.Join(lnk.Comments, " "), svgSubFontSz) + 12
+}
+
+// svgLoopOffset returns the horizontal loop protrusion for a self-referential link.
+func svgLoopOffset(sy, dy, badgeW float64) float64 {
+	off := math.Max(50, math.Abs(dy-sy)*0.3+35)
+	if badgeW > 0 {
+		if needed := badgeW/2 + 10; needed > off {
+			off = needed
+		}
+	}
+	return off
+}
+
 // renderSVGLink draws an orthogonal (right-angle) connector between two column
 // ports. Each connector has three segments: horizontal → vertical → horizontal.
 // Only `#` comments are stored in the AST (the parser discards `//` comments),
@@ -408,27 +480,14 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 	}
 
 	color := linkColor(lnk.FromCardinality, lnk.ToCardinality)
-
-	// Pre-compute badge width so we can size loops correctly.
-	var badgeW float64
-	if len(lnk.Comments) > 0 {
-		txt := strings.Join(lnk.Comments, " ")
-		badgeW = svgTextWidth(txt, svgSubFontSz) + 12
-	}
+	badgeW := svgLinkBadgeWidth(lnk)
 
 	var sb strings.Builder
 
 	// ── Self-referential link: rectangular loop on the right side ────────────
 	if lnk.FromTable == lnk.ToTable {
 		sx := src.x + src.width
-		// Ensure the loop extends far enough to place the badge cleanly beside it.
-		loopOffset := math.Max(50, math.Abs(dy-sy)*0.3+35)
-		if badgeW > 0 {
-			needed := badgeW/2 + 10
-			if needed > loopOffset {
-				loopOffset = needed
-			}
-		}
+		loopOffset := svgLoopOffset(sy, dy, badgeW)
 		loopX := sx + loopOffset
 		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, loopX, dy, sx)
 		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
