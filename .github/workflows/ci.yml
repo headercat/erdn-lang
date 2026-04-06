@@ -113,29 +113,10 @@ jobs:
               `📦 **[Download diagrams](${artifactUrl})** — open the workflow run and expand *Artifacts* to download SVG, PNG, and PDF archives.`,
             ].join('\n');
 
-            // Find existing bot comment and update it, or create a new one
-            const { data: comments } = await github.rest.issues.listComments({
+            // Always create a new comment on every completed run
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
+              body,
             });
-
-            const botComment = comments.find(c =>
-              c.user.type === 'Bot' && c.body.includes('ER Diagram Render')
-            );
-
-            if (botComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: botComment.id,
-                body,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body,
-              });
-            }
