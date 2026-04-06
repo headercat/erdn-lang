@@ -23,8 +23,16 @@ const (
 	svgCommentH     = 16.0  // table-comment subtitle row height (slimmer)
 	svgMinGapH      = 160.0 // minimum horizontal gap between table columns
 	svgLinkCommentM = 40.0  // extra margin on each side of a link-comment badge
-	svgTblGapV      = 80.0  // vertical gap between tables
+	svgTblGapV      = 120.0 // vertical gap between tables (increased for badge clearance)
 	svgMargin       = 30.0  // outer canvas margin
+)
+
+// Crow-foot symbol dimensions.
+const (
+	cfArm  = 12.0 // crow-foot arm length into the connector space
+	cfFork = 7.0  // crow-foot fork half-height
+	cfBar  = 4.0  // "one" bar offset from the table edge
+	cfBarH = 8.0  // "one" bar half-height
 )
 
 var (
@@ -74,7 +82,7 @@ func GenerateSVG(prog *ast.Program) string {
 
 	// Links are drawn first so table boxes appear on top.
 	for _, lnk := range prog.Links {
-		sb.WriteString(renderSVGLink(lnk, ltMap))
+		sb.WriteString(renderSVGLink(lnk, ltMap, layouts))
 	}
 	for _, lt := range layouts {
 		sb.WriteString(renderSVGTable(lt))
@@ -386,7 +394,8 @@ func svgWriteNullCell(sb *strings.Builder, cx, cy float64, col *ast.Column) {
 // ports. Each connector has three segments: horizontal → vertical → horizontal.
 // Only `#` comments are stored in the AST (the parser discards `//` comments),
 // so only those comments are rendered as badges on the connector.
-func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
+// Cardinality endpoints are drawn as crow's foot (many) or a single bar (one).
+func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout) string {
 	src := ltMap[lnk.FromTable]
 	dst := ltMap[lnk.ToTable]
 	if src == nil || dst == nil {
@@ -398,8 +407,7 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
 		return ""
 	}
 
-	fromLabel := cardLabel(lnk.FromCardinality)
-	toLabel := cardLabel(lnk.ToCardinality)
+	color := linkColor(lnk.FromCardinality, lnk.ToCardinality)
 
 	// Pre-compute badge width so we can size loops correctly.
 	var badgeW float64
@@ -423,64 +431,98 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
 		}
 		loopX := sx + loopOffset
 		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, loopX, dy, sx)
-		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="#95A5A6" stroke-width="1.5" marker-end="url(#arrow)"/>`+"\n", path)
-		svgWriteCardLabels(&sb, sx+14, sy, sx+14, dy, fromLabel, toLabel)
-		// Badge is centered at loopX, vertically at the mid-height of the loop.
-		svgWriteLinkComment(&sb, loopX, (sy+dy)/2, lnk)
+		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
+		// Both endpoints are on the right edge of the table; symbols extend right.
+		svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, +1, color)
+		svgWriteCardSymbol(&sb, sx, dy, lnk.ToCardinality, +1, color)
+		const bh = 16.0
+		commentY := svgSafeBadgeY((sy+dy)/2, loopX, badgeW/2, bh, layouts)
+		svgWriteLinkComment(&sb, loopX, commentY, lnk)
 		return sb.String()
 	}
 
 	// ── Regular link: H → V → H orthogonal path ─────────────────────────────
 	var sx, dx float64
+	var dirSrc, dirDst float64
 	if src.x+src.width/2 <= dst.x+dst.width/2 {
-		sx = src.x + src.width
-		dx = dst.x
+		sx = src.x + src.width // right edge of source
+		dx = dst.x             // left edge of destination
+		dirSrc = +1
+		dirDst = -1
 	} else {
-		sx = src.x
-		dx = dst.x + dst.width
+		sx = src.x             // left edge of source
+		dx = dst.x + dst.width // right edge of destination
+		dirSrc = -1
+		dirDst = +1
 	}
 	midX := (sx + dx) / 2
 	path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, midX, dy, dx)
-	fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="#95A5A6" stroke-width="1.5" marker-end="url(#arrow)"/>`+"\n", path)
+	fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
 
-	const labelOff = 14.0
-	var flx, tlx float64
-	if sx <= dx {
-		flx = sx + labelOff
-		tlx = dx - labelOff
-	} else {
-		flx = sx - labelOff
-		tlx = dx + labelOff
-	}
-	svgWriteCardLabels(&sb, flx, sy, tlx, dy, fromLabel, toLabel)
+	svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, dirSrc, color)
+	svgWriteCardSymbol(&sb, dx, dy, lnk.ToCardinality, dirDst, color)
 
-	// Badge sits at the midpoint of the vertical segment.
-	// When sy ≈ dy the vertical segment is very short; shift the badge above
-	// the connector so it does not overlap the horizontal lines.
 	const bh = 16.0
-	commentY := (sy + dy) / 2
-	if math.Abs(sy-dy) < 2*bh {
-		commentY = math.Min(sy, dy) - bh - 4
-	}
+	commentY := svgSafeBadgeY((sy+dy)/2, midX, badgeW/2, bh, layouts)
 	svgWriteLinkComment(&sb, midX, commentY, lnk)
 
 	return sb.String()
 }
 
-// svgWriteCardLabels emits cardinality labels ("1" / "N") near each endpoint.
-// cardLabel returns the cardinality label string ("1" or "N").
-func cardLabel(c ast.Cardinality) string {
-	if c == ast.CardMany {
-		return "N"
+// linkColor returns the stroke color for a connector based on its cardinality pair.
+// One-to-one: blue, Many-to-many: red, One-to-many / Many-to-one: green.
+func linkColor(from, to ast.Cardinality) string {
+	switch {
+	case from == ast.CardOne && to == ast.CardOne:
+		return "#3498DB" // blue – one-to-one
+	case from == ast.CardMany && to == ast.CardMany:
+		return "#E74C3C" // red – many-to-many
+	default:
+		return "#27AE60" // green – one-to-many or many-to-one
 	}
-	return "1"
 }
 
-func svgWriteCardLabels(sb *strings.Builder, flx, fy, tlx, ty float64, fromLabel, toLabel string) {
-	fmt.Fprintf(sb, `<text x="%.2f" y="%.2f" text-anchor="middle" fill="#546E7A" font-family="%s" font-size="10" font-weight="bold">%s</text>`+"\n",
-		flx, fy-6, svgFont, fromLabel)
-	fmt.Fprintf(sb, `<text x="%.2f" y="%.2f" text-anchor="middle" fill="#546E7A" font-family="%s" font-size="10" font-weight="bold">%s</text>`+"\n",
-		tlx, ty-6, svgFont, toLabel)
+// svgWriteCardSymbol draws a crow's-foot (many) or single bar (one) at (x, y).
+// dir is +1 if the symbol should extend to the right (into the connector space),
+// or -1 if it should extend to the left.
+func svgWriteCardSymbol(sb *strings.Builder, x, y float64, card ast.Cardinality, dir float64, color string) {
+	switch card {
+	case ast.CardMany:
+		// Two diagonal fork lines from the table-edge vertex.
+		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
+			x, y, x+dir*cfArm, y-cfFork, color)
+		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
+			x, y, x+dir*cfArm, y+cfFork, color)
+		// Cross-bar connecting the tips of the fork.
+		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
+			x+dir*cfArm, y-cfFork, x+dir*cfArm, y+cfFork, color)
+	case ast.CardOne:
+		// Single bar perpendicular to the connector, slightly inside the gap.
+		bx := x + dir*cfBar
+		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
+			bx, y-cfBarH, bx, y+cfBarH, color)
+	}
+}
+
+// svgSafeBadgeY returns a Y coordinate near candidateY that does not fall
+// inside any table bounding box at the given badgeX (±badgeHalfW).
+// If a collision is detected the badge is pushed below the offending table.
+func svgSafeBadgeY(candidateY, badgeX, badgeHalfW, bh float64, layouts []*svgTableLayout) float64 {
+	y := candidateY
+	leftX := badgeX - badgeHalfW
+	rightX := badgeX + badgeHalfW
+	for _, lt := range layouts {
+		if rightX <= lt.x || leftX >= lt.x+lt.width {
+			continue // no horizontal overlap with this table
+		}
+		badgeTop := y - bh/2
+		badgeBot := y + bh/2
+		if badgeBot > lt.y && badgeTop < lt.y+lt.height {
+			// Collision: push badge below the table.
+			y = lt.y + lt.height + bh/2 + 4
+		}
+	}
+	return y
 }
 
 // svgWriteLinkComment renders the link's comment text as a pill-shaped badge.
@@ -497,13 +539,10 @@ func svgWriteLinkComment(sb *strings.Builder, x, y float64, lnk *ast.Link) {
 		x, y, svgFont, svgSubFontSz, svgEscapeText(comment))
 }
 
-// svgDefsBlock returns the SVG <defs> section (arrowhead marker).
+// svgDefsBlock returns the SVG <defs> section.
+// Cardinality symbols are drawn inline so no marker definitions are required.
 func svgDefsBlock() string {
-	return `<defs>
-  <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-    <polygon points="0 0, 10 3.5, 0 7" fill="#95A5A6"/>
-  </marker>
-</defs>` + "\n"
+	return ""
 }
 
 // svgWriteText emits a <text> element with the given properties.

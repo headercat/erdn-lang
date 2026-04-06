@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3466" height="680">
+<rect width="3466" height="680" fill="#F4F6F8"/>
+<path d="M 2721.40,120.00 H 2240.90 V 112.00 H 1760.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="2717.40" y1="112.00" x2="2717.40" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1760.40" y1="112.00" x2="1772.40" y2="105.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1760.40" y1="112.00" x2="1772.40" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1772.40" y1="105.00" x2="1772.40" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
+<rect x="1888.40" y="108.00" width="705.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="2240.90" y="116.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Connects a task to the project it belongs to. Every task must belong to exactly one project; a project may contain many tasks.</text>
+<path d="M 748.60,518.00 H 389.30 V 136.00 H 30.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="752.60" y1="510.00" x2="752.60" y2="526.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="30.00" y1="136.00" x2="18.00" y2="129.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="30.00" y1="136.00" x2="18.00" y2="143.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="18.00" y1="129.00" x2="18.00" y2="143.00" stroke="#27AE60" stroke-width="1.5"/>
+<rect x="146.80" y="319.00" width="485.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="389.30" y="327.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">A user can be assigned to many tasks. When assignee_id is NULL the task is unassigned.</text>
+<path d="M 748.60,518.00 H 1735.00 V 144.00 H 2721.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="752.60" y1="510.00" x2="752.60" y2="526.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="2721.40" y1="144.00" x2="2709.40" y2="137.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="2721.40" y1="144.00" x2="2709.40" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="2709.40" y1="137.00" x2="2709.40" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
+<rect x="1294.50" y="323.00" width="881.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1735.00" y="331.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Links a project back to its creator. The creator has full administrative rights over the project. This link is defined here, between the tables it references.</text>
+<g>
+  <rect x="30.00" y="30.00" width="1730.40" height="238.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="30.00" y="30.00" width="1730.40" height="26.00" fill="#2C3E50"/>
+  <text x="895.20" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">tasks</text>
+  <rect x="30.00" y="56.00" width="1730.40" height="20.00" fill="#ECF0F1"/>
+  <text x="76.30" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="122.60" y1="56.00" x2="122.60" y2="268.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="172.20" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="221.80" y1="56.00" x2="221.80" y2="268.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="248.30" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="274.80" y1="56.00" x2="274.80" y2="268.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="298.00" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="321.20" y1="56.00" x2="321.20" y2="268.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="354.30" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="387.40" y1="56.00" x2="387.40" y2="268.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1073.90" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="30.00" y="76.00" width="1730.40" height="24.00" fill="white"/>
+  <text x="40.00" y="88.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="132.60" y="88.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="248.30" y="88.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="331.20" y="88.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="397.40" y="88.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Unique task record inside a project. Tasks belong to exactly one project and have one optional assignee.</text>
+  <line x1="30.00" y1="100.00" x2="1760.40" y2="100.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="100.00" width="1730.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="112.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">project_id</text>
+  <text x="132.60" y="112.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="248.30" y="112.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="298.00" y="112.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="331.20" y="112.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="397.40" y="112.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Foreign key → projects.id</text>
+  <line x1="30.00" y1="124.00" x2="1760.40" y2="124.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="124.00" width="1730.40" height="24.00" fill="white"/>
+  <text x="40.00" y="136.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">assignee_id</text>
+  <text x="132.60" y="136.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="248.30" y="136.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="298.00" y="136.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="331.20" y="136.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="397.40" y="136.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Foreign key → users.id; NULL means the task is unassigned</text>
+  <line x1="30.00" y1="148.00" x2="1760.40" y2="148.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="148.00" width="1730.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="160.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">title</text>
+  <text x="132.60" y="160.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="298.00" y="160.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="331.20" y="160.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="397.40" y="160.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Short human-readable summary shown in board views</text>
+  <line x1="30.00" y1="172.00" x2="1760.40" y2="172.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="172.00" width="1730.40" height="24.00" fill="white"/>
+  <text x="40.00" y="184.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">description</text>
+  <text x="132.60" y="184.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="298.00" y="184.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="331.20" y="184.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="397.40" y="184.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Full description; supports Markdown. May be NULL when the task was created from a template without a body.</text>
+  <line x1="30.00" y1="196.00" x2="1760.40" y2="196.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="196.00" width="1730.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="208.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">status</text>
+  <text x="132.60" y="208.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(32)</text>
+  <text x="298.00" y="208.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="331.20" y="208.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">pending</text>
+  <text x="397.40" y="208.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Workflow state: pending     – not yet started in-progress – actively being worked on done        – completed and accepted blocked     – waiting on an external dependency cancelled   – will not be completed</text>
+  <line x1="30.00" y1="220.00" x2="1760.40" y2="220.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="220.00" width="1730.40" height="24.00" fill="white"/>
+  <text x="40.00" y="232.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">created_at</text>
+  <text x="132.60" y="232.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="298.00" y="232.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="331.20" y="232.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="397.40" y="232.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="244.00" x2="1760.40" y2="244.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="244.00" width="1730.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="256.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">updated_at</text>
+  <text x="132.60" y="256.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="298.00" y="256.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="331.20" y="256.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="397.40" y="256.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="2721.40" y="30.00" width="714.40" height="246.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="2721.40" y="30.00" width="714.40" height="26.00" fill="#2C3E50"/>
+  <text x="3078.60" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">projects</text>
+  <rect x="2721.40" y="56.00" width="714.40" height="16.00" fill="#34495E"/>
+  <text x="3078.60" y="64.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">Top-level grouping of tasks.</text>
+  <rect x="2721.40" y="72.00" width="714.40" height="16.00" fill="#34495E"/>
+  <text x="3078.60" y="80.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">A project is owned by one creator and can contain many tasks.</text>
+  <rect x="2721.40" y="88.00" width="714.40" height="20.00" fill="#ECF0F1"/>
+  <text x="2767.70" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="2814.00" y1="88.00" x2="2814.00" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2863.60" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="2913.20" y1="88.00" x2="2913.20" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2939.70" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="2966.20" y1="88.00" x2="2966.20" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2989.40" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="3012.60" y1="88.00" x2="3012.60" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="3042.60" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="3072.60" y1="88.00" x2="3072.60" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="3254.20" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="2721.40" y="108.00" width="714.40" height="24.00" fill="white"/>
+  <text x="2731.40" y="120.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="2824.00" y="120.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2939.70" y="120.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="3022.60" y="120.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="3082.60" y="120.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2721.40" y1="132.00" x2="3435.80" y2="132.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2721.40" y="132.00" width="714.40" height="24.00" fill="#F8F9FA"/>
+  <text x="2731.40" y="144.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">creator_id</text>
+  <text x="2824.00" y="144.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2939.70" y="144.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="2989.40" y="144.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="3022.60" y="144.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="3082.60" y="144.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">The user who originally created this project</text>
+  <line x1="2721.40" y1="156.00" x2="3435.80" y2="156.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2721.40" y="156.00" width="714.40" height="24.00" fill="white"/>
+  <text x="2731.40" y="168.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">name</text>
+  <text x="2824.00" y="168.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="2989.40" y="168.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="3022.60" y="168.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="3082.60" y="168.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Human-readable project name (shown in the dashboard)</text>
+  <line x1="2721.40" y1="180.00" x2="3435.80" y2="180.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2721.40" y="180.00" width="714.40" height="24.00" fill="#F8F9FA"/>
+  <text x="2731.40" y="192.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">slug</text>
+  <text x="2824.00" y="192.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="2939.70" y="192.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="2989.40" y="192.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="3022.60" y="192.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="3082.60" y="192.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">URL-safe slug used in deep-link permalinks</text>
+  <line x1="2721.40" y1="204.00" x2="3435.80" y2="204.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2721.40" y="204.00" width="714.40" height="24.00" fill="white"/>
+  <text x="2731.40" y="216.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">description</text>
+  <text x="2824.00" y="216.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="2989.40" y="216.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="3022.60" y="216.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="3082.60" y="216.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2721.40" y1="228.00" x2="3435.80" y2="228.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2721.40" y="228.00" width="714.40" height="24.00" fill="#F8F9FA"/>
+  <text x="2731.40" y="240.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">status</text>
+  <text x="2824.00" y="240.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(32)</text>
+  <text x="2989.40" y="240.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="3022.60" y="240.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">active</text>
+  <text x="3082.60" y="240.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Lifecycle state: active / archived / deleted</text>
+  <line x1="2721.40" y1="252.00" x2="3435.80" y2="252.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2721.40" y="252.00" width="714.40" height="24.00" fill="white"/>
+  <text x="2731.40" y="264.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">created_at</text>
+  <text x="2824.00" y="264.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="2989.40" y="264.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="3022.60" y="264.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="3082.60" y="264.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="30.00" y="396.00" width="718.60" height="254.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="30.00" y="396.00" width="718.60" height="26.00" fill="#2C3E50"/>
+  <text x="389.30" y="409.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">users</text>
+  <rect x="30.00" y="422.00" width="718.60" height="16.00" fill="#34495E"/>
+  <text x="389.30" y="430.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">Platform user account.</text>
+  <rect x="30.00" y="438.00" width="718.60" height="16.00" fill="#34495E"/>
+  <text x="389.30" y="446.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">A user can act as a project creator and / or a task assignee.</text>
+  <rect x="30.00" y="454.00" width="718.60" height="16.00" fill="#34495E"/>
+  <text x="389.30" y="462.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">Credentials are stored as bcrypt hashes; plain-text passwords</text>
+  <rect x="30.00" y="470.00" width="718.60" height="16.00" fill="#34495E"/>
+  <text x="389.30" y="478.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">are never persisted.</text>
+  <rect x="30.00" y="486.00" width="718.60" height="20.00" fill="#ECF0F1"/>
+  <text x="82.90" y="496.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="135.80" y1="486.00" x2="135.80" y2="650.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="185.40" y="496.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="235.00" y1="486.00" x2="235.00" y2="650.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="261.50" y="496.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="288.00" y1="486.00" x2="288.00" y2="650.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="310.00" y="496.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="332.00" y1="486.00" x2="332.00" y2="650.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="362.00" y="496.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="392.00" y1="486.00" x2="392.00" y2="650.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="570.30" y="496.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="30.00" y="506.00" width="718.60" height="24.00" fill="white"/>
+  <text x="40.00" y="518.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="145.80" y="518.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="261.50" y="518.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="342.00" y="518.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="402.00" y="518.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="530.00" x2="748.60" y2="530.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="530.00" width="718.60" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="542.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">username</text>
+  <text x="145.80" y="542.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(64)</text>
+  <text x="261.50" y="542.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="310.00" y="542.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="342.00" y="542.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="402.00" y="542.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Must be unique across the entire platform</text>
+  <line x1="30.00" y1="554.00" x2="748.60" y2="554.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="554.00" width="718.60" height="24.00" fill="white"/>
+  <text x="40.00" y="566.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">email</text>
+  <text x="145.80" y="566.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="261.50" y="566.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="310.00" y="566.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="342.00" y="566.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="402.00" y="566.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="578.00" x2="748.60" y2="578.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="578.00" width="718.60" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="590.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">password_hash</text>
+  <text x="145.80" y="590.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="310.00" y="590.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="342.00" y="590.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="402.00" y="590.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">bcrypt hash; cost factor configured per environment</text>
+  <line x1="30.00" y1="602.00" x2="748.60" y2="602.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="602.00" width="718.60" height="24.00" fill="white"/>
+  <text x="40.00" y="614.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">status</text>
+  <text x="145.80" y="614.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(16)</text>
+  <text x="310.00" y="614.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="342.00" y="614.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">active</text>
+  <text x="402.00" y="614.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Account state: active / suspended / deleted</text>
+  <line x1="30.00" y1="626.00" x2="748.60" y2="626.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="626.00" width="718.60" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="638.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">created_at</text>
+  <text x="145.80" y="638.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="310.00" y="638.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="342.00" y="638.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="402.00" y="638.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+</svg>

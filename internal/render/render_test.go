@@ -153,3 +153,70 @@ table bar (y int)`)
 		t.Error("expected both tables in SVG output")
 	}
 }
+
+// Link color and crow's foot notation tests.
+
+func TestSVGLinkOneToManyGreen(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	if !strings.Contains(svg, "#27AE60") {
+		t.Error("expected green (#27AE60) stroke for one-to-many link")
+	}
+}
+
+func TestSVGLinkOneToOneBlue(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to one b.a_id`)
+	if !strings.Contains(svg, "#3498DB") {
+		t.Error("expected blue (#3498DB) stroke for one-to-one link")
+	}
+}
+
+func TestSVGLinkManyToManyRed(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link many a.id to many b.a_id`)
+	if !strings.Contains(svg, "#E74C3C") {
+		t.Error("expected red (#E74C3C) stroke for many-to-many link")
+	}
+}
+
+// TestSVGLinkNoTextCardinality verifies that the old text labels ("1" / "N")
+// are no longer emitted and only SVG line elements are used for decorators.
+func TestSVGLinkNoTextCardinality(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	// Old text labels must not appear.
+	if strings.Contains(svg, `>1<`) || strings.Contains(svg, `>N<`) {
+		t.Error("old text cardinality labels must not appear in SVG output")
+	}
+}
+
+// TestSVGCrowsFootLinesPresent verifies that crow's foot <line> elements are
+// present when a many-cardinality endpoint is rendered.
+func TestSVGCrowsFootLinesPresent(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	// At least one <line> element must be present for the crow's foot symbol.
+	if !strings.Contains(svg, "<line ") {
+		t.Error("expected <line> elements for crow's foot symbol in SVG output")
+	}
+}
+
+// TestSVGLinkCommentNoBadgeArrowMarker verifies that the old arrowhead marker
+// is no longer referenced (we draw symbols inline instead).
+func TestSVGLinkCommentNoBadgeArrowMarker(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	if strings.Contains(svg, `marker-end`) {
+		t.Error("marker-end must not appear; cardinality is now drawn inline")
+	}
+	if strings.Contains(svg, `id="arrow"`) {
+		t.Error("arrow marker definition must not appear in SVG defs")
+	}
+}
