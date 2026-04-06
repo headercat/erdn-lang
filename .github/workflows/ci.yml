@@ -33,42 +33,12 @@ jobs:
             echo "rendered: $out"
           done
 
-      - name: Render examples to PNG
-        run: |
-          for f in examples/*.erdn; do
-            out="${f%.erdn}.png"
-            ./erdn render --out "$out" "$f"
-            echo "rendered: $out"
-          done
-
-      - name: Render examples to PDF
-        run: |
-          for f in examples/*.erdn; do
-            out="${f%.erdn}.pdf"
-            ./erdn render --out "$out" "$f"
-            echo "rendered: $out"
-          done
-
       - name: Upload SVG diagrams
         id: upload
         uses: actions/upload-artifact@v4
         with:
           name: er-diagrams-svg
           path: examples/*.svg
-          if-no-files-found: error
-
-      - name: Upload PNG diagrams
-        uses: actions/upload-artifact@v4
-        with:
-          name: er-diagrams-png
-          path: examples/*.png
-          if-no-files-found: error
-
-      - name: Upload PDF diagrams
-        uses: actions/upload-artifact@v4
-        with:
-          name: er-diagrams-pdf
-          path: examples/*.pdf
           if-no-files-found: error
 
       - name: Comment on PR
@@ -88,14 +58,11 @@ jobs:
             let sections = '';
             for (const file of erdn) {
               const name = path.basename(file, '.erdn');
-              const formats = ['svg', 'png', 'pdf'];
+              const p = path.join(examplesDir, `${name}.svg`);
               sections += `\n### \`${file}\`\n\n`;
-              for (const fmt of formats) {
-                const p = path.join(examplesDir, `${name}.${fmt}`);
-                if (fs.existsSync(p)) {
-                  const kb = (fs.statSync(p).size / 1024).toFixed(1);
-                  sections += `- ${fmt.toUpperCase()} rendered successfully (${kb} KB)\n`;
-                }
+              if (fs.existsSync(p)) {
+                const kb = (fs.statSync(p).size / 1024).toFixed(1);
+                sections += `- SVG rendered successfully (${kb} KB)\n`;
               }
               sections += '\n';
             }
@@ -110,7 +77,7 @@ jobs:
               sections.trim(),
               '',
               '---',
-              `📦 **[Download diagrams](${artifactUrl})** — open the workflow run and expand *Artifacts* to download SVG, PNG, and PDF archives.`,
+              `📦 **[Download diagrams](${artifactUrl})** — open the workflow run and expand *Artifacts* to download the SVG archive.`,
             ].join('\n');
 
             // Always create a new comment on every completed run

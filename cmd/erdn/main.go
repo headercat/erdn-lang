@@ -63,7 +63,7 @@ func loadAndValidate(schemaFile string) (*ast.Program, error) {
 
 func runRender(args []string) {
 	fs := flag.NewFlagSet("render", flag.ExitOnError)
-	outFlag := fs.String("out", "", "output file path (default: <schema>.svg); use .png or .pdf for those formats")
+	outFlag := fs.String("out", "", "output file path (default: <schema>.svg)")
 	if err := fs.Parse(args); err != nil {
 		os.Exit(1)
 	}
@@ -85,32 +85,9 @@ func runRender(args []string) {
 		outPath = base + ".svg"
 	}
 
-	switch strings.ToLower(filepath.Ext(outPath)) {
-	case ".png":
-		data, err := render.GeneratePNG(prog)
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
-		if err := output.RenderPNG(data, outPath); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
-	case ".pdf":
-		data, err := render.GeneratePDF(prog)
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
-		if err := output.RenderPDF(data, outPath); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
-	default:
-		if err := output.RenderSVG(render.GenerateSVG(prog), outPath); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
+	if err := output.RenderSVG(render.GenerateSVG(prog), outPath); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 	fmt.Printf("rendered %s\n", outPath)
 }
