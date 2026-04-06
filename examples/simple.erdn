@@ -1,0 +1,22 @@
+# A simple user schema
+
+table users (
+  # Primary identifier
+  id bigint primary-key auto-increment
+  username varchar(255) indexed not-null
+  email varchar(255) indexed not-null
+  bio text nullable
+  created_at timestamp not-null default("NOW()")
+)
+
+table posts (
+  # Post table
+  id bigint primary-key auto-increment
+  title varchar(255) not-null
+  body text nullable
+  author_id bigint not-null indexed
+  created_at timestamp not-null default("NOW()")
+)
+
+# User has many posts
+link one users.id to many posts.author_id
