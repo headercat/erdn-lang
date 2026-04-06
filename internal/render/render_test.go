@@ -1,56 +1,12 @@
 package render
 
 import (
+	"bytes"
 	"strings"
 	"testing"
 
 	"github.com/headercat/erdn-lang/internal/parser"
 )
-
-func generateDOT(t *testing.T, src string) string {
-	t.Helper()
-	prog, err := parser.ParseString(src)
-	if err != nil {
-		t.Fatalf("parse error: %v", err)
-	}
-	return GenerateDOT(prog)
-}
-
-func TestDOTContainsTableNode(t *testing.T) {
-	dot := generateDOT(t, `table users (
-  id bigint primary-key
-  name varchar(255)
-)`)
-	if !strings.Contains(dot, "users") {
-		t.Error("expected 'users' in DOT output")
-	}
-	if !strings.Contains(dot, "id") {
-		t.Error("expected 'id' column in DOT output")
-	}
-	if !strings.Contains(dot, "bigint") {
-		t.Error("expected 'bigint' type in DOT output")
-	}
-}
-
-func TestDOTContainsEdge(t *testing.T) {
-	dot := generateDOT(t, `table a (id bigint)
-table b (a_id bigint)
-link one a.id to many b.a_id`)
-	if !strings.Contains(dot, "->") {
-		t.Error("expected edge arrow in DOT output")
-	}
-	if !strings.Contains(dot, `"1"`) || !strings.Contains(dot, `"N"`) {
-		t.Error("expected cardinality labels in DOT output")
-	}
-}
-
-func TestDOTContainsComment(t *testing.T) {
-	dot := generateDOT(t, `# my table
-table t (id bigint)`)
-	if !strings.Contains(dot, "my table") {
-		t.Error("expected comment in DOT output")
-	}
-}
 
 func generateSVG(t *testing.T, src string) string {
 	t.Helper()
@@ -59,6 +15,32 @@ func generateSVG(t *testing.T, src string) string {
 		t.Fatalf("parse error: %v", err)
 	}
 	return GenerateSVG(prog)
+}
+
+func generatePNG(t *testing.T, src string) []byte {
+	t.Helper()
+	prog, err := parser.ParseString(src)
+	if err != nil {
+		t.Fatalf("parse error: %v", err)
+	}
+	data, err := GeneratePNG(prog)
+	if err != nil {
+		t.Fatalf("GeneratePNG error: %v", err)
+	}
+	return data
+}
+
+func generatePDF(t *testing.T, src string) []byte {
+	t.Helper()
+	prog, err := parser.ParseString(src)
+	if err != nil {
+		t.Fatalf("parse error: %v", err)
+	}
+	data, err := GeneratePDF(prog)
+	if err != nil {
+		t.Fatalf("GeneratePDF error: %v", err)
+	}
+	return data
 }
 
 func TestSVGContainsTableNode(t *testing.T) {
@@ -199,23 +181,84 @@ table bar (y int)`)
 	}
 }
 
-func TestDOTMultipleTables(t *testing.T) {
-	dot := generateDOT(t, `table foo (x int)
-table bar (y int)`)
-	if !strings.Contains(dot, "foo") || !strings.Contains(dot, "bar") {
-		t.Error("expected both tables in DOT output")
+// PNG renderer tests
+
+var pngMagic = []byte{0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A}
+
+func TestPNGHasMagicBytes(t *testing.T) {
+	data := generatePNG(t, `table t (id bigint)`)
+	if len(data) < len(pngMagic) || !bytes.Equal(data[:len(pngMagic)], pngMagic) {
+		t.Error("PNG output does not start with PNG magic bytes")
 	}
 }
 
-func TestDOTModifiers(t *testing.T) {
-	dot := generateDOT(t, `table t (
+func TestPNGNonEmpty(t *testing.T) {
+	data := generatePNG(t, `table t (id bigint)`)
+	if len(data) == 0 {
+		t.Error("PNG output must not be empty")
+	}
+}
+
+func TestPNGWithEdge(t *testing.T) {
+	data := generatePNG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	if len(data) == 0 {
+		t.Error("PNG output with edge must not be empty")
+	}
+	if !bytes.Equal(data[:len(pngMagic)], pngMagic) {
+		t.Error("PNG output with edge does not start with PNG magic bytes")
+	}
+}
+
+func TestPNGWithCJK(t *testing.T) {
+	data := generatePNG(t, `# 用户表
+table 用户 (id bigint primary-key)`)
+	if len(data) == 0 {
+		t.Error("PNG output with CJK must not be empty")
+	}
+	if !bytes.Equal(data[:len(pngMagic)], pngMagic) {
+		t.Error("PNG output with CJK does not start with PNG magic bytes")
+	}
+}
+
+// PDF renderer tests
+
+func TestPDFHasMagicBytes(t *testing.T) {
+	data := generatePDF(t, `table t (id bigint)`)
+	if len(data) < 4 || string(data[:4]) != "%PDF" {
+		t.Error("PDF output does not start with %PDF magic bytes")
+	}
+}
+
+func TestPDFNonEmpty(t *testing.T) {
+	data := generatePDF(t, `table t (id bigint)`)
+	if len(data) == 0 {
+		t.Error("PDF output must not be empty")
+	}
+}
+
+func TestPDFWithEdge(t *testing.T) {
+	data := generatePDF(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	if len(data) == 0 {
+		t.Error("PDF output with edge must not be empty")
+	}
+	if string(data[:4]) != "%PDF" {
+		t.Error("PDF output with edge does not start with %PDF magic bytes")
+	}
+}
+
+func TestPDFWithModifiers(t *testing.T) {
+	data := generatePDF(t, `table t (
   id bigint primary-key auto-increment
   name varchar(255) not-null default("hi")
 )`)
-	if !strings.Contains(dot, "PK") {
-		t.Error("expected PK modifier")
+	if len(data) == 0 {
+		t.Error("PDF output with modifiers must not be empty")
 	}
-	if !strings.Contains(dot, "AI") {
-		t.Error("expected AI modifier")
+	if string(data[:4]) != "%PDF" {
+		t.Error("PDF output with modifiers does not start with %PDF magic bytes")
 	}
 }

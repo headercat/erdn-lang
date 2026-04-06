@@ -25,8 +25,6 @@ func main() {
 		runRender(os.Args[2:])
 	case "validate":
 		runValidate(os.Args[2:])
-	case "dot":
-		runDot(os.Args[2:])
 	default:
 		fmt.Fprintf(os.Stderr, "unknown subcommand: %s\n", os.Args[1])
 		printUsage()
@@ -39,8 +37,7 @@ func printUsage() {
 
 Usage:
   erdn render <schema.erdn> [--out <file>]
-  erdn validate <schema.erdn>
-  erdn dot <schema.erdn> [--out <file>]`)
+  erdn validate <schema.erdn>`)
 }
 
 // loadAndValidate parses and semantically validates a schema file.
@@ -147,34 +144,4 @@ func runValidate(args []string) {
 		os.Exit(1)
 	}
 	fmt.Println("OK")
-}
-
-func runDot(args []string) {
-	fs := flag.NewFlagSet("dot", flag.ExitOnError)
-	outFlag := fs.String("out", "", "output file (default: stdout)")
-	if err := fs.Parse(args); err != nil {
-		os.Exit(1)
-	}
-	if fs.NArg() < 1 {
-		fmt.Fprintln(os.Stderr, "dot: missing schema file")
-		os.Exit(1)
-	}
-	schemaFile := fs.Arg(0)
-
-	prog, err := loadAndValidate(schemaFile)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
-	dotContent := render.GenerateDOT(prog)
-	if *outFlag != "" {
-		if err := output.RenderDOT(dotContent, *outFlag); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
-		fmt.Printf("wrote DOT to %s\n", *outFlag)
-	} else {
-		fmt.Print(dotContent)
-	}
 }

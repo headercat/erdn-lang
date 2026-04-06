@@ -468,6 +468,14 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
 }
 
 // svgWriteCardLabels emits cardinality labels ("1" / "N") near each endpoint.
+// cardLabel returns the cardinality label string ("1" or "N").
+func cardLabel(c ast.Cardinality) string {
+	if c == ast.CardMany {
+		return "N"
+	}
+	return "1"
+}
+
 func svgWriteCardLabels(sb *strings.Builder, flx, fy, tlx, ty float64, fromLabel, toLabel string) {
 	fmt.Fprintf(sb, `<text x="%.2f" y="%.2f" text-anchor="middle" fill="#546E7A" font-family="%s" font-size="10" font-weight="bold">%s</text>`+"\n",
 		flx, fy-6, svgFont, fromLabel)
