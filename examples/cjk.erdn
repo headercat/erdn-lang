@@ -1,0 +1,74 @@
+# 博客系统数据库模式
+# 包含用户、文章和评论三张核心表
+
+// 以下 // 开头的注释不会出现在渲染图中
+// ---------------------------------------------------------------------------
+// 用户模块
+// ---------------------------------------------------------------------------
+
+table 用户 (
+  // 此行是 // 注释，不会被渲染
+  # 自增主键，系统内部唯一标识
+  id bigint primary-key auto-increment
+  # 登录用户名，全局唯一，不可修改
+  用户名 varchar(64) not-null indexed
+  # 注册邮箱，用于接收通知
+  邮箱 varchar(255) not-null indexed
+  # bcrypt 加密后的密码哈希值
+  密码哈希 varchar(255) not-null
+  # 账号状态：active-活跃 / suspended-暂停 / deleted-已删除
+  状态 varchar(16) not-null default("active")
+  注册时间 timestamp not-null default("NOW()")
+  更新时间 timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// 内容模块
+// ---------------------------------------------------------------------------
+
+# 文章表
+# 存储用户发布的所有文章（含草稿）
+table 文章 (
+  id bigint primary-key auto-increment
+  # 外键 → 用户.id，标记文章作者
+  作者ID bigint not-null indexed
+  # 文章标题，最长 255 个字符
+  标题 varchar(255) not-null
+  # URL 友好的短名称，全局唯一
+  网址别名 varchar(255) not-null indexed
+  正文 text not-null
+  # 发布状态：draft-草稿 / published-已发布 / archived-已归档
+  状态 varchar(32) not-null default("draft")
+  发布时间 timestamp nullable
+  创建时间 timestamp not-null default("NOW()")
+)
+
+# 评论表
+# 支持多级嵌套回复（通过 父评论ID 自关联）
+table 评论 (
+  id bigint primary-key auto-increment
+  # 所属文章
+  文章ID bigint not-null indexed
+  # 评论作者
+  用户ID bigint not-null indexed
+  # NULL 表示顶层评论；非 NULL 则指向父评论
+  父评论ID bigint nullable indexed
+  评论内容 text not-null
+  创建时间 timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// 关系定义
+// ---------------------------------------------------------------------------
+
+# 一位用户可以撰写多篇文章
+link one 用户.id to many 文章.作者ID
+
+# 一篇文章可以拥有多条评论
+link one 文章.id to many 评论.文章ID
+
+# 一位用户可以发表多条评论
+link one 用户.id to many 评论.用户ID
+
+# 评论支持多级嵌套回复（自关联）
+link one 评论.id to many 评论.父评论ID

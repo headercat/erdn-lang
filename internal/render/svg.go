@@ -11,18 +11,19 @@ import (
 
 // SVG layout constants.
 const (
-	svgFont      = "sans-serif"
-	svgFontSz    = 12.0
-	svgHdrFontSz = 13.0
-	svgSubFontSz = 10.0
-	svgPadH      = 10.0  // horizontal cell padding
-	svgPadV      = 6.0   // vertical cell padding
-	svgRowH      = 24.0  // data row height  (12 + 2×6)
-	svgHdrH      = 26.0  // table header row height
-	svgSubHdrH   = 22.0  // sub-header / comment-subtitle row height
-	svgTblGapH   = 120.0 // horizontal gap between tables (space for link routing)
-	svgTblGapV   = 80.0  // vertical gap between tables
-	svgMargin    = 30.0  // outer canvas margin
+	svgFont         = "sans-serif"
+	svgFontSz       = 12.0
+	svgHdrFontSz    = 13.0
+	svgSubFontSz    = 10.0
+	svgPadH         = 10.0  // horizontal cell padding
+	svgPadV         = 6.0   // vertical cell padding
+	svgRowH         = 24.0  // data row height  (12 + 2×6)
+	svgHdrH         = 26.0  // table header row height
+	svgSubHdrH      = 20.0  // sub-header / comment-subtitle row height
+	svgMinGapH      = 160.0 // minimum horizontal gap between table columns
+	svgLinkCommentM = 40.0  // extra margin on each side of a link-comment badge
+	svgTblGapV      = 80.0  // vertical gap between tables
+	svgMargin       = 30.0  // outer canvas margin
 )
 
 var (
@@ -94,6 +95,21 @@ func buildSVGLayouts(prog *ast.Program) []*svgTableLayout {
 		layouts[i] = measureSVGTable(tbl)
 	}
 
+	// Compute required horizontal gap: must be wide enough that link-comment
+	// badges (rendered at the midpoint of the vertical connector segment) do
+	// not overlap the adjacent table boxes.
+	gapH := svgMinGapH
+	for _, lnk := range prog.Links {
+		if len(lnk.Comments) == 0 {
+			continue
+		}
+		txt := strings.Join(lnk.Comments, " ")
+		badgeW := svgTextWidth(txt, svgSubFontSz) + 12 + 2*svgLinkCommentM
+		if badgeW > gapH {
+			gapH = badgeW
+		}
+	}
+
 	// Choose grid column count based on schema size.
 	cols := 3
 	if n == 1 {
@@ -118,7 +134,7 @@ func buildSVGLayouts(prog *ast.Program) []*svgTableLayout {
 	colX := make([]float64, cols)
 	colX[0] = svgMargin
 	for c := 1; c < cols; c++ {
-		colX[c] = colX[c-1] + maxColW[c-1] + svgTblGapH
+		colX[c] = colX[c-1] + maxColW[c-1] + gapH
 	}
 	rowY := make([]float64, rows)
 	rowY[0] = svgMargin
@@ -132,10 +148,9 @@ func buildSVGLayouts(prog *ast.Program) []*svgTableLayout {
 		lt.y = rowY[r]
 
 		// Port Y = y-centre of the column's data row (absolute).
-		dataTop := lt.y + svgHdrH + svgSubHdrH
-		if len(lt.tbl.Comments) > 0 {
-			dataTop += svgSubHdrH // comment subtitle row
-		}
+		// Account for variable number of table-comment subtitle rows.
+		dataTop := lt.y + svgHdrH + svgSubHdrH +
+			float64(len(lt.tbl.Comments))*svgSubHdrH
 		lt.portY = make(map[string]float64, len(lt.tbl.Columns))
 		for j, col := range lt.tbl.Columns {
 			lt.portY[col.Name] = dataTop + float64(j)*svgRowH + svgRowH/2
@@ -173,10 +188,10 @@ func measureSVGTable(tbl *ast.Table) *svgTableLayout {
 		totalCW += cw
 	}
 
-	// Ensure the table is at least as wide as its header / comment text.
+	// Ensure the table is at least as wide as its header and each comment line.
 	minW := svgTextWidth(tbl.Name, svgHdrFontSz) + 2*svgPadH
-	if len(tbl.Comments) > 0 {
-		cw := svgTextWidth(strings.Join(tbl.Comments, " "), svgSubFontSz) + 2*svgPadH
+	for _, c := range tbl.Comments {
+		cw := svgTextWidth(c, svgSubFontSz) + 2*svgPadH
 		if cw > minW {
 			minW = cw
 		}
@@ -186,10 +201,10 @@ func measureSVGTable(tbl *ast.Table) *svgTableLayout {
 		lt.colWidths[5] += lt.width - totalCW // expand comment column
 	}
 
-	lt.height = svgHdrH + svgSubHdrH + float64(len(tbl.Columns))*svgRowH
-	if len(tbl.Comments) > 0 {
-		lt.height += svgSubHdrH
-	}
+	// Each table-comment line gets its own subtitle row.
+	lt.height = svgHdrH + svgSubHdrH +
+		float64(len(tbl.Comments))*svgSubHdrH +
+		float64(len(tbl.Columns))*svgRowH
 	return lt
 }
 
@@ -260,9 +275,9 @@ func renderSVGTable(lt *svgTableLayout) string {
 	svgWriteText(&sb, x+w/2, curY+svgHdrH/2, "middle", "white", svgHdrFontSz, "bold", "normal", lt.tbl.Name)
 	curY += svgHdrH
 
-	// ── Optional table-comment subtitle ─────────────────────────────────────
-	if len(lt.tbl.Comments) > 0 {
-		comment := strings.Join(lt.tbl.Comments, " ")
+	// ── Optional per-line table-comment subtitle rows ───────────────────────
+	// Each `#` comment line before the table gets its own dark subtitle row.
+	for _, comment := range lt.tbl.Comments {
 		fmt.Fprintf(&sb, `  <rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="#34495E"/>`+"\n",
 			x, curY, w, svgSubHdrH)
 		svgWriteText(&sb, x+w/2, curY+svgSubHdrH/2, "middle", "#BDC3C7", svgSubFontSz, "normal", "italic", comment)
@@ -368,7 +383,8 @@ func svgWriteNullCell(sb *strings.Builder, cx, cy float64, col *ast.Column) {
 
 // renderSVGLink draws an orthogonal (right-angle) connector between two column
 // ports. Each connector has three segments: horizontal → vertical → horizontal.
-// Link comments are shown as a labelled badge at the midpoint of the connector.
+// Only `#` comments are stored in the AST (the parser discards `//` comments),
+// so only those comments are rendered as badges on the connector.
 func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
 	src := ltMap[lnk.FromTable]
 	dst := ltMap[lnk.ToTable]
@@ -384,16 +400,32 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
 	fromLabel := cardLabel(lnk.FromCardinality)
 	toLabel := cardLabel(lnk.ToCardinality)
 
+	// Pre-compute badge width so we can size loops correctly.
+	var badgeW float64
+	if len(lnk.Comments) > 0 {
+		txt := strings.Join(lnk.Comments, " ")
+		badgeW = svgTextWidth(txt, svgSubFontSz) + 12
+	}
+
 	var sb strings.Builder
 
 	// ── Self-referential link: rectangular loop on the right side ────────────
 	if lnk.FromTable == lnk.ToTable {
 		sx := src.x + src.width
-		loopX := sx + math.Max(40, math.Abs(dy-sy)*0.3+30)
+		// Ensure the loop extends far enough to place the badge cleanly beside it.
+		loopOffset := math.Max(50, math.Abs(dy-sy)*0.3+35)
+		if badgeW > 0 {
+			needed := badgeW/2 + 10
+			if needed > loopOffset {
+				loopOffset = needed
+			}
+		}
+		loopX := sx + loopOffset
 		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, loopX, dy, sx)
 		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="#95A5A6" stroke-width="1.5" marker-end="url(#arrow)"/>`+"\n", path)
 		svgWriteCardLabels(&sb, sx+14, sy, sx+14, dy, fromLabel, toLabel)
-		svgWriteLinkComment(&sb, loopX+6, (sy+dy)/2, lnk)
+		// Badge is centered at loopX, vertically at the mid-height of the loop.
+		svgWriteLinkComment(&sb, loopX, (sy+dy)/2, lnk)
 		return sb.String()
 	}
 
@@ -421,8 +453,15 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout) string {
 	}
 	svgWriteCardLabels(&sb, flx, sy, tlx, dy, fromLabel, toLabel)
 
-	// Comment badge sits at the midpoint of the vertical segment.
-	svgWriteLinkComment(&sb, midX, (sy+dy)/2, lnk)
+	// Badge sits at the midpoint of the vertical segment.
+	// When sy ≈ dy the vertical segment is very short; shift the badge above
+	// the connector so it does not overlap the horizontal lines.
+	const bh = 16.0
+	commentY := (sy + dy) / 2
+	if math.Abs(sy-dy) < 2*bh {
+		commentY = math.Min(sy, dy) - bh - 4
+	}
+	svgWriteLinkComment(&sb, midX, commentY, lnk)
 
 	return sb.String()
 }

@@ -159,6 +159,38 @@ link one categories.id to many categories.parent_id`)
 	}
 }
 
+func TestSVGDoubleSlashCommentNotRendered(t *testing.T) {
+	svg := generateSVG(t, `// this must not appear
+table t (
+  // column note excluded
+  id bigint
+)
+// link note excluded
+table u (ref bigint)
+link one t.id to many u.ref`)
+	if strings.Contains(svg, "must not appear") {
+		t.Error("// comment must not appear in SVG output")
+	}
+	if strings.Contains(svg, "column note excluded") {
+		t.Error("// column comment must not appear in SVG output")
+	}
+	if strings.Contains(svg, "link note excluded") {
+		t.Error("// link comment must not appear in SVG output")
+	}
+}
+
+func TestSVGMultiLineTableComment(t *testing.T) {
+	svg := generateSVG(t, `# first line
+# second line
+table t (id bigint)`)
+	if !strings.Contains(svg, "first line") {
+		t.Error("expected first comment line in SVG output")
+	}
+	if !strings.Contains(svg, "second line") {
+		t.Error("expected second comment line in SVG output")
+	}
+}
+
 func TestSVGMultipleTables(t *testing.T) {
 	svg := generateSVG(t, `table foo (x int)
 table bar (y int)`)

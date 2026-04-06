@@ -1,0 +1,94 @@
+// ============================================================
+// advanced.erdn – demonstrates three features at once:
+//   1. Mixed declaration order (links appear before the tables
+//      they reference — semantic validation still passes because
+//      the validator collects all tables before checking links)
+//   2. Multi-line # comments on tables, columns, and links
+//      (each # line becomes its own subtitle row in the diagram)
+//   3. // comments interspersed throughout — none of these lines
+//      will appear in the rendered SVG diagram
+// ============================================================
+
+// ── Relationship 1: declared before both referenced tables ──
+
+# Connects a task to the project it belongs to.
+# Every task must belong to exactly one project;
+# a project may contain many tasks.
+link one projects.id to many tasks.project_id
+
+// ── Relationship 2: also declared before the tables ──
+
+# A user can be assigned to many tasks.
+# When assignee_id is NULL the task is unassigned.
+link one users.id to many tasks.assignee_id
+
+// ── tasks table ──────────────────────────────────────────────
+
+table tasks (
+  // Internal note: use BIGSERIAL in PostgreSQL
+  # Unique task record inside a project.
+  # Tasks belong to exactly one project and have one optional assignee.
+  id bigint primary-key auto-increment
+  # Foreign key → projects.id
+  project_id bigint not-null indexed
+  # Foreign key → users.id; NULL means the task is unassigned
+  assignee_id bigint nullable indexed
+  # Short human-readable summary shown in board views
+  title varchar(255) not-null
+  # Full description; supports Markdown.
+  # May be NULL when the task was created from a template without a body.
+  description text nullable
+  # Workflow state:
+  #   pending     – not yet started
+  #   in-progress – actively being worked on
+  #   done        – completed and accepted
+  #   blocked     – waiting on an external dependency
+  #   cancelled   – will not be completed
+  status varchar(32) not-null default("pending")
+  created_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+// ── Relationship 3: between two tables declared later ────────
+
+# Links a project back to its creator.
+# The creator has full administrative rights over the project.
+# This link is defined here, between the tables it references.
+link one users.id to many projects.creator_id
+
+// ── projects table – declared after the links above ──────────
+
+# Top-level grouping of tasks.
+# A project is owned by one creator and can contain many tasks.
+table projects (
+  // Auto-increment handled by the ORM layer
+  id bigint primary-key auto-increment
+  # The user who originally created this project
+  creator_id bigint not-null indexed
+  # Human-readable project name (shown in the dashboard)
+  name varchar(255) not-null
+  # URL-safe slug used in deep-link permalinks
+  slug varchar(255) not-null indexed
+  description text nullable
+  # Lifecycle state: active / archived / deleted
+  status varchar(32) not-null default("active")
+  created_at timestamp not-null default("NOW()")
+)
+
+// ── users table – declared last ──────────────────────────────
+
+# Platform user account.
+# A user can act as a project creator and / or a task assignee.
+# Credentials are stored as bcrypt hashes; plain-text passwords
+# are never persisted.
+table users (
+  id bigint primary-key auto-increment
+  # Must be unique across the entire platform
+  username varchar(64) not-null indexed
+  email varchar(255) not-null indexed
+  # bcrypt hash; cost factor configured per environment
+  password_hash varchar(255) not-null
+  # Account state: active / suspended / deleted
+  status varchar(16) not-null default("active")
+  created_at timestamp not-null default("NOW()")
+)
