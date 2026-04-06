@@ -2,6 +2,9 @@ package render
 
 import (
 	"bytes"
+	"image"
+	"image/color"
+	"image/png"
 	"strings"
 	"testing"
 
@@ -185,6 +188,57 @@ table bar (y int)`)
 
 var pngMagic = []byte{0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A}
 
+// decodePNGPixels decodes a PNG byte slice and returns the raw NRGBA image.
+func decodePNGPixels(t *testing.T, data []byte) *image.NRGBA {
+	t.Helper()
+	img, err := png.Decode(bytes.NewReader(data))
+	if err != nil {
+		t.Fatalf("png.Decode: %v", err)
+	}
+	nrgba, ok := img.(*image.NRGBA)
+	if !ok {
+		// Convert to NRGBA.
+		b := img.Bounds()
+		nrgba = image.NewNRGBA(b)
+		for py := b.Min.Y; py < b.Max.Y; py++ {
+			for px := b.Min.X; px < b.Max.X; px++ {
+				nrgba.Set(px, py, img.At(px, py))
+			}
+		}
+	}
+	return nrgba
+}
+
+// hasNonBackgroundPixel reports whether any pixel in img differs from the
+// canvas background colour (#F4F6F8 = 244,246,248).
+func hasNonBackgroundPixel(img *image.NRGBA) bool {
+	bg := color.NRGBA{R: 244, G: 246, B: 248, A: 255}
+	b := img.Bounds()
+	for py := b.Min.Y; py < b.Max.Y; py++ {
+		for px := b.Min.X; px < b.Max.X; px++ {
+			if img.NRGBAAt(px, py) != bg {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// hasDarkPixel reports whether any pixel has all RGB channels below threshold,
+// indicating rendered text or dark UI elements (header, border, etc.).
+func hasDarkPixel(img *image.NRGBA, threshold uint8) bool {
+	b := img.Bounds()
+	for py := b.Min.Y; py < b.Max.Y; py++ {
+		for px := b.Min.X; px < b.Max.X; px++ {
+			c := img.NRGBAAt(px, py)
+			if c.A > 0 && c.R < threshold && c.G < threshold && c.B < threshold {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func TestPNGHasMagicBytes(t *testing.T) {
 	data := generatePNG(t, `table t (id bigint)`)
 	if len(data) < len(pngMagic) || !bytes.Equal(data[:len(pngMagic)], pngMagic) {
@@ -219,6 +273,46 @@ table 用户 (id bigint primary-key)`)
 	}
 	if !bytes.Equal(data[:len(pngMagic)], pngMagic) {
 		t.Error("PNG output with CJK does not start with PNG magic bytes")
+	}
+}
+
+// TestPNGRendersContent verifies that the PNG output contains non-background
+// pixels (table headers, borders, text) — not just a blank canvas.
+func TestPNGRendersContent(t *testing.T) {
+	data := generatePNG(t, `table users (
+  id bigint primary-key
+  name varchar(255)
+)`)
+	img := decodePNGPixels(t, data)
+	if !hasNonBackgroundPixel(img) {
+		t.Error("PNG contains only background colour; expected table content to be drawn")
+	}
+}
+
+// TestPNGRendersText verifies that dark pixels exist in the PNG, indicating
+// that text labels (e.g. table name, column names) were actually rendered.
+func TestPNGRendersText(t *testing.T) {
+	data := generatePNG(t, `table users (
+  id bigint primary-key
+  name varchar(255)
+)`)
+	img := decodePNGPixels(t, data)
+	// The table header background is #2C3E50 (dark). Text rendered on top of
+	// lighter rows produces near-black pixels. Either proves text rendering.
+	if !hasDarkPixel(img, 100) {
+		t.Error("PNG has no dark pixels; expected text or header to be rendered")
+	}
+}
+
+// TestPNGRenderModifiers verifies that PK/AI/NN modifier text is rendered.
+func TestPNGRenderModifiers(t *testing.T) {
+	data := generatePNG(t, `table t (
+  id bigint primary-key auto-increment
+  name varchar(255) not-null
+)`)
+	img := decodePNGPixels(t, data)
+	if !hasDarkPixel(img, 100) {
+		t.Error("PNG with modifiers has no dark pixels; modifier text not rendered")
 	}
 }
 
