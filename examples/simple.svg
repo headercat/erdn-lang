@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1170" height="242">
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#95A5A6"/>
+  </marker>
+</defs>
+<rect width="1170" height="242" fill="#F4F6F8"/>
+<path d="M 513.40,104.00 H 611.65 V 160.00 H 709.90" fill="none" stroke="#95A5A6" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="527.40" y="98.00" text-anchor="middle" fill="#546E7A" font-family="sans-serif" font-size="10" font-weight="bold">1</text>
+<text x="695.90" y="154.00" text-anchor="middle" fill="#546E7A" font-family="sans-serif" font-size="10" font-weight="bold">N</text>
+<rect x="553.40" y="124.00" width="116.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="611.65" y="132.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">User has many posts</text>
+<g>
+  <rect x="30.00" y="30.00" width="483.40" height="182.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="30.00" y="30.00" width="483.40" height="26.00" fill="#2C3E50"/>
+  <text x="271.70" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">users</text>
+  <rect x="30.00" y="56.00" width="483.40" height="16.00" fill="#34495E"/>
+  <text x="271.70" y="64.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">A simple user schema</text>
+  <rect x="30.00" y="72.00" width="483.40" height="20.00" fill="#ECF0F1"/>
+  <text x="73.00" y="82.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="116.00" y1="72.00" x2="116.00" y2="212.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="165.60" y="82.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="215.20" y1="72.00" x2="215.20" y2="212.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="241.70" y="82.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="268.20" y1="72.00" x2="268.20" y2="212.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="291.40" y="82.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="314.60" y1="72.00" x2="314.60" y2="212.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="344.60" y="82.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="374.60" y1="72.00" x2="374.60" y2="212.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="444.00" y="82.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="30.00" y="92.00" width="483.40" height="24.00" fill="white"/>
+  <text x="40.00" y="104.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="126.00" y="104.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="241.70" y="104.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="324.60" y="104.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="384.60" y="104.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Primary identifier</text>
+  <line x1="30.00" y1="116.00" x2="513.40" y2="116.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="116.00" width="483.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="128.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">username</text>
+  <text x="126.00" y="128.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="241.70" y="128.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="291.40" y="128.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="324.60" y="128.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="384.60" y="128.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="140.00" x2="513.40" y2="140.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="140.00" width="483.40" height="24.00" fill="white"/>
+  <text x="40.00" y="152.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">email</text>
+  <text x="126.00" y="152.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="241.70" y="152.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="291.40" y="152.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="324.60" y="152.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="384.60" y="152.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="164.00" x2="513.40" y2="164.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="164.00" width="483.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="176.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">bio</text>
+  <text x="126.00" y="176.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="291.40" y="176.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="324.60" y="176.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="384.60" y="176.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="188.00" x2="513.40" y2="188.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="188.00" width="483.40" height="24.00" fill="white"/>
+  <text x="40.00" y="200.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">created_at</text>
+  <text x="126.00" y="200.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="291.40" y="200.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="324.60" y="200.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="384.60" y="200.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="709.90" y="30.00" width="430.60" height="166.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="709.90" y="30.00" width="430.60" height="26.00" fill="#2C3E50"/>
+  <text x="925.20" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">posts</text>
+  <rect x="709.90" y="56.00" width="430.60" height="20.00" fill="#ECF0F1"/>
+  <text x="752.90" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="795.90" y1="56.00" x2="795.90" y2="196.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="845.50" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="895.10" y1="56.00" x2="895.10" y2="196.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="921.60" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="948.10" y1="56.00" x2="948.10" y2="196.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="971.30" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="994.50" y1="56.00" x2="994.50" y2="196.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1024.50" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="1054.50" y1="56.00" x2="1054.50" y2="196.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1097.50" y="66.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="709.90" y="76.00" width="430.60" height="24.00" fill="white"/>
+  <text x="719.90" y="88.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="805.90" y="88.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="921.60" y="88.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="1004.50" y="88.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1064.50" y="88.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">Post table</text>
+  <line x1="709.90" y1="100.00" x2="1140.50" y2="100.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="709.90" y="100.00" width="430.60" height="24.00" fill="#F8F9FA"/>
+  <text x="719.90" y="112.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">title</text>
+  <text x="805.90" y="112.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="971.30" y="112.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1004.50" y="112.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1064.50" y="112.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="709.90" y1="124.00" x2="1140.50" y2="124.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="709.90" y="124.00" width="430.60" height="24.00" fill="white"/>
+  <text x="719.90" y="136.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">body</text>
+  <text x="805.90" y="136.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="971.30" y="136.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="1004.50" y="136.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1064.50" y="136.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="709.90" y1="148.00" x2="1140.50" y2="148.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="709.90" y="148.00" width="430.60" height="24.00" fill="#F8F9FA"/>
+  <text x="719.90" y="160.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">author_id</text>
+  <text x="805.90" y="160.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="921.60" y="160.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="971.30" y="160.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1004.50" y="160.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1064.50" y="160.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="709.90" y1="172.00" x2="1140.50" y2="172.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="709.90" y="172.00" width="430.60" height="24.00" fill="white"/>
+  <text x="719.90" y="184.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">created_at</text>
+  <text x="805.90" y="184.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="971.30" y="184.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1004.50" y="184.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="1064.50" y="184.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+</svg>

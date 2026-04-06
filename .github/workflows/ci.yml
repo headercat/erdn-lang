@@ -29,26 +29,23 @@ jobs:
         run: |
           for f in examples/*.erdn; do
             out="${f%.erdn}.svg"
-            ./erdn render "$f" --out "$out"
+            ./erdn render --out "$out" "$f"
             echo "rendered: $out"
           done
 
-      - name: Install rsvg-convert (SVG → PNG / PDF)
-        run: sudo apt-get install -y librsvg2-bin
-
       - name: Render examples to PNG
         run: |
-          for f in examples/*.svg; do
-            out="${f%.svg}.png"
-            rsvg-convert -f png -o "$out" "$f"
+          for f in examples/*.erdn; do
+            out="${f%.erdn}.png"
+            ./erdn render --out "$out" "$f"
             echo "rendered: $out"
           done
 
       - name: Render examples to PDF
         run: |
-          for f in examples/*.svg; do
-            out="${f%.svg}.pdf"
-            rsvg-convert -f pdf -o "$out" "$f"
+          for f in examples/*.erdn; do
+            out="${f%.erdn}.pdf"
+            ./erdn render --out "$out" "$f"
             echo "rendered: $out"
           done
 
