@@ -1,0 +1,191 @@
+# E-commerce platform schema
+# Covers users, addresses, products, categories, orders, payments, reviews, and wishlists.
+
+// ---------------------------------------------------------------------------
+// Identity & access
+// ---------------------------------------------------------------------------
+
+table users (
+  # Surrogate primary key
+  id bigint primary-key auto-increment
+  # Login handle – must be globally unique
+  username varchar(64) not-null indexed
+  email varchar(255) not-null indexed
+  password_hash varchar(255) not-null
+  # Optional display name shown in the storefront
+  display_name varchar(128) nullable
+  # Account state: active, suspended, deleted
+  status varchar(16) not-null default("active")
+  email_verified_at timestamp nullable
+  created_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Shipping & billing addresses
+// ---------------------------------------------------------------------------
+
+table addresses (
+  # Each row belongs to exactly one user
+  id bigint primary-key auto-increment
+  user_id bigint not-null indexed
+  # street, city, state, postal_code, country are all required for shipping
+  street varchar(255) not-null
+  city varchar(128) not-null
+  state varchar(128) nullable
+  postal_code varchar(32) not-null
+  country_code char(2) not-null default("US")
+  is_default bool not-null default("false")
+  created_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Product catalogue
+// ---------------------------------------------------------------------------
+
+table categories (
+  # Hierarchical category tree (self-referential via parent_id)
+  id bigint primary-key auto-increment
+  parent_id bigint nullable indexed
+  name varchar(128) not-null
+  slug varchar(128) not-null indexed
+  description text nullable
+  sort_order int not-null default("0")
+)
+
+table products (
+  # Master product record – variants are separate rows
+  id bigint primary-key auto-increment
+  category_id bigint not-null indexed
+  # Human-readable name shown in listings
+  name varchar(255) not-null
+  slug varchar(255) not-null indexed
+  description text nullable
+  # Price stored in minor units (cents) to avoid floating-point issues
+  price_cents int not-null
+  currency char(3) not-null default("USD")
+  # Current stock on hand; goes negative when oversold
+  stock_qty int not-null default("0")
+  is_active bool not-null default("true")
+  created_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Orders & line items
+// ---------------------------------------------------------------------------
+
+table orders (
+  # One order per checkout session
+  id bigint primary-key auto-increment
+  user_id bigint not-null indexed
+  shipping_address_id bigint not-null indexed
+  # Order lifecycle: pending, confirmed, shipped, delivered, cancelled, refunded
+  status varchar(32) not-null default("pending")
+  # Total including tax and shipping, in cents
+  total_cents int not-null
+  currency char(3) not-null default("USD")
+  notes text nullable
+  placed_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+table order_items (
+  # Each row is one product line inside an order
+  id bigint primary-key auto-increment
+  order_id bigint not-null indexed
+  product_id bigint not-null indexed
+  # Snapshot the price at purchase time – products can change later
+  quantity int not-null
+  unit_price_cents int not-null
+  currency char(3) not-null default("USD")
+)
+
+// ---------------------------------------------------------------------------
+// Payments
+// ---------------------------------------------------------------------------
+
+table payments (
+  # One payment attempt per row; an order may have multiple attempts
+  id bigint primary-key auto-increment
+  order_id bigint not-null indexed
+  # Gateway-assigned transaction identifier
+  transaction_id varchar(255) not-null indexed
+  # succeeded, failed, pending, refunded
+  status varchar(32) not-null
+  amount_cents int not-null
+  currency char(3) not-null default("USD")
+  # stripe, paypal, braintree, etc.
+  provider varchar(64) not-null
+  paid_at timestamp nullable
+  created_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Reviews
+// ---------------------------------------------------------------------------
+
+table reviews (
+  # Customers can review any product they purchased
+  id bigint primary-key auto-increment
+  product_id bigint not-null indexed
+  user_id bigint not-null indexed
+  # Integer 1-5; validated at application layer
+  rating int not-null
+  headline varchar(255) nullable
+  body text nullable
+  # Prevent duplicate reviews by same user on same product
+  created_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Wishlists
+// ---------------------------------------------------------------------------
+
+table wishlists (
+  # One wishlist entry per user-product pair
+  id bigint primary-key auto-increment
+  user_id bigint not-null indexed
+  product_id bigint not-null indexed
+  added_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Relationships
+// ---------------------------------------------------------------------------
+
+# Each address belongs to one user; one user may have many addresses
+link one users.id to many addresses.user_id
+
+# Each product belongs to one category; one category has many products
+link one categories.id to many products.category_id
+
+# Categories are self-referential: a parent category has many children
+link one categories.id to many categories.parent_id
+
+# Each order is placed by one user
+link one users.id to many orders.user_id
+
+# Each order ships to one address
+link one addresses.id to many orders.shipping_address_id
+
+# Each order line item belongs to one order
+link one orders.id to many order_items.order_id
+
+# Each order line item references one product
+link one products.id to many order_items.product_id
+
+# Each payment belongs to one order
+link one orders.id to many payments.order_id
+
+# Each review is written by one user
+link one users.id to many reviews.user_id
+
+# Each review is about one product
+link one products.id to many reviews.product_id
+
+# Each wishlist entry is owned by one user
+link one users.id to many wishlists.user_id
+
+# Each wishlist entry references one product
+link one products.id to many wishlists.product_id

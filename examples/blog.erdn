@@ -1,0 +1,162 @@
+# Blog / CMS platform schema
+# Covers authors, posts, categories, tags, comments, media, and subscriptions.
+
+// ---------------------------------------------------------------------------
+// Authors / users
+// ---------------------------------------------------------------------------
+
+table authors (
+  # Every content creator has one row here
+  id bigint primary-key auto-increment
+  # Used for login and @mentions
+  username varchar(64) not-null indexed
+  email varchar(255) not-null indexed
+  password_hash varchar(255) not-null
+  # Public pen name shown on posts; may differ from username
+  display_name varchar(128) not-null
+  bio text nullable
+  avatar_url varchar(1024) nullable
+  # admin, editor, contributor, subscriber
+  role varchar(32) not-null default("contributor")
+  created_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Content taxonomy
+// ---------------------------------------------------------------------------
+
+table categories (
+  # Hierarchical category tree; top-level rows have parent_id = NULL
+  id bigint primary-key auto-increment
+  parent_id bigint nullable indexed
+  name varchar(128) not-null
+  slug varchar(128) not-null indexed
+  description text nullable
+  sort_order int not-null default("0")
+)
+
+table tags (
+  # Flat list of freely-assignable labels
+  id bigint primary-key auto-increment
+  name varchar(64) not-null indexed
+  slug varchar(64) not-null indexed
+)
+
+// ---------------------------------------------------------------------------
+// Posts & their tag relationships
+// ---------------------------------------------------------------------------
+
+table posts (
+  # One row per published or draft article
+  id bigint primary-key auto-increment
+  author_id bigint not-null indexed
+  category_id bigint not-null indexed
+  # URL-safe identifier, must be unique per site
+  slug varchar(255) not-null indexed
+  title varchar(512) not-null
+  excerpt text nullable
+  body text not-null
+  # draft, review, published, archived
+  status varchar(32) not-null default("draft")
+  # NULL until first published
+  published_at timestamp nullable
+  created_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+table post_tags (
+  # Many-to-many join between posts and tags
+  id bigint primary-key auto-increment
+  post_id bigint not-null indexed
+  tag_id bigint not-null indexed
+)
+
+// ---------------------------------------------------------------------------
+// Comments (threaded)
+// ---------------------------------------------------------------------------
+
+table comments (
+  # Supports nested threads via parent_comment_id
+  id bigint primary-key auto-increment
+  post_id bigint not-null indexed
+  author_id bigint not-null indexed
+  # NULL for top-level comments; set to parent id for replies
+  parent_comment_id bigint nullable indexed
+  body text not-null
+  # pending, approved, spam, deleted
+  status varchar(32) not-null default("pending")
+  created_at timestamp not-null default("NOW()")
+  updated_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Media library
+// ---------------------------------------------------------------------------
+
+table media (
+  # Uploaded files referenced by posts or author avatars
+  id bigint primary-key auto-increment
+  uploader_id bigint not-null indexed
+  # original filename kept for display purposes
+  filename varchar(512) not-null
+  # Public CDN or storage URL
+  url varchar(1024) not-null
+  # image/jpeg, image/png, video/mp4, application/pdf, …
+  mime_type varchar(128) not-null
+  # File size in bytes
+  size_bytes bigint not-null
+  # Descriptive alt text for accessibility
+  alt_text varchar(512) nullable
+  created_at timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Newsletter subscriptions
+// ---------------------------------------------------------------------------
+
+table subscriptions (
+  # Readers who opted in to email updates
+  id bigint primary-key auto-increment
+  email varchar(255) not-null indexed
+  # Linked to an author account when the reader is also a registered user
+  author_id bigint nullable indexed
+  # active, unsubscribed, bounced
+  status varchar(32) not-null default("active")
+  subscribed_at timestamp not-null default("NOW()")
+  unsubscribed_at timestamp nullable
+)
+
+// ---------------------------------------------------------------------------
+// Relationships
+// ---------------------------------------------------------------------------
+
+# A post is written by one author; one author writes many posts
+link one authors.id to many posts.author_id
+
+# A post belongs to one category; a category has many posts
+link one categories.id to many posts.category_id
+
+# Categories are self-referential for sub-categories
+link one categories.id to many categories.parent_id
+
+# Join table wiring posts to tags (many-to-many)
+link one posts.id to many post_tags.post_id
+
+# Join table wiring tags to posts (many-to-many)
+link one tags.id to many post_tags.tag_id
+
+# A comment belongs to one post
+link one posts.id to many comments.post_id
+
+# A comment is authored by one author
+link one authors.id to many comments.author_id
+
+# Threaded replies: a comment may have many child comments
+link one comments.id to many comments.parent_comment_id
+
+# Media is uploaded by one author
+link one authors.id to many media.uploader_id
+
+# An optional link when a subscriber is also a registered author
+link one authors.id to many subscriptions.author_id
