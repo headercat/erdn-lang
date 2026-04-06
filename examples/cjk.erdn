@@ -17,7 +17,7 @@ table 用户 (
   # bcrypt 加密后的密码哈希值
   密码哈希 varchar(255) not-null
   # 账号状态：active-活跃 / suspended-暂停 / deleted-已删除
-  状态 varchar(16) not-null default("active")
+  状態 varchar(16) not-null default("active")
   注册时间 timestamp not-null default("NOW()")
   更新时间 timestamp not-null default("NOW()")
 )
@@ -58,7 +58,76 @@ table 评论 (
 )
 
 // ---------------------------------------------------------------------------
-// 关系定义
+// Japanese tables (日本語テーブル)
+// ---------------------------------------------------------------------------
+
+# 記事テーブル
+# ユーザーが投稿したブログ記事を管理する
+# 下書き・公開・アーカイブの三つのステータスをサポート
+table 記事 (
+  id bigint primary-key auto-increment
+  # 記事の著者（用户テーブルへの外部キー）
+  著者ID bigint not-null indexed
+  # 記事タイトル（最大 255 文字）
+  タイトル varchar(255) not-null
+  本文 text not-null
+  # 公開ステータス: draft / published / archived
+  ステータス varchar(32) not-null default("draft")
+  作成日時 timestamp not-null default("NOW()")
+  更新日時 timestamp not-null default("NOW()")
+)
+
+# コメントテーブル
+# 記事に対するコメント。親子関係で入れ子コメントを表現する
+table コメント (
+  id bigint primary-key auto-increment
+  # どの記事へのコメントか
+  記事ID bigint not-null indexed
+  # 誰のコメントか
+  ユーザーID bigint not-null indexed
+  # NULL なら最上位コメント、非 NULL なら返信コメント
+  親コメントID bigint nullable indexed
+  本文 text not-null
+  作成日時 timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// Korean tables (한국어 테이블)
+// ---------------------------------------------------------------------------
+
+# 게시물 테이블
+# 사용자가 작성한 블로그 게시물을 관리합니다
+# 초안, 게시됨, 보관됨 세 가지 상태를 지원합니다
+table 게시물 (
+  id bigint primary-key auto-increment
+  # 작성자 외래 키 → 用户.id
+  작성자ID bigint not-null indexed
+  # 게시물 제목 (최대 255자)
+  제목 varchar(255) not-null
+  본문 text not-null
+  # 상태: draft / published / archived
+  상태 varchar(32) not-null default("draft")
+  생성일시 timestamp not-null default("NOW()")
+  수정일시 timestamp not-null default("NOW()")
+)
+
+# 댓글 테이블
+# 게시물에 달리는 댓글입니다
+# 부모 댓글 ID를 통한 다단계 중첩 댓글을 지원합니다
+table 댓글 (
+  id bigint primary-key auto-increment
+  # 어느 게시물의 댓글인가
+  게시물ID bigint not-null indexed
+  # 댓글 작성자
+  사용자ID bigint not-null indexed
+  # NULL이면 최상위 댓글, 아니면 대댓글
+  부모댓글ID bigint nullable indexed
+  내용 text not-null
+  생성일시 timestamp not-null default("NOW()")
+)
+
+// ---------------------------------------------------------------------------
+// 关系定义 / リレーション定義 / 관계 정의
 // ---------------------------------------------------------------------------
 
 # 一位用户可以撰写多篇文章
@@ -72,3 +141,27 @@ link one 用户.id to many 评论.用户ID
 
 # 评论支持多级嵌套回复（自关联）
 link one 评论.id to many 评论.父评论ID
+
+# 1人のユーザーが複数の記事を書ける
+link one 用户.id to many 記事.著者ID
+
+# 1つの記事に複数のコメントが付く
+link one 記事.id to many コメント.記事ID
+
+# 1人のユーザーが複数のコメントを書ける
+link one 用户.id to many コメント.ユーザーID
+
+# 코멘트는 다단계 중첩을 지원한다（자기참조）
+link one コメント.id to many コメント.親コメントID
+
+# 한 사용자가 여러 게시물을 쓸 수 있다
+link one 用户.id to many 게시물.작성자ID
+
+# 한 게시물에 여러 댓글이 달릴 수 있다
+link one 게시물.id to many 댓글.게시물ID
+
+# 한 사용자가 여러 댓글을 쓸 수 있다
+link one 用户.id to many 댓글.사용자ID
+
+# 댓글은 자기 참조로 다단계 중첩을 지원한다
+link one 댓글.id to many 댓글.부모댓글ID

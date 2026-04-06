@@ -19,7 +19,8 @@ const (
 	svgPadV         = 6.0   // vertical cell padding
 	svgRowH         = 24.0  // data row height  (12 + 2×6)
 	svgHdrH         = 26.0  // table header row height
-	svgSubHdrH      = 20.0  // sub-header / comment-subtitle row height
+	svgSubHdrH      = 20.0  // column-header sub-row height
+	svgCommentH     = 16.0  // table-comment subtitle row height (slimmer)
 	svgMinGapH      = 160.0 // minimum horizontal gap between table columns
 	svgLinkCommentM = 40.0  // extra margin on each side of a link-comment badge
 	svgTblGapV      = 80.0  // vertical gap between tables
@@ -150,7 +151,7 @@ func buildSVGLayouts(prog *ast.Program) []*svgTableLayout {
 		// Port Y = y-centre of the column's data row (absolute).
 		// Account for variable number of table-comment subtitle rows.
 		dataTop := lt.y + svgHdrH + svgSubHdrH +
-			float64(len(lt.tbl.Comments))*svgSubHdrH
+			float64(len(lt.tbl.Comments))*svgCommentH
 		lt.portY = make(map[string]float64, len(lt.tbl.Columns))
 		for j, col := range lt.tbl.Columns {
 			lt.portY[col.Name] = dataTop + float64(j)*svgRowH + svgRowH/2
@@ -203,7 +204,7 @@ func measureSVGTable(tbl *ast.Table) *svgTableLayout {
 
 	// Each table-comment line gets its own subtitle row.
 	lt.height = svgHdrH + svgSubHdrH +
-		float64(len(tbl.Comments))*svgSubHdrH +
+		float64(len(tbl.Comments))*svgCommentH +
 		float64(len(tbl.Columns))*svgRowH
 	return lt
 }
@@ -279,9 +280,9 @@ func renderSVGTable(lt *svgTableLayout) string {
 	// Each `#` comment line before the table gets its own dark subtitle row.
 	for _, comment := range lt.tbl.Comments {
 		fmt.Fprintf(&sb, `  <rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="#34495E"/>`+"\n",
-			x, curY, w, svgSubHdrH)
-		svgWriteText(&sb, x+w/2, curY+svgSubHdrH/2, "middle", "#BDC3C7", svgSubFontSz, "normal", "italic", comment)
-		curY += svgSubHdrH
+			x, curY, w, svgCommentH)
+		svgWriteText(&sb, x+w/2, curY+svgCommentH/2, "middle", "#BDC3C7", svgSubFontSz, "normal", "italic", comment)
+		curY += svgCommentH
 	}
 
 	// ── Sub-header row ───────────────────────────────────────────────────────
