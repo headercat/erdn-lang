@@ -5,70 +5,60 @@
 <line x1="26.00" y1="112.00" x2="26.00" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="698.20" y1="550.00" x2="710.20" y2="543.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="698.20" y1="550.00" x2="710.20" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="710.20" y1="543.00" x2="710.20" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="190.35" y="352.00" width="347.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="364.10" y="360.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">A post is written by one author; one author writes many posts</text>
 <path d="M 1256.20,88.00 H 977.20 V 574.00 H 698.20" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1252.20" y1="80.00" x2="1252.20" y2="96.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="698.20" y1="574.00" x2="710.20" y2="567.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="698.20" y1="574.00" x2="710.20" y2="581.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="710.20" y1="567.00" x2="710.20" y2="581.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="814.45" y="352.00" width="325.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="977.20" y="360.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">A post belongs to one category; a category has many posts</text>
 <path d="M 2049.80,88.00 H 2203.30 V 112.00 H 2049.80" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2053.80" y1="80.00" x2="2053.80" y2="96.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2049.80" y1="112.00" x2="2061.80" y2="105.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2049.80" y1="112.00" x2="2061.80" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2061.80" y1="105.00" x2="2061.80" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="2059.80" y="92.00" width="287.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="2203.30" y="100.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Categories are self-referential for sub-categories</text>
 <path d="M 698.20,526.00 H 977.20 V 550.00 H 1256.20" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="702.20" y1="518.00" x2="702.20" y2="534.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1256.20" y1="550.00" x2="1244.20" y2="543.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1256.20" y1="550.00" x2="1244.20" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1244.20" y1="543.00" x2="1244.20" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="844.70" y="530.00" width="265.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="977.20" y="538.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Join table wiring posts to tags (many-to-many)</text>
 <path d="M 2542.20,88.00 H 2194.70 V 574.00 H 1847.20" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2538.20" y1="80.00" x2="2538.20" y2="96.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1847.20" y1="574.00" x2="1859.20" y2="567.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1847.20" y1="574.00" x2="1859.20" y2="581.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1859.20" y1="567.00" x2="1859.20" y2="581.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="2062.20" y="323.00" width="265.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="2194.70" y="331.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Join table wiring tags to posts (many-to-many)</text>
 <path d="M 698.20,526.00 H 1620.20 V 550.00 H 2542.20" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="702.20" y1="518.00" x2="702.20" y2="534.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2542.20" y1="550.00" x2="2530.20" y2="543.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2542.20" y1="550.00" x2="2530.20" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2530.20" y1="543.00" x2="2530.20" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="1534.45" y="590.00" width="171.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1620.20" y="598.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">A comment belongs to one post</text>
 <path d="M 823.20,120.00 H 1682.70 V 574.00 H 2542.20" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="827.20" y1="112.00" x2="827.20" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2542.20" y1="574.00" x2="2530.20" y2="567.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2542.20" y1="574.00" x2="2530.20" y2="581.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2530.20" y1="567.00" x2="2530.20" y2="581.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="1580.45" y="339.00" width="204.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1682.70" y="347.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">A comment is authored by one author</text>
 <path d="M 3328.80,526.00 H 3498.80 V 598.00 H 3328.80" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="3332.80" y1="518.00" x2="3332.80" y2="534.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="3328.80" y1="598.00" x2="3340.80" y2="591.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="3328.80" y1="598.00" x2="3340.80" y2="605.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="3340.80" y1="591.00" x2="3340.80" y2="605.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="3338.80" y="554.00" width="320.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="3498.80" y="562.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Threaded replies: a comment may have many child comments</text>
 <path d="M 30.00,120.00 H 390.50 V 980.00 H 751.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="26.00" y1="112.00" x2="26.00" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="751.00" y1="980.00" x2="763.00" y2="973.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="751.00" y1="980.00" x2="763.00" y2="987.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="763.00" y1="973.00" x2="763.00" y2="987.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="299.25" y="782.00" width="182.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="390.50" y="790.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Media is uploaded by one author</text>
 <path d="M 823.20,120.00 H 1039.70 V 1004.00 H 1256.20" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="827.20" y1="112.00" x2="827.20" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1256.20" y1="1004.00" x2="1244.20" y2="997.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1256.20" y1="1004.00" x2="1244.20" y2="1011.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1244.20" y1="997.00" x2="1244.20" y2="1011.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="863.20" y="554.00" width="353.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1039.70" y="562.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">An optional link when a subscriber is also a registered author</text>
 <g>

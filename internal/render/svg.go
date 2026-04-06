@@ -547,14 +547,12 @@ func linkColor(from, to ast.Cardinality) string {
 func svgWriteCardSymbol(sb *strings.Builder, x, y float64, card ast.Cardinality, dir float64, color string) {
 	switch card {
 	case ast.CardMany:
-		// Two diagonal fork lines from the table-edge vertex.
+		// Two diagonal fork lines from the table-edge vertex into the connector
+		// space. No crossbar: an open fork is the standard crow's foot symbol.
 		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
 			x, y, x+dir*cfArm, y-cfFork, color)
 		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
 			x, y, x+dir*cfArm, y+cfFork, color)
-		// Cross-bar connecting the tips of the fork.
-		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
-			x+dir*cfArm, y-cfFork, x+dir*cfArm, y+cfFork, color)
 	case ast.CardOne:
 		// Single bar perpendicular to the connector, slightly inside the gap.
 		bx := x + dir*cfBar

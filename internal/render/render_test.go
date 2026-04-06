@@ -208,6 +208,26 @@ link one a.id to many b.a_id`)
 	}
 }
 
+// TestSVGCrowsFootOpenFork verifies that the "many" crow's foot is an open fork
+// (two diverging lines, no crossbar). A crossbar turns the fork into a closed
+// triangle that looks like an unknown arrowhead.
+func TestSVGCrowsFootOpenFork(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+
+	// All link-related elements use stroke-width="1.5":
+	//   1 connector <path>, 2 crow's-foot fork lines, 1 "one" bar → total 4.
+	// If a crossbar were present the total would be 5 (1 path + 3 + 1).
+	linkLines := strings.Count(svg, `stroke-width="1.5"`)
+	if linkLines < 4 {
+		t.Errorf("expected at least 4 stroke-width=1.5 elements, got %d", linkLines)
+	}
+	if linkLines > 4 {
+		t.Errorf("got %d stroke-width=1.5 elements; expected exactly 4 (path + 2 fork + 1 bar) – crossbar may have been added", linkLines)
+	}
+}
+
 // TestSVGLinkCommentNoBadgeArrowMarker verifies that the old arrowhead marker
 // is no longer referenced (we draw symbols inline instead).
 func TestSVGLinkCommentNoBadgeArrowMarker(t *testing.T) {
