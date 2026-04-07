@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="3466" height="680">
 <rect width="3466" height="680" fill="#F4F6F8"/>
-<path d="M 2721.40,120.00 H 2240.90 V 112.00 H 1772.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<path d="M 2721.40,120.00 H 2240.90 V 112.00 H 1760.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2717.40" y1="112.00" x2="2717.40" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1772.40" y1="112.00" x2="1760.40" y2="105.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1772.40" y1="112.00" x2="1760.40" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1760.40" y1="112.00" x2="1772.40" y2="105.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1760.40" y1="112.00" x2="1772.40" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="1888.40" y="108.00" width="705.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="2240.90" y="116.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Connects a task to the project it belongs to. Every task must belong to exactly one project; a project may contain many tasks.</text>
-<path d="M 748.60,518.00 H 389.30 V 136.00 H 18.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<path d="M 748.60,518.00 H 389.30 V 136.00 H 30.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="752.60" y1="510.00" x2="752.60" y2="526.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="18.00" y1="136.00" x2="30.00" y2="129.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="18.00" y1="136.00" x2="30.00" y2="143.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="30.00" y1="136.00" x2="18.00" y2="129.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="30.00" y1="136.00" x2="18.00" y2="143.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="146.80" y="319.00" width="485.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="389.30" y="327.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">A user can be assigned to many tasks. When assignee_id is NULL the task is unassigned.</text>
-<path d="M 748.60,518.00 H 1735.00 V 144.00 H 2709.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<path d="M 748.60,518.00 H 1735.00 V 144.00 H 2721.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="752.60" y1="510.00" x2="752.60" y2="526.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2709.40" y1="144.00" x2="2721.40" y2="137.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2709.40" y1="144.00" x2="2721.40" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="2721.40" y1="144.00" x2="2709.40" y2="137.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="2721.40" y1="144.00" x2="2709.40" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="1294.50" y="323.00" width="881.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1735.00" y="331.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Links a project back to its creator. The creator has full administrative rights over the project. This link is defined here, between the tables it references.</text>
 <g>

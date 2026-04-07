@@ -489,17 +489,7 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 		sx := src.x + src.width
 		loopOffset := svgLoopOffset(sy, dy, badgeW)
 		loopX := sx + loopOffset
-		// Shorten the path at "many" endpoints so it meets the fork vertex,
-		// not the table edge (which would overlap the fork and form a triangle).
-		pathStartX := sx
-		pathEndX := sx
-		if lnk.FromCardinality == ast.CardMany {
-			pathStartX = sx + cfArm // fork vertex is cfArm to the right
-		}
-		if lnk.ToCardinality == ast.CardMany {
-			pathEndX = sx + cfArm
-		}
-		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", pathStartX, sy, loopX, dy, pathEndX)
+		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, loopX, dy, sx)
 		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
 		// Both endpoints are on the right edge of the table; symbols extend right.
 		svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, +1, color)
@@ -525,19 +515,8 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 		dirDst = +1
 	}
 
-	// Shorten the path at "many" endpoints so it meets the fork vertex
-	// (cfArm px into the connector space) instead of the table edge.
-	pathStartX := sx
-	pathEndX := dx
-	if lnk.FromCardinality == ast.CardMany {
-		pathStartX = sx + dirSrc*cfArm
-	}
-	if lnk.ToCardinality == ast.CardMany {
-		pathEndX = dx + dirDst*cfArm
-	}
-
 	midX := (sx + dx) / 2
-	path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", pathStartX, sy, midX, dy, pathEndX)
+	path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, midX, dy, dx)
 	fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
 
 	svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, dirSrc, color)
@@ -564,22 +543,23 @@ func linkColor(from, to ast.Cardinality) string {
 }
 
 // svgWriteCardSymbol draws a crow's-foot (many) or single bar (one) at (x, y).
-// dir is +1 if the symbol should extend to the right (into the connector space),
-// or -1 if it should extend to the left.
+// (x, y) is the point where the connector meets the table edge.
+// dir is +1 if the connector space is to the right, or -1 if to the left.
 //
-// For "many", the fork vertex is placed cfArm pixels into the connector space
-// and the two tips touch the table edge. The connector path should end at the
-// vertex (x + dir*cfArm), not at x, so that it does not overlap the fork area.
+// For "many", the vertex sits at the table edge (x, y) and two fork arms
+// extend backward into the connector space toward (x+dir*cfArm, y±cfFork).
+// The connector path should reach (x, y) so that all three lines (connector
+// + two arms) converge at the table edge, forming an open trident shape.
 func svgWriteCardSymbol(sb *strings.Builder, x, y float64, card ast.Cardinality, dir float64, color string) {
 	switch card {
 	case ast.CardMany:
-		// Fork vertex in connector space, tips at the table edge.
-		// This produces the standard crow's-foot that opens toward the entity.
-		vx := x + dir*cfArm
+		// Fork vertex at the table edge; arms extend backward into the
+		// connector space.  Together with the connector line ending at (x,y)
+		// this produces the standard crow's-foot trident (not an arrowhead).
 		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
-			vx, y, x, y-cfFork, color)
+			x, y, x+dir*cfArm, y-cfFork, color)
 		fmt.Fprintf(sb, `<line x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" stroke="%s" stroke-width="1.5"/>`+"\n",
-			vx, y, x, y+cfFork, color)
+			x, y, x+dir*cfArm, y+cfFork, color)
 	case ast.CardOne:
 		// Single bar perpendicular to the connector, slightly inside the gap.
 		bx := x + dir*cfBar
