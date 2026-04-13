@@ -49,6 +49,42 @@ type svgTableLayout struct {
 	portY     map[string]float64 // column name → absolute y-centre
 }
 
+// linkGeom holds pre-computed geometry for a single link connector.
+type linkGeom struct {
+	valid      bool
+	selfRef    bool
+	sameColumn bool
+
+	// Connection points (with port-offset applied).
+	srcX, srcY float64
+	dstX, dstY float64
+
+	// Direction for cardinality symbols: +1 = right, -1 = left.
+	dirSrc, dirDst float64
+
+	// X coordinate of the vertical segment.
+	// For regular cross-column links this is midX between sx and dx.
+	// For same-column and self-referential links this is the outer loopX.
+	vertX float64
+
+	// Badge placement X and candidate Y.
+	badgeX, badgeCandY float64
+}
+
+// portKey identifies a specific connection slot at a table edge.
+type portKey struct {
+	table  string
+	column string
+	dir    float64 // +1 (right) or -1 (left)
+}
+
+const (
+	portSpreadPx   = 4.0  // vertical spacing between overlapping lines at same port
+	midStaggerPx   = 12.0 // horizontal spacing between staggered vertical segments
+	sameColBasePx  = 30.0 // base offset past the widest table for same-column routing
+	sameColStepPx  = 15.0 // stagger step between same-column links in the same gap
+)
+
 // GenerateSVG converts an AST Program into a self-contained SVG ER diagram.
 // No external tools are required. Unicode and CJK text are fully supported.
 func GenerateSVG(prog *ast.Program) string {
@@ -57,6 +93,9 @@ func GenerateSVG(prog *ast.Program) string {
 	for _, lt := range layouts {
 		ltMap[lt.tbl.Name] = lt
 	}
+
+	// Pre-compute link geometry: routing, port offsets, and staggering.
+	geoms := computeLinkGeoms(prog.Links, ltMap, layouts)
 
 	var cw, ch float64
 	for _, lt := range layouts {
@@ -68,55 +107,27 @@ func GenerateSVG(prog *ast.Program) string {
 		}
 	}
 
-	// Expand canvas to cover link geometry that extends beyond table boxes:
-	// self-referential loops, badge extents, and crow's foot arms.
+	// Expand canvas to cover link geometry that extends beyond table boxes.
 	const bh = 16.0
-	for _, lnk := range prog.Links {
-		src := ltMap[lnk.FromTable]
-		dst := ltMap[lnk.ToTable]
-		if src == nil || dst == nil {
+	for i, g := range geoms {
+		if !g.valid {
 			continue
 		}
-		sy, syOK := src.portY[lnk.FromColumn]
-		dy, dyOK := dst.portY[lnk.ToColumn]
-		if !syOK || !dyOK {
-			continue
-		}
-		badgeW := svgLinkBadgeWidth(lnk)
+		badgeW := svgLinkBadgeWidth(prog.Links[i])
 
-		if lnk.FromTable == lnk.ToTable {
-			// Self-referential loop: extends right past the table's right edge.
-			loopOffset := svgLoopOffset(sy, dy, badgeW)
-			loopX := src.x + src.width + loopOffset
-			if r := loopX + badgeW/2 + svgMargin; r > cw {
+		// Horizontal extent: vertX (loop or midpoint) + badge.
+		if r := g.vertX + svgMargin; r > cw {
+			cw = r
+		}
+		if badgeW > 0 {
+			if r := g.badgeX + badgeW/2 + svgMargin; r > cw {
 				cw = r
 			}
-			// Badge may be pushed below the last table.
-			commentY := svgSafeBadgeY((sy+dy)/2, loopX, badgeW/2, bh, layouts)
-			if b := commentY + bh/2 + svgMargin; b > ch {
-				ch = b
-			}
-		} else {
-			var sx, dx float64
-			if src.x+src.width/2 <= dst.x+dst.width/2 {
-				sx = src.x + src.width
-				dx = dst.x
-			} else {
-				sx = src.x
-				dx = dst.x + dst.width
-			}
-			midX := (sx + dx) / 2
-			// Badge horizontal extent.
-			if badgeW > 0 {
-				if r := midX + badgeW/2 + svgMargin; r > cw {
-					cw = r
-				}
-			}
-			// Badge may be pushed below the last table.
-			commentY := svgSafeBadgeY((sy+dy)/2, midX, badgeW/2, bh, layouts)
-			if b := commentY + bh/2 + svgMargin; b > ch {
-				ch = b
-			}
+		}
+		// Badge may be pushed below the last table.
+		commentY := svgSafeBadgeY(g.badgeCandY, g.badgeX, badgeW/2, bh, layouts)
+		if b := commentY + bh/2 + svgMargin; b > ch {
+			ch = b
 		}
 	}
 
@@ -138,13 +149,12 @@ func GenerateSVG(prog *ast.Program) string {
 	// the path and its arrowhead symbols are a single visual unit.
 	for i, lnk := range prog.Links {
 		color := linkColorByIndex(i)
-		sb.WriteString(renderSVGLinkConnector(lnk, ltMap, layouts, color))
+		sb.WriteString(renderSVGLinkConnector(lnk, &geoms[i], color))
 	}
 	// Pass 2: Link comment badges are drawn after all connectors so they
 	// have a higher z-index and are never obscured by other links' paths.
 	for i, lnk := range prog.Links {
-		color := linkColorByIndex(i)
-		sb.WriteString(renderSVGLinkBadge(lnk, ltMap, layouts, color))
+		sb.WriteString(renderSVGLinkBadge(lnk, &geoms[i], layouts))
 	}
 	for _, lt := range layouts {
 		sb.WriteString(renderSVGTable(lt))
@@ -471,61 +481,198 @@ func svgLoopOffset(sy, dy, badgeW float64) float64 {
 	return off
 }
 
+// computeLinkGeoms pre-computes the routing geometry for every link, handling:
+//   - Self-referential links (rectangular loop on the right side).
+//   - Same-column links (routed around the right side of both tables).
+//   - Regular cross-column links (H → V → H through the gap).
+//   - Port-Y spreading when multiple links share the same (table, column, side).
+//   - MidX staggering when multiple cross-column links share the same gap.
+func computeLinkGeoms(links []*ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout) []linkGeom {
+	geoms := make([]linkGeom, len(links))
+
+	// ── Phase 1: Determine routing type and connection sides ────────────
+	for i, lnk := range links {
+		src := ltMap[lnk.FromTable]
+		dst := ltMap[lnk.ToTable]
+		if src == nil || dst == nil {
+			continue
+		}
+		sy, syOK := src.portY[lnk.FromColumn]
+		dy, dyOK := dst.portY[lnk.ToColumn]
+		if !syOK || !dyOK {
+			continue
+		}
+
+		g := &geoms[i]
+		g.valid = true
+		g.srcY = sy
+		g.dstY = dy
+
+		if lnk.FromTable == lnk.ToTable {
+			g.selfRef = true
+			g.srcX = src.x + src.width
+			g.dstX = src.x + src.width
+			g.dirSrc = +1
+			g.dirDst = +1
+			continue
+		}
+
+		// Same column: tables share the same x position.
+		if src.x == dst.x {
+			g.sameColumn = true
+			g.srcX = src.x + src.width
+			g.dstX = dst.x + dst.width
+			g.dirSrc = +1
+			g.dirDst = +1
+			continue
+		}
+
+		// Regular cross-column link.
+		if src.x+src.width/2 <= dst.x+dst.width/2 {
+			g.srcX = src.x + src.width
+			g.dstX = dst.x
+			g.dirSrc = +1
+			g.dirDst = -1
+		} else {
+			g.srcX = src.x
+			g.dstX = dst.x + dst.width
+			g.dirSrc = -1
+			g.dirDst = +1
+		}
+	}
+
+	// ── Phase 2: Port-Y spreading ──────────────────────────────────────
+	type portMember struct {
+		linkIdx int
+		isSrc   bool
+	}
+	portGroups := make(map[portKey][]portMember)
+	for i, g := range geoms {
+		if !g.valid {
+			continue
+		}
+		lnk := links[i]
+		srcKey := portKey{lnk.FromTable, lnk.FromColumn, g.dirSrc}
+		portGroups[srcKey] = append(portGroups[srcKey], portMember{i, true})
+		dstKey := portKey{lnk.ToTable, lnk.ToColumn, g.dirDst}
+		portGroups[dstKey] = append(portGroups[dstKey], portMember{i, false})
+	}
+	for _, members := range portGroups {
+		n := len(members)
+		if n <= 1 {
+			continue
+		}
+		for j, m := range members {
+			offset := (float64(j) - float64(n-1)/2) * portSpreadPx
+			if m.isSrc {
+				geoms[m.linkIdx].srcY += offset
+			} else {
+				geoms[m.linkIdx].dstY += offset
+			}
+		}
+	}
+
+	// ── Phase 3: Compute vertX for each link ───────────────────────────
+
+	// Self-referential links: use existing loop offset logic.
+	for i, g := range geoms {
+		if !g.valid || !g.selfRef {
+			continue
+		}
+		badgeW := svgLinkBadgeWidth(links[i])
+		geoms[i].vertX = g.srcX + svgLoopOffset(g.srcY, g.dstY, badgeW)
+	}
+
+	// Same-column links: route around the right side, staggered per column.
+	sameColCounter := make(map[float64]int) // colX → counter
+	for i, g := range geoms {
+		if !g.valid || !g.sameColumn {
+			continue
+		}
+		maxRight := math.Max(g.srcX, g.dstX)
+		colX := ltMap[links[i].FromTable].x
+		idx := sameColCounter[colX]
+		sameColCounter[colX]++
+		badgeW := svgLinkBadgeWidth(links[i])
+		minOff := sameColBasePx + float64(idx)*sameColStepPx
+		if badgeW > 0 {
+			if needed := badgeW/2 + 10; needed > minOff {
+				minOff = needed + float64(idx)*sameColStepPx
+			}
+		}
+		geoms[i].vertX = maxRight + minOff
+	}
+
+	// Cross-column links: compute midX with optional staggering.
+	type midKey struct{ sx, dx float64 }
+	midGroups := make(map[midKey][]int)
+	for i, g := range geoms {
+		if !g.valid || g.selfRef || g.sameColumn {
+			continue
+		}
+		key := midKey{g.srcX, g.dstX}
+		midGroups[key] = append(midGroups[key], i)
+	}
+	for key, indices := range midGroups {
+		baseMidX := (key.sx + key.dx) / 2
+		n := len(indices)
+		for j, idx := range indices {
+			offset := 0.0
+			if n > 1 {
+				offset = (float64(j) - float64(n-1)/2) * midStaggerPx
+			}
+			geoms[idx].vertX = baseMidX + offset
+		}
+	}
+
+	// ── Phase 4: Badge placement ───────────────────────────────────────
+	for i, g := range geoms {
+		if !g.valid {
+			continue
+		}
+		if g.selfRef || g.sameColumn {
+			geoms[i].badgeX = g.vertX
+			geoms[i].badgeCandY = (g.srcY + g.dstY) / 2
+		} else {
+			geoms[i].badgeX = g.vertX
+			geoms[i].badgeCandY = (g.srcY + g.dstY) / 2
+		}
+	}
+
+	return geoms
+}
+
 // renderSVGLinkConnector draws the orthogonal connector path and its
 // cardinality symbols (crow's foot or bar) inside a <g> group.  The group
 // keeps the path and its endpoint decorations as a single visual unit so that
 // arrowheads are never separated from the line.
-func renderSVGLinkConnector(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout, color string) string {
-	src := ltMap[lnk.FromTable]
-	dst := ltMap[lnk.ToTable]
-	if src == nil || dst == nil {
+func renderSVGLinkConnector(lnk *ast.Link, g *linkGeom, color string) string {
+	if !g.valid {
 		return ""
 	}
-	sy, syOK := src.portY[lnk.FromColumn]
-	dy, dyOK := dst.portY[lnk.ToColumn]
-	if !syOK || !dyOK {
-		return ""
-	}
-
-	badgeW := svgLinkBadgeWidth(lnk)
 
 	var sb strings.Builder
 	sb.WriteString(`<g>` + "\n")
 
-	// ── Self-referential link: rectangular loop on the right side ────────────
-	if lnk.FromTable == lnk.ToTable {
-		sx := src.x + src.width
-		loopOffset := svgLoopOffset(sy, dy, badgeW)
-		loopX := sx + loopOffset
-		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, loopX, dy, sx)
+	// Self-referential and same-column links both use a loop pattern:
+	// exit from the right side, horizontal to vertX, vertical, horizontal back.
+	if g.selfRef || g.sameColumn {
+		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f",
+			g.srcX, g.srcY, g.vertX, g.dstY, g.dstX)
 		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
-		svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, +1, color)
-		svgWriteCardSymbol(&sb, sx, dy, lnk.ToCardinality, +1, color)
+		svgWriteCardSymbol(&sb, g.srcX, g.srcY, lnk.FromCardinality, g.dirSrc, color)
+		svgWriteCardSymbol(&sb, g.dstX, g.dstY, lnk.ToCardinality, g.dirDst, color)
 		sb.WriteString("</g>\n")
 		return sb.String()
 	}
 
-	// ── Regular link: H → V → H orthogonal path ─────────────────────────────
-	var sx, dx float64
-	var dirSrc, dirDst float64
-	if src.x+src.width/2 <= dst.x+dst.width/2 {
-		sx = src.x + src.width
-		dx = dst.x
-		dirSrc = +1
-		dirDst = -1
-	} else {
-		sx = src.x
-		dx = dst.x + dst.width
-		dirSrc = -1
-		dirDst = +1
-	}
-
-	midX := (sx + dx) / 2
-	path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, midX, dy, dx)
+	// Regular cross-column link: H → V → H.
+	path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f",
+		g.srcX, g.srcY, g.vertX, g.dstY, g.dstX)
 	fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
 
-	svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, dirSrc, color)
-	svgWriteCardSymbol(&sb, dx, dy, lnk.ToCardinality, dirDst, color)
+	svgWriteCardSymbol(&sb, g.srcX, g.srcY, lnk.FromCardinality, g.dirSrc, color)
+	svgWriteCardSymbol(&sb, g.dstX, g.dstY, lnk.ToCardinality, g.dirDst, color)
 
 	sb.WriteString("</g>\n")
 	return sb.String()
@@ -534,18 +681,8 @@ func renderSVGLinkConnector(lnk *ast.Link, ltMap map[string]*svgTableLayout, lay
 // renderSVGLinkBadge draws only the comment badge for a link.  It is called
 // in a separate pass after all connectors so that badges have a higher z-index
 // and are never obscured by other links' paths.
-func renderSVGLinkBadge(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout, color string) string {
-	if len(lnk.Comments) == 0 {
-		return ""
-	}
-	src := ltMap[lnk.FromTable]
-	dst := ltMap[lnk.ToTable]
-	if src == nil || dst == nil {
-		return ""
-	}
-	sy, syOK := src.portY[lnk.FromColumn]
-	dy, dyOK := dst.portY[lnk.ToColumn]
-	if !syOK || !dyOK {
+func renderSVGLinkBadge(lnk *ast.Link, g *linkGeom, layouts []*svgTableLayout) string {
+	if len(lnk.Comments) == 0 || !g.valid {
 		return ""
 	}
 
@@ -553,27 +690,8 @@ func renderSVGLinkBadge(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts
 	const bh = 16.0
 
 	var sb strings.Builder
-
-	if lnk.FromTable == lnk.ToTable {
-		sx := src.x + src.width
-		loopOffset := svgLoopOffset(sy, dy, badgeW)
-		loopX := sx + loopOffset
-		commentY := svgSafeBadgeY((sy+dy)/2, loopX, badgeW/2, bh, layouts)
-		svgWriteLinkComment(&sb, loopX, commentY, lnk)
-		return sb.String()
-	}
-
-	var sx, dx float64
-	if src.x+src.width/2 <= dst.x+dst.width/2 {
-		sx = src.x + src.width
-		dx = dst.x
-	} else {
-		sx = src.x
-		dx = dst.x + dst.width
-	}
-	midX := (sx + dx) / 2
-	commentY := svgSafeBadgeY((sy+dy)/2, midX, badgeW/2, bh, layouts)
-	svgWriteLinkComment(&sb, midX, commentY, lnk)
+	commentY := svgSafeBadgeY(g.badgeCandY, g.badgeX, badgeW/2, bh, layouts)
+	svgWriteLinkComment(&sb, g.badgeX, commentY, lnk)
 	return sb.String()
 }
 

@@ -2,8 +2,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="3887" height="1166">
 <rect width="3887" height="1166" fill="#F4F6F8"/>
 <g>
-<path d="M 737.80,120.00 H 1023.60 V 112.00 H 1309.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="741.80" y1="112.00" x2="741.80" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
+<path d="M 737.80,114.00 H 1011.60 V 112.00 H 1309.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="741.80" y1="106.00" x2="741.80" y2="122.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1309.40" y1="112.00" x2="1297.40" y2="105.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1309.40" y1="112.00" x2="1297.40" y2="119.00" stroke="#27AE60" stroke-width="1.5"/>
 </g>
@@ -20,16 +20,16 @@
 <line x1="3461.20" y1="112.00" x2="3473.20" y2="119.00" stroke="#E74C3C" stroke-width="1.5"/>
 </g>
 <g>
-<path d="M 737.80,120.00 H 1023.60 V 526.00 H 1309.40" fill="none" stroke="#8E44AD" stroke-width="1.5"/>
-<line x1="741.80" y1="112.00" x2="741.80" y2="128.00" stroke="#8E44AD" stroke-width="1.5"/>
+<path d="M 737.80,118.00 H 1023.60 V 526.00 H 1309.40" fill="none" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="741.80" y1="110.00" x2="741.80" y2="126.00" stroke="#8E44AD" stroke-width="1.5"/>
 <line x1="1309.40" y1="526.00" x2="1297.40" y2="519.00" stroke="#8E44AD" stroke-width="1.5"/>
 <line x1="1309.40" y1="526.00" x2="1297.40" y2="533.00" stroke="#8E44AD" stroke-width="1.5"/>
 </g>
 <g>
-<path d="M 2155.80,88.00 H 1732.60 V 550.00 H 1309.40" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+<path d="M 2155.80,88.00 H 2335.85 V 550.00 H 2234.60" fill="none" stroke="#E67E22" stroke-width="1.5"/>
 <line x1="2159.80" y1="80.00" x2="2159.80" y2="96.00" stroke="#E67E22" stroke-width="1.5"/>
-<line x1="1309.40" y1="550.00" x2="1297.40" y2="543.00" stroke="#E67E22" stroke-width="1.5"/>
-<line x1="1309.40" y1="550.00" x2="1297.40" y2="557.00" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="2234.60" y1="550.00" x2="2246.60" y2="543.00" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="2234.60" y1="550.00" x2="2246.60" y2="557.00" stroke="#E67E22" stroke-width="1.5"/>
 </g>
 <g>
 <path d="M 2234.60,502.00 H 2467.60 V 526.00 H 2700.60" fill="none" stroke="#16A085" stroke-width="1.5"/>
@@ -38,8 +38,8 @@
 <line x1="2700.60" y1="526.00" x2="2688.60" y2="533.00" stroke="#16A085" stroke-width="1.5"/>
 </g>
 <g>
-<path d="M 836.80,502.00 H 1768.70 V 550.00 H 2700.60" fill="none" stroke="#D4AC0D" stroke-width="1.5"/>
-<line x1="840.80" y1="494.00" x2="840.80" y2="510.00" stroke="#D4AC0D" stroke-width="1.5"/>
+<path d="M 836.80,498.00 H 1762.70 V 550.00 H 2700.60" fill="none" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="840.80" y1="490.00" x2="840.80" y2="506.00" stroke="#D4AC0D" stroke-width="1.5"/>
 <line x1="2700.60" y1="550.00" x2="2688.60" y2="543.00" stroke="#D4AC0D" stroke-width="1.5"/>
 <line x1="2700.60" y1="550.00" x2="2688.60" y2="557.00" stroke="#D4AC0D" stroke-width="1.5"/>
 </g>
@@ -50,8 +50,8 @@
 <line x1="843.40" y1="956.00" x2="855.40" y2="963.00" stroke="#2C3E50" stroke-width="1.5"/>
 </g>
 <g>
-<path d="M 737.80,120.00 H 1023.60 V 980.00 H 1309.40" fill="none" stroke="#C0392B" stroke-width="1.5"/>
-<line x1="741.80" y1="112.00" x2="741.80" y2="128.00" stroke="#C0392B" stroke-width="1.5"/>
+<path d="M 737.80,122.00 H 1035.60 V 980.00 H 1309.40" fill="none" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="741.80" y1="114.00" x2="741.80" y2="130.00" stroke="#C0392B" stroke-width="1.5"/>
 <line x1="1309.40" y1="980.00" x2="1297.40" y2="973.00" stroke="#C0392B" stroke-width="1.5"/>
 <line x1="1309.40" y1="980.00" x2="1297.40" y2="987.00" stroke="#C0392B" stroke-width="1.5"/>
 </g>
@@ -62,41 +62,41 @@
 <line x1="1309.40" y1="956.00" x2="1297.40" y2="963.00" stroke="#2980B9" stroke-width="1.5"/>
 </g>
 <g>
-<path d="M 737.80,120.00 H 1719.20 V 956.00 H 2700.60" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="741.80" y1="112.00" x2="741.80" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
+<path d="M 737.80,126.00 H 1719.20 V 956.00 H 2700.60" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="741.80" y1="118.00" x2="741.80" y2="134.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2700.60" y1="956.00" x2="2688.60" y2="949.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="2700.60" y1="956.00" x2="2688.60" y2="963.00" stroke="#27AE60" stroke-width="1.5"/>
 </g>
 <g>
-<path d="M 836.80,502.00 H 1768.70 V 980.00 H 2700.60" fill="none" stroke="#3498DB" stroke-width="1.5"/>
-<line x1="840.80" y1="494.00" x2="840.80" y2="510.00" stroke="#3498DB" stroke-width="1.5"/>
+<path d="M 836.80,506.00 H 1774.70 V 980.00 H 2700.60" fill="none" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="840.80" y1="498.00" x2="840.80" y2="514.00" stroke="#3498DB" stroke-width="1.5"/>
 <line x1="2700.60" y1="980.00" x2="2688.60" y2="973.00" stroke="#3498DB" stroke-width="1.5"/>
 <line x1="2700.60" y1="980.00" x2="2688.60" y2="987.00" stroke="#3498DB" stroke-width="1.5"/>
 </g>
-<rect x="836.10" y="108.00" width="375.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1023.60" y="116.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each address belongs to one user; one user may have many addresses</text>
+<rect x="824.10" y="105.00" width="375.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1011.60" y="113.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each address belongs to one user; one user may have many addresses</text>
 <rect x="1575.70" y="299.00" width="386.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1768.70" y="307.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each product belongs to one category; one category has many products</text>
 <rect x="3471.20" y="92.00" width="386.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="3664.20" y="100.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Categories are self-referential: a parent category has many children</text>
-<rect x="929.60" y="315.00" width="188.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1023.60" y="323.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order is placed by one user</text>
-<rect x="1641.35" y="311.00" width="182.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1732.60" y="319.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order ships to one address</text>
+<rect x="929.60" y="314.00" width="188.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1023.60" y="322.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order is placed by one user</text>
+<rect x="2244.60" y="311.00" width="182.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="2335.85" y="319.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order ships to one address</text>
 <rect x="2348.85" y="506.00" width="237.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="2467.60" y="514.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order line item belongs to one order</text>
-<rect x="1644.45" y="710.00" width="248.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1768.70" y="718.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order line item references one product</text>
+<rect x="1638.45" y="710.00" width="248.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1762.70" y="718.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each order line item references one product</text>
 <rect x="979.65" y="721.00" width="193.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1076.40" y="729.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each payment belongs to one order</text>
-<rect x="924.10" y="542.00" width="199.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1023.60" y="550.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each review is written by one user</text>
+<rect x="936.10" y="543.00" width="199.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1035.60" y="551.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each review is written by one user</text>
 <rect x="979.10" y="721.00" width="188.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1073.10" y="729.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each review is about one product</text>
 <rect x="1603.20" y="710.00" width="232.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="1719.20" y="718.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each wishlist entry is owned by one user</text>
-<rect x="1647.20" y="733.00" width="243.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1768.70" y="741.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each wishlist entry references one product</text>
+<rect x="1653.20" y="735.00" width="243.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1774.70" y="743.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">Each wishlist entry references one product</text>
 <g>
   <rect x="30.00" y="30.00" width="707.80" height="294.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
   <rect x="30.00" y="30.00" width="707.80" height="26.00" fill="#2C3E50"/>

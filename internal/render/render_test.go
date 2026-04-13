@@ -378,3 +378,63 @@ link one a.id to many b.a_id`)
 		t.Error("badge text must appear after all connector paths (higher z-index)")
 	}
 }
+
+// TestSVGSameColumnLinkRoutesOutside verifies that a link between tables in the
+// same grid column routes around the right side of both tables, not through them.
+func TestSVGSameColumnLinkRoutesOutside(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+table c (a_id bigint)
+table d (y bigint)
+link one a.id to many c.a_id`)
+
+	// Parse the path: M sx,sy H vertX V dy H dx.
+	// For same-column tables a (col 0, row 0) and c (col 0, row 1),
+	// the vertical segment X (vertX) must be to the RIGHT of both tables.
+	pi := strings.Index(svg, `<path d="M `)
+	if pi < 0 {
+		t.Fatal("could not find connector path")
+	}
+	pathSnip := svg[pi+len(`<path d="M `):]
+	var sx, sy, vertX, dy, dx float64
+	if _, err := fmt.Sscanf(pathSnip, "%f,%f H %f V %f H %f", &sx, &sy, &vertX, &dy, &dx); err != nil {
+		t.Fatalf("could not parse path: %v", err)
+	}
+	// vertX must be >= both sx and dx (it routes OUTSIDE both tables).
+	if vertX < sx || vertX < dx {
+		t.Errorf("same-column link vertX=%.0f must be >= max(sx=%.0f, dx=%.0f); link routes through tables", vertX, sx, dx)
+	}
+}
+
+// TestSVGSharedPortSpread verifies that multiple links sharing the same
+// column port get different Y coordinates so they don't overlap.
+func TestSVGSharedPortSpread(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+table c (a_id bigint)
+link one a.id to many b.a_id
+link one a.id to many c.a_id`)
+
+	// Both links originate from a.id; their source Y values must differ.
+	// Find all paths.
+	var ys []float64
+	rest := svg
+	for {
+		pi := strings.Index(rest, `<path d="M `)
+		if pi < 0 {
+			break
+		}
+		rest = rest[pi+len(`<path d="M `):]
+		var sx, sy float64
+		if _, err := fmt.Sscanf(rest, "%f,%f", &sx, &sy); err != nil {
+			t.Fatalf("could not parse path Y: %v", err)
+		}
+		ys = append(ys, sy)
+	}
+	if len(ys) < 2 {
+		t.Fatalf("expected at least 2 paths, got %d", len(ys))
+	}
+	if ys[0] == ys[1] {
+		t.Errorf("shared port Y values must differ to avoid overlap: both are %.2f", ys[0])
+	}
+}
