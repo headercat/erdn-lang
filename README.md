@@ -2,11 +2,17 @@
 
 **erdn-lang** is a lightweight, deterministic domain-specific language for describing Entity-Relationship Diagrams (ERDs). Write a plain-text `.erdn` schema file and render it into a clean, self-contained SVG diagram — no GUI required.
 
+Maintaining ERD diagrams is tedious: graphical tools produce binary files that are hard to diff, and hand-rolled diagrams drift out of sync with real schemas. **erdn-lang** solves this by letting you describe your schema as code:
+
+- **Text-based** — store `.erdn` files alongside your source code and track changes in version control.
+- **Deterministic** — the same input always produces the same SVG output.
+- **Validated** — the `validate` command catches semantic errors (unknown tables, duplicate keys, conflicting modifiers) before you render.
+- **Readable** — `#` comments on tables, columns, and links are rendered as subtitle rows directly in the diagram.
+
 ---
 
 ## Table of Contents
 
-- [Project Introduction](#project-introduction)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Syntax](#syntax)
@@ -18,17 +24,6 @@
   - [Full Example](#full-example)
 - [Contributing](#contributing)
 - [License](#license)
-
----
-
-## Project Introduction
-
-Maintaining ERD diagrams is tedious: graphical tools produce binary files that are hard to diff, and hand-rolled diagrams drift out of sync with real schemas. **erdn-lang** solves this by letting you describe your schema as code:
-
-- **Text-based** — store `.erdn` files alongside your source code and track changes in version control.
-- **Deterministic** — the same input always produces the same SVG output.
-- **Validated** — the `validate` command catches semantic errors (unknown tables, duplicate keys, conflicting modifiers) before you render.
-- **Readable** — `#` comments on tables, columns, and links are rendered as subtitle rows directly in the diagram.
 
 ---
 
