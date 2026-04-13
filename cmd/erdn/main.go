@@ -12,6 +12,7 @@ import (
 	"github.com/headercat/erdn-lang/internal/parser"
 	"github.com/headercat/erdn-lang/internal/render"
 	"github.com/headercat/erdn-lang/internal/semantic"
+	"github.com/headercat/erdn-lang/internal/sqlexport"
 )
 
 func main() {
@@ -25,6 +26,8 @@ func main() {
 		runRender(os.Args[2:])
 	case "validate":
 		runValidate(os.Args[2:])
+	case "sql":
+		runSQL(os.Args[2:])
 	default:
 		fmt.Fprintf(os.Stderr, "unknown subcommand: %s\n", os.Args[1])
 		printUsage()
@@ -33,11 +36,13 @@ func main() {
 }
 
 func printUsage() {
-	fmt.Fprintln(os.Stderr, `erdn - erdn-lang schema toolchain
+	fmt.Fprintf(os.Stderr, `erdn - erdn-lang schema toolchain
 
 Usage:
-  erdn render <schema.erdn> [--out <file>]
-  erdn validate <schema.erdn>`)
+  erdn render   <schema.erdn> [--out <file>]
+  erdn validate <schema.erdn>
+  erdn sql      <schema.erdn> [--dbms <%s>] [--out <file>]
+`, strings.Join(sqlexport.SupportedDBMS, "|"))
 }
 
 // loadAndValidate parses and semantically validates a schema file.
@@ -121,4 +126,43 @@ func runValidate(args []string) {
 		os.Exit(1)
 	}
 	fmt.Println("OK")
+}
+
+func runSQL(args []string) {
+	fs := flag.NewFlagSet("sql", flag.ExitOnError)
+	dbmsFlag := fs.String("dbms", string(sqlexport.DBMSMySQL),
+		"target DBMS ("+strings.Join(sqlexport.SupportedDBMS, ", ")+")")
+	outFlag := fs.String("out", "", "output file path (default: <schema>.sql)")
+	if err := fs.Parse(args); err != nil {
+		os.Exit(1)
+	}
+	if fs.NArg() < 1 {
+		fmt.Fprintln(os.Stderr, "sql: missing schema file")
+		os.Exit(1)
+	}
+	if !sqlexport.ValidDBMS(*dbmsFlag) {
+		fmt.Fprintf(os.Stderr, "sql: unknown DBMS %q; supported: %s\n",
+			*dbmsFlag, strings.Join(sqlexport.SupportedDBMS, ", "))
+		os.Exit(1)
+	}
+
+	schemaFile := fs.Arg(0)
+	prog, err := loadAndValidate(schemaFile)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+
+	outPath := *outFlag
+	if outPath == "" {
+		base := strings.TrimSuffix(schemaFile, filepath.Ext(schemaFile))
+		outPath = base + ".sql"
+	}
+
+	sql := sqlexport.Generate(prog, sqlexport.DBMS(*dbmsFlag))
+	if err := os.WriteFile(outPath, []byte(sql), 0644); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	fmt.Printf("exported %s\n", outPath)
 }

@@ -52,6 +52,7 @@ go build -o erdn ./cmd/erdn
 ```
 erdn render   <schema.erdn> [--out <file.svg>]
 erdn validate <schema.erdn>
+erdn sql      <schema.erdn> [--dbms <mysql|postgresql|mssql|oracle|sqlite>] [--out <file.sql>]
 ```
 
 ### `render`
@@ -74,6 +75,37 @@ Checks the schema for parse and semantic errors without producing any output fil
 erdn validate schema.erdn
 # OK
 ```
+
+### `sql`
+
+Generates SQL DDL (`CREATE TABLE`, indexes, and foreign key constraints) from the schema. Use `--dbms` to target a specific database engine (default: `mysql`).
+
+| DBMS | Flag value |
+|------|-----------|
+| MySQL | `mysql` |
+| PostgreSQL | `postgresql` |
+| Microsoft SQL Server | `mssql` |
+| Oracle Database | `oracle` |
+| SQLite | `sqlite` |
+
+```sh
+# Output written to schema.sql by default (MySQL)
+erdn sql schema.erdn
+
+# Target PostgreSQL
+erdn sql schema.erdn --dbms postgresql
+
+# Specify a custom output path
+erdn sql schema.erdn --dbms mssql --out migrations/001_init.sql
+```
+
+The generated SQL includes:
+
+- `CREATE TABLE` statements with DBMS-appropriate types and constraints.
+- `PRIMARY KEY` constraints.
+- `AUTO_INCREMENT` / `IDENTITY(1,1)` / `GENERATED ALWAYS AS IDENTITY` for auto-increment columns.
+- `CREATE INDEX` statements for `indexed` columns.
+- `ALTER TABLE … ADD CONSTRAINT … FOREIGN KEY` statements derived from `link` declarations (inline `FOREIGN KEY` for SQLite).
 
 ---
 

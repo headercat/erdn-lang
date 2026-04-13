@@ -33,6 +33,7 @@ You can move the resulting `erdn` binary anywhere on your `PATH`.
 ```
 erdn render   <schema.erdn> [--out <file.svg>]
 erdn validate <schema.erdn>
+erdn sql      <schema.erdn> [--dbms <mysql|postgresql|mssql|oracle|sqlite>] [--out <file.sql>]
 ```
 
 ### `render`
@@ -64,6 +65,37 @@ erdn validate schema.erdn
 ```
 
 Use `validate` in CI pipelines to catch schema errors early.
+
+### `sql`
+
+Generates SQL DDL from the schema — `CREATE TABLE` statements, indexes, and foreign key constraints. Use `--dbms` to target a specific database engine (default: `mysql`).
+
+| DBMS | Flag value |
+|------|-----------|
+| MySQL | `mysql` |
+| PostgreSQL | `postgresql` |
+| Microsoft SQL Server | `mssql` |
+| Oracle Database | `oracle` |
+| SQLite | `sqlite` |
+
+```sh
+# Output defaults to <schema>.sql (MySQL)
+erdn sql schema.erdn
+
+# Target PostgreSQL
+erdn sql schema.erdn --dbms postgresql
+
+# Specify a custom output path
+erdn sql schema.erdn --dbms mssql --out migrations/001_init.sql
+```
+
+The generated SQL includes:
+
+- `CREATE TABLE` statements with DBMS-appropriate column types and constraints.
+- `PRIMARY KEY` constraints.
+- Auto-increment syntax suited to the target DBMS (`AUTO_INCREMENT`, `IDENTITY(1,1)`, `GENERATED ALWAYS AS IDENTITY`, or `AUTOINCREMENT`).
+- `CREATE INDEX` statements for columns marked `indexed`.
+- Foreign key constraints derived from `link` declarations — as `ALTER TABLE … ADD CONSTRAINT … FOREIGN KEY` for most databases, or as inline `FOREIGN KEY` table constraints for SQLite.
 
 ## Writing Your First Schema
 
