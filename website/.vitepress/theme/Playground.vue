@@ -31,10 +31,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+import { withBase } from "vitepress";
 
 const DEBOUNCE_MS = 300;
-const WASM_PATH = "/erdn.wasm";
-const WASM_EXEC_PATH = "/wasm_exec.js";
+const WASM_PATH = withBase("/erdn.wasm");
+const WASM_EXEC_PATH = withBase("/wasm_exec.js");
 
 const EXAMPLE = `# A simple blog schema
 
