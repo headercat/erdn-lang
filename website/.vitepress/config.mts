@@ -1,6 +1,7 @@
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
+  base: "/erdn-lang/",
   title: "erdn-lang",
   description: "Entity-Relationship Diagrams as Code",
   head: [["meta", { name: "theme-color", content: "#58a6ff" }]],
