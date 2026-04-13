@@ -36,5 +36,10 @@ export default defineConfig({
         "Cross-Origin-Embedder-Policy": "require-corp",
       },
     },
+    optimizeDeps: {
+      // Monaco ships pre-built ESM; letting Vite pre-bundle it causes
+      // issues with its complex module graph and worker entry points.
+      exclude: ["monaco-editor"],
+    },
   },
 });

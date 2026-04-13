@@ -15,18 +15,9 @@
         <div class="pg-pane-header">
           <span>ERDN Source</span>
         </div>
-        <textarea
-          ref="editorRef"
-          v-model="source"
-          class="pg-editor"
-          spellcheck="false"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          placeholder="Write your ERDN schema here…"
-          @input="onInput"
-          @keydown="onKeyDown"
-        ></textarea>
+        <ClientOnly>
+          <MonacoEditor v-model="source" class="pg-editor-monaco" />
+        </ClientOnly>
       </div>
       <div class="pg-pane pg-preview-pane">
         <div class="pg-pane-header">
@@ -63,8 +54,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick, onMounted, onUnmounted } from "vue";
+import { ref, computed, nextTick, onMounted, onUnmounted, watch } from "vue";
 import { withBase } from "vitepress";
+import MonacoEditor from "./MonacoEditor.vue";
 
 const DEBOUNCE_MS = 300;
 const ZOOM_STEP = 0.25;
@@ -194,7 +186,6 @@ const previewHtml = ref(
 const errorText = ref("");
 const statusText = ref("Loading WASM…");
 const statusClass = ref("");
-const editorRef = ref<HTMLTextAreaElement | null>(null);
 const previewRef = ref<HTMLDivElement | null>(null);
 const zoom = ref(1);
 const isPanning = ref(false);
@@ -313,24 +304,9 @@ function onInput() {
   }, DEBOUNCE_MS);
 }
 
-function onKeyDown(e: KeyboardEvent) {
-  if (e.key === "Tab") {
-    e.preventDefault();
-    const el = editorRef.value;
-    if (!el) return;
-    const start = el.selectionStart;
-    const end = el.selectionEnd;
-    const val = el.value;
-    source.value = val.substring(0, start) + "  " + val.substring(end);
-    requestAnimationFrame(() => {
-      if (editorRef.value) {
-        editorRef.value.selectionStart = editorRef.value.selectionEnd =
-          start + 2;
-      }
-    });
-    onInput();
-  }
-}
+// Trigger compilation whenever the source changes (user typing in Monaco
+// or loading an example both go through this reactive watch).
+watch(source, () => onInput());
 
 // ── Examples ──────────────────────────────────────────────────────────────────
 
@@ -339,7 +315,7 @@ function onExampleChange() {
   selectedExample.value = "";
   if (!ex) return;
   source.value = ex.source;
-  onInput();
+  // Compilation is triggered automatically by watch(source, …).
 }
 
 // ── Download SVG ─────────────────────────────────────────────────────────────
@@ -582,25 +558,13 @@ onUnmounted(() => {
   padding: 2px 8px;
 }
 
-/* ── Editor ──────────────────────────────────────────────────────────── */
-.pg-editor {
+/* ── Monaco editor ───────────────────────────────────────────────────── */
+/* The MonacoEditor component renders a single root div; we just need it
+   to fill the available flex space inside the editor pane. */
+.pg-editor-monaco {
   flex: 1;
-  width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
-  padding: 14px 16px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 13.5px;
-  line-height: 1.65;
-  background: var(--vp-code-block-bg);
-  color: var(--vp-c-text-1);
-  tab-size: 2;
   min-height: 0;
-}
-
-.pg-editor::placeholder {
-  color: var(--vp-c-text-3);
+  overflow: hidden;
 }
 
 /* ── Preview canvas ──────────────────────────────────────────────────── */
