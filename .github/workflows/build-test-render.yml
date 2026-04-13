@@ -1,9 +1,17 @@
-name: CI
+name: Build, Test & Render Examples
 
 on:
   push:
     branches: ["**"]
+    paths:
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
   pull_request:
+    paths:
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
 
 jobs:
   test-and-render:
