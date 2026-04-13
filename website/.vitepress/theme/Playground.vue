@@ -406,7 +406,7 @@ onUnmounted(() => {
   overflow: hidden;
   /* Fill the viewport below the nav bar */
   height: calc(100vh - var(--vp-nav-height, 64px) - 32px);
-  margin: 16px 0;
+  margin: 16px 24px;
 }
 
 /* ── Toolbar ─────────────────────────────────────────────────────────── */
@@ -489,8 +489,11 @@ onUnmounted(() => {
 .pg-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* Explicit row prevents the implicit auto row from growing to SVG content height */
+  grid-template-rows: 1fr;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
 
 .pg-pane {
@@ -639,6 +642,9 @@ onUnmounted(() => {
 
   .pg-body {
     grid-template-columns: 1fr;
+    /* Auto rows needed on mobile: height is auto so 1fr would be 0 */
+    grid-template-rows: auto;
+    overflow: visible;
   }
 
   .pg-editor-pane {
