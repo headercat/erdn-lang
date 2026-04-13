@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>erdn-lang — Entity-Relationship Diagrams as Code</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="./" class="nav-logo">erdn-lang</a>
+    <div class="nav-links">
+      <a href="./">Home</a>
+      <a href="./playground/">Playground</a>
+      <a href="https://github.com/headercat/erdn-lang" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>erdn-lang</h1>
+    <p class="tagline">Entity-Relationship Diagrams as Code</p>
+    <p class="subtitle">
+      Write plain-text <code>.erdn</code> schemas, render clean SVG diagrams.
+      Deterministic, version-control friendly, and validated.
+    </p>
+    <div class="hero-actions">
+      <a href="./playground/" class="btn btn-primary">Try the Playground</a>
+      <a href="https://github.com/headercat/erdn-lang" class="btn btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="features">
+      <div class="feature">
+        <h2>📝 Text-Based</h2>
+        <p>Store <code>.erdn</code> files alongside your source code and track changes in version control — no more opaque binary diagram files.</p>
+      </div>
+      <div class="feature">
+        <h2>🔒 Deterministic</h2>
+        <p>The same input always produces the same SVG output. Diffs are meaningful, reviews are easy.</p>
+      </div>
+      <div class="feature">
+        <h2>✅ Validated</h2>
+        <p>Catch semantic errors — unknown tables, duplicate keys, conflicting modifiers — before you render.</p>
+      </div>
+      <div class="feature">
+        <h2>💬 Readable</h2>
+        <p><code>#</code> comments on tables, columns, and links are rendered as subtitle rows directly in the diagram.</p>
+      </div>
+    </section>
+
+    <section class="quick-start">
+      <h2>Quick Start</h2>
+      <div class="code-block">
+        <pre><code># Install
+go install github.com/headercat/erdn-lang/cmd/erdn@latest
+
+# Render a schema
+erdn render schema.erdn</code></pre>
+      </div>
+    </section>
+
+    <section class="example-section">
+      <h2>Example</h2>
+      <div class="example-grid">
+        <div class="example-code">
+          <h3>Input</h3>
+          <pre><code>table users (
+  id bigint primary-key auto-increment
+  username varchar(255) not-null indexed
+  email varchar(255) not-null indexed
+)
+
+table posts (
+  id bigint primary-key auto-increment
+  title varchar(255) not-null
+  body text nullable
+  author_id bigint not-null indexed
+)
+
+# User has many posts
+link one users.id to many posts.author_id</code></pre>
+        </div>
+        <div class="example-output">
+          <h3>Output</h3>
+          <p class="example-hint">See it live in the <a href="./playground/">Playground</a>!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="syntax-overview">
+      <h2>Syntax Overview</h2>
+      <div class="syntax-grid">
+        <div class="syntax-item">
+          <h3>Tables</h3>
+          <pre><code>table name (
+  column type [modifiers...]
+)</code></pre>
+        </div>
+        <div class="syntax-item">
+          <h3>Links</h3>
+          <pre><code>link one table.col to many table.col</code></pre>
+        </div>
+        <div class="syntax-item">
+          <h3>Comments</h3>
+          <pre><code># Rendered in diagram
+// Ignored by renderer</code></pre>
+        </div>
+        <div class="syntax-item">
+          <h3>Modifiers</h3>
+          <pre><code>primary-key  auto-increment
+not-null     nullable
+indexed      default("val")</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Headercat Inc. &middot; <a href="https://github.com/headercat/erdn-lang/blob/main/LICENSE">MIT License</a></p>
+  </footer>
+</body>
+</html>

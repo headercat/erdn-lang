@@ -1,0 +1,7 @@
+# Build outputs
+erdn
+*.wasm
+
+# Website build artifacts (generated during CI)
+website/erdn.wasm
+website/wasm_exec.js

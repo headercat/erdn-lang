@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground — erdn-lang</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="playground.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../" class="nav-logo">erdn-lang</a>
+    <div class="nav-links">
+      <a href="../">Home</a>
+      <a href="./">Playground</a>
+      <a href="https://github.com/headercat/erdn-lang" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <div class="playground">
+    <div class="playground-header">
+      <h1>Playground</h1>
+      <div class="playground-status" id="status">Loading WASM…</div>
+    </div>
+
+    <div class="playground-panels">
+      <div class="panel panel-editor">
+        <div class="panel-header">
+          <span class="panel-title">ERDN Source</span>
+          <button class="btn-small" id="btn-example" title="Load example">Load Example</button>
+        </div>
+        <textarea
+          id="editor"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          placeholder="Write your ERDN schema here…"
+        ></textarea>
+      </div>
+
+      <div class="panel panel-preview">
+        <div class="panel-header">
+          <span class="panel-title">SVG Preview</span>
+        </div>
+        <div id="preview" class="preview-area">
+          <p class="preview-placeholder">Your diagram will appear here.</p>
+        </div>
+        <div id="error-box" class="error-box" hidden></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="playground.js"></script>
+</body>
+</html>
