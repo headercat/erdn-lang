@@ -226,4 +226,6 @@ Please keep pull requests focused — one feature or fix per PR.
 
 ## License
 
-This project does not currently include a license file. Please open an issue if you would like to use erdn-lang in your own project and need clarity on terms.
+This project is licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Headercat Inc.
