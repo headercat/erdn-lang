@@ -78,6 +78,23 @@ func TestParseDefaultModifier(t *testing.T) {
 	}
 }
 
+func TestParseDefaultFunctionCall(t *testing.T) {
+	src := `table t (
+  created_at timestamp default(NOW())
+)`
+	prog, err := ParseString(src)
+	if err != nil {
+		t.Fatalf("parse error: %v", err)
+	}
+	col := prog.Tables[0].Columns[0]
+	if len(col.Modifiers) != 1 || col.Modifiers[0].Kind != ast.ModDefault {
+		t.Errorf("expected default modifier")
+	}
+	if col.Modifiers[0].Value != "NOW()" {
+		t.Errorf("expected default value 'NOW()', got %q", col.Modifiers[0].Value)
+	}
+}
+
 func TestParseLink(t *testing.T) {
 	src := `table a (id bigint)
 table b (a_id bigint)

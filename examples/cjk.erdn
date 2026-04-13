@@ -18,8 +18,8 @@ table 用户 (
   密码哈希 varchar(255) not-null
   # 账号状态：active-活跃 / suspended-暂停 / deleted-已删除
   状態 varchar(16) not-null default("active")
-  注册时间 timestamp not-null default("NOW()")
-  更新时间 timestamp not-null default("NOW()")
+  注册时间 timestamp not-null default(NOW())
+  更新时间 timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -40,7 +40,7 @@ table 文章 (
   # 发布状态：draft-草稿 / published-已发布 / archived-已归档
   状态 varchar(32) not-null default("draft")
   发布时间 timestamp nullable
-  创建时间 timestamp not-null default("NOW()")
+  创建时间 timestamp not-null default(NOW())
 )
 
 # 评论表
@@ -54,7 +54,7 @@ table 评论 (
   # NULL 表示顶层评论；非 NULL 则指向父评论
   父评论ID bigint nullable indexed
   评论内容 text not-null
-  创建时间 timestamp not-null default("NOW()")
+  创建时间 timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -73,8 +73,8 @@ table 記事 (
   本文 text not-null
   # 公開ステータス: draft / published / archived
   ステータス varchar(32) not-null default("draft")
-  作成日時 timestamp not-null default("NOW()")
-  更新日時 timestamp not-null default("NOW()")
+  作成日時 timestamp not-null default(NOW())
+  更新日時 timestamp not-null default(NOW())
 )
 
 # コメントテーブル
@@ -88,7 +88,7 @@ table コメント (
   # NULL なら最上位コメント、非 NULL なら返信コメント
   親コメントID bigint nullable indexed
   本文 text not-null
-  作成日時 timestamp not-null default("NOW()")
+  作成日時 timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -107,8 +107,8 @@ table 게시물 (
   본문 text not-null
   # 상태: draft / published / archived
   상태 varchar(32) not-null default("draft")
-  생성일시 timestamp not-null default("NOW()")
-  수정일시 timestamp not-null default("NOW()")
+  생성일시 timestamp not-null default(NOW())
+  수정일시 timestamp not-null default(NOW())
 )
 
 # 댓글 테이블
@@ -123,7 +123,7 @@ table 댓글 (
   # NULL이면 최상위 댓글, 아니면 대댓글
   부모댓글ID bigint nullable indexed
   내용 text not-null
-  생성일시 timestamp not-null default("NOW()")
+  생성일시 timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------

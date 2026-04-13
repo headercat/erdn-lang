@@ -144,13 +144,13 @@ Zero or more modifiers may follow the type (and type parameters) on the same lin
 The `default` modifier requires a parenthesized value:
 
 ```
-default("NOW()")
+default(NOW())
 default("draft")
 default(0)
 default(active)
 ```
 
-The value inside parentheses may be a **string literal** (double-quoted), a **number**, or an **identifier**.
+The value inside parentheses may be a **string literal** (double-quoted), a **number**, an **identifier**, or a **function call** (e.g. `NOW()`).
 
 ### Modifier Ordering
 
@@ -275,7 +275,7 @@ table posts (
   body      text         not-null
   # draft, published, archived
   status    varchar(32)  not-null default("draft")
-  created_at timestamp   not-null default("NOW()")
+  created_at timestamp   not-null default(NOW())
 )
 
 # An author can write many posts

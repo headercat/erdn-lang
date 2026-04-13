@@ -45,8 +45,8 @@ table tasks (
   #   blocked     – waiting on an external dependency
   #   cancelled   – will not be completed
   status varchar(32) not-null default("pending")
-  created_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 // ── Relationship 3: between two tables declared later ────────
@@ -72,7 +72,7 @@ table projects (
   description text nullable
   # Lifecycle state: active / archived / deleted
   status varchar(32) not-null default("active")
-  created_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
 )
 
 // ── users table – declared last ──────────────────────────────
@@ -90,5 +90,5 @@ table users (
   password_hash varchar(255) not-null
   # Account state: active / suspended / deleted
   status varchar(16) not-null default("active")
-  created_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
 )

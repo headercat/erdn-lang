@@ -233,7 +233,16 @@ func (p *parser) parseModifier() (ast.Modifier, error) {
 		case lexer.TOKEN_NUMBER:
 			valStr = val.Value
 		case lexer.TOKEN_IDENT:
-			valStr = val.Value
+			// Check for function-call syntax: IDENT()
+			if p.peek().Type == lexer.TOKEN_LPAREN {
+				p.advance() // consume (
+				if _, err := p.expect(lexer.TOKEN_RPAREN); err != nil {
+					return ast.Modifier{}, err
+				}
+				valStr = val.Value + "()"
+			} else {
+				valStr = val.Value
+			}
 		default:
 			return ast.Modifier{}, fmt.Errorf("line %d col %d: expected default value, got %q", val.Line, val.Col, val.Value)
 		}

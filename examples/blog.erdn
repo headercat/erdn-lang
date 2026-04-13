@@ -18,8 +18,8 @@ table authors (
   avatar_url varchar(1024) nullable
   # admin, editor, contributor, subscriber
   role varchar(32) not-null default("contributor")
-  created_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -61,8 +61,8 @@ table posts (
   status varchar(32) not-null default("draft")
   # NULL until first published
   published_at timestamp nullable
-  created_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 table post_tags (
@@ -86,8 +86,8 @@ table comments (
   body text not-null
   # pending, approved, spam, deleted
   status varchar(32) not-null default("pending")
-  created_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -108,7 +108,7 @@ table media (
   size_bytes bigint not-null
   # Descriptive alt text for accessibility
   alt_text varchar(512) nullable
-  created_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -123,7 +123,7 @@ table subscriptions (
   author_id bigint nullable indexed
   # active, unsubscribed, bounced
   status varchar(32) not-null default("active")
-  subscribed_at timestamp not-null default("NOW()")
+  subscribed_at timestamp not-null default(NOW())
   unsubscribed_at timestamp nullable
 )
 
