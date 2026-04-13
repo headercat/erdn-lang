@@ -53,7 +53,7 @@ table t (id bigint)`)
 func TestSVGModifiers(t *testing.T) {
 	svg := generateSVG(t, `table t (
   id bigint primary-key auto-increment
-  name varchar(255) not-null default(hi)
+  name varchar(255) not-null default("hi")
 )`)
 	if !strings.Contains(svg, "PK") {
 		t.Error("expected PK modifier in SVG")

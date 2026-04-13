@@ -63,7 +63,7 @@ func TestParseColumnTypeParams(t *testing.T) {
 
 func TestParseDefaultModifier(t *testing.T) {
 	src := `table t (
-  title varchar(255) default(Untitled)
+  title varchar(255) default("Untitled")
 )`
 	prog, err := ParseString(src)
 	if err != nil {
@@ -73,8 +73,8 @@ func TestParseDefaultModifier(t *testing.T) {
 	if len(col.Modifiers) != 1 || col.Modifiers[0].Kind != ast.ModDefault {
 		t.Errorf("expected default modifier")
 	}
-	if col.Modifiers[0].Value != "Untitled" {
-		t.Errorf("expected default value 'Untitled', got %q", col.Modifiers[0].Value)
+	if col.Modifiers[0].Value != `"Untitled"` {
+		t.Errorf(`expected default value '"Untitled"', got %q`, col.Modifiers[0].Value)
 	}
 }
 
