@@ -1,16 +1,21 @@
 <template>
-  <div class="playground-container">
-    <div class="playground-toolbar">
-      <span class="playground-status" :class="statusClass">{{ statusText }}</span>
-      <button class="playground-btn" @click="loadExample">Load Example</button>
+  <div class="pg">
+    <div class="pg-toolbar">
+      <div class="pg-status-wrap">
+        <span class="pg-dot" :class="statusClass"></span>
+        <span class="pg-status-text" :class="statusClass">{{ statusText }}</span>
+      </div>
+      <button class="pg-action-btn" @click="loadExample">Load Example</button>
     </div>
-    <div class="playground-panels">
-      <div class="playground-editor-panel">
-        <div class="panel-label">ERDN Source</div>
+    <div class="pg-body">
+      <div class="pg-pane pg-editor-pane">
+        <div class="pg-pane-header">
+          <span>ERDN Source</span>
+        </div>
         <textarea
           ref="editorRef"
           v-model="source"
-          class="playground-editor"
+          class="pg-editor"
           spellcheck="false"
           autocomplete="off"
           autocorrect="off"
@@ -20,19 +25,19 @@
           @keydown="onKeyDown"
         ></textarea>
       </div>
-      <div class="playground-preview-panel">
-        <div class="panel-label">
-          SVG Preview
-          <div class="zoom-controls" v-if="hasSvg">
-            <button class="zoom-btn" @click="zoomOut" title="Zoom out">−</button>
-            <button class="zoom-btn zoom-level" @click="fitZoom" :title="`${Math.round(zoom * 100)}% — click to fit`">{{ Math.round(zoom * 100) }}%</button>
-            <button class="zoom-btn" @click="zoomIn" title="Zoom in">+</button>
+      <div class="pg-pane pg-preview-pane">
+        <div class="pg-pane-header">
+          <span>ERD Preview</span>
+          <div class="pg-zoom" v-if="hasSvg">
+            <button class="pg-zoom-btn" @click="zoomOut" title="Zoom out">−</button>
+            <button class="pg-zoom-btn pg-zoom-label" @click="fitZoom" :title="`${Math.round(zoom * 100)}% — click to fit`">{{ Math.round(zoom * 100) }}%</button>
+            <button class="pg-zoom-btn" @click="zoomIn" title="Zoom in">+</button>
           </div>
         </div>
-        <div class="playground-preview" ref="previewRef">
-          <div class="svg-scale-wrapper" :style="{ zoom: zoom }" v-html="previewHtml"></div>
+        <div class="pg-canvas" ref="previewRef">
+          <div class="pg-svg-wrap" :style="{ zoom: zoom }" v-html="previewHtml"></div>
         </div>
-        <div v-if="errorText" class="playground-error">{{ errorText }}</div>
+        <div v-if="errorText" class="pg-error">{{ errorText }}</div>
       </div>
     </div>
   </div>
@@ -219,97 +224,130 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.playground-container {
+/* ── Outer card ─────────────────────────────────────────────────────── */
+.pg {
   display: flex;
   flex-direction: column;
-  margin: 0 -24px; /* break out of VitePress content padding */
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
 }
 
-.playground-toolbar {
+/* ── Toolbar ─────────────────────────────────────────────────────────── */
+.pg-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  border-bottom: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
+  border-bottom: 1px solid var(--vp-c-divider);
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-.playground-status {
+.pg-status-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vp-c-text-3);
+  flex-shrink: 0;
+  transition: background 0.25s;
+}
+
+.pg-dot.ready {
+  background: var(--vp-c-green-1);
+}
+
+.pg-dot.error {
+  background: var(--vp-c-red-1);
+}
+
+.pg-status-text {
   font-size: 13px;
   color: var(--vp-c-text-2);
-  padding: 2px 10px;
-  border-radius: 12px;
-  background: var(--vp-c-bg-mute);
+  transition: color 0.25s;
 }
 
-.playground-status.ready {
+.pg-status-text.ready {
   color: var(--vp-c-green-1);
 }
 
-.playground-status.error {
+.pg-status-text.error {
   color: var(--vp-c-red-1);
 }
 
-.playground-btn {
+.pg-action-btn {
   font-size: 13px;
-  padding: 4px 12px;
-  border-radius: 4px;
+  padding: 4px 14px;
+  border-radius: 20px;
   border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-mute);
+  background: transparent;
   color: var(--vp-c-text-2);
   cursor: pointer;
   font-family: var(--vp-font-family-base);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.playground-btn:hover {
-  border-color: var(--vp-c-text-3);
-  color: var(--vp-c-text-1);
+.pg-action-btn:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
 }
 
-.playground-panels {
+/* ── Split panels ────────────────────────────────────────────────────── */
+.pg-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: clamp(400px, calc(100vh - 220px), 720px);
+  height: clamp(400px, calc(100vh - 200px), 760px);
+  min-height: 0;
 }
 
-.playground-editor-panel {
+.pg-pane {
   display: flex;
   flex-direction: column;
+  min-height: 0;
+}
+
+.pg-editor-pane {
   border-right: 1px solid var(--vp-c-divider);
-  min-height: 0;
 }
 
-.playground-preview-panel {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.panel-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--vp-c-text-3);
-  font-weight: 600;
-  padding: 4px 12px;
-  border-bottom: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
+/* ── Panel header (code-block tab style) ─────────────────────────────── */
+.pg-pane-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 6px 14px;
+  background: var(--vp-code-block-bg);
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+  font-family: var(--vp-font-family-base);
+  flex-shrink: 0;
 }
 
-.zoom-controls {
+/* ── Zoom controls ───────────────────────────────────────────────────── */
+.pg-zoom {
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-.zoom-btn {
-  font-size: 13px;
+.pg-zoom-btn {
+  font-size: 12px;
   line-height: 1;
-  padding: 2px 6px;
-  border-radius: 3px;
+  padding: 2px 7px;
+  border-radius: 4px;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-mute);
   color: var(--vp-c-text-2);
@@ -317,64 +355,67 @@ onUnmounted(() => {
   font-family: var(--vp-font-family-base);
   text-transform: none;
   letter-spacing: 0;
-  font-weight: 400;
+  font-weight: 500;
+  transition: border-color 0.15s, color 0.15s;
 }
 
-.zoom-btn:hover {
-  border-color: var(--vp-c-text-3);
-  color: var(--vp-c-text-1);
+.pg-zoom-btn:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
 }
 
-.zoom-level {
-  min-width: 44px;
+.pg-zoom-label {
+  min-width: 46px;
   text-align: center;
 }
 
-.playground-editor {
+/* ── Editor ──────────────────────────────────────────────────────────── */
+.pg-editor {
   flex: 1;
   width: 100%;
   resize: none;
   border: none;
   outline: none;
-  padding: 12px;
+  padding: 14px 16px;
   font-family: var(--vp-font-family-mono);
-  font-size: 14px;
-  line-height: 1.5;
-  background: var(--vp-c-bg);
+  font-size: 13.5px;
+  line-height: 1.65;
+  background: var(--vp-code-block-bg);
   color: var(--vp-c-text-1);
   tab-size: 2;
   min-height: 0;
 }
 
-.playground-editor::placeholder {
+.pg-editor::placeholder {
   color: var(--vp-c-text-3);
 }
 
-.playground-preview {
+/* ── Preview canvas ──────────────────────────────────────────────────── */
+.pg-canvas {
   flex: 1;
   overflow: auto;
   padding: 16px;
-  /* White background is intentional: SVG diagrams render with dark
-     strokes/text on a white canvas, so the preview must stay light
-     regardless of VitePress dark/light mode. */
+  /* White background is intentional: generated SVGs have a white canvas
+     with dark strokes/text, so the preview pane must stay light. */
   background: #ffffff;
   min-height: 0;
 }
 
-.svg-scale-wrapper {
+.pg-svg-wrap {
   display: inline-block;
   line-height: 0;
 }
 
-.playground-preview :deep(.preview-placeholder) {
-  color: #6b7280;
+.pg-canvas :deep(.preview-placeholder) {
+  color: #9ca3af;
   font-size: 14px;
   line-height: 1.5;
   padding: 16px 0;
 }
 
-.playground-error {
-  padding: 8px 12px;
+/* ── Error bar ───────────────────────────────────────────────────────── */
+.pg-error {
+  padding: 8px 14px;
   background: var(--vp-c-bg-soft);
   border-top: 2px solid var(--vp-c-red-1);
   color: var(--vp-c-red-1);
@@ -383,32 +424,26 @@ onUnmounted(() => {
   white-space: pre-wrap;
   max-height: 120px;
   overflow-y: auto;
+  flex-shrink: 0;
 }
 
+/* ── Mobile ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .playground-panels {
+  .pg-body {
     grid-template-columns: 1fr;
     height: auto;
   }
 
-  .playground-editor-panel {
+  .pg-editor-pane {
     border-right: none;
     border-bottom: 1px solid var(--vp-c-divider);
+    min-height: 240px;
+    max-height: 40vh;
+  }
+
+  .pg-preview-pane {
     min-height: 280px;
-    max-height: 45vh;
-  }
-
-  .playground-preview-panel {
-    min-height: 280px;
-    max-height: 45vh;
-  }
-
-  .playground-editor {
-    min-height: 0;
-  }
-
-  .playground-preview {
-    min-height: 0;
+    max-height: 50vh;
   }
 }
 </style>
