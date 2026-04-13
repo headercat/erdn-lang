@@ -3,16 +3,25 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "erdn-lang",
   description: "Entity-Relationship Diagrams as Code",
-  head: [
-    ["meta", { name: "theme-color", content: "#58a6ff" }],
-  ],
+  head: [["meta", { name: "theme-color", content: "#58a6ff" }]],
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },
+      { text: "Guide", link: "/guide" },
+      { text: "Syntax Specification", link: "/syntax" },
       { text: "Playground", link: "/playground" },
+    ],
+    sidebar: [
       {
-        text: "GitHub",
-        link: "https://github.com/headercat/erdn-lang",
+        text: "Getting Started",
+        items: [
+          { text: "Guide", link: "/guide" },
+          { text: "Syntax Specification", link: "/syntax" },
+        ],
+      },
+      {
+        text: "Tools",
+        items: [{ text: "Playground", link: "/playground" }],
       },
     ],
     socialLinks: [
@@ -24,7 +33,6 @@ export default defineConfig({
     },
   },
   vite: {
-    // Allow loading .wasm files from public/
     server: {
       headers: {
         "Cross-Origin-Opener-Policy": "same-origin",

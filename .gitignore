@@ -5,3 +5,10 @@ erdn
 # Website build artifacts (generated during CI)
 website/erdn.wasm
 website/wasm_exec.js
+website/public/erdn.wasm
+website/public/wasm_exec.js
+
+# Node / VitePress
+node_modules/
+website/.vitepress/cache/
+website/.vitepress/dist/
