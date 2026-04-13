@@ -63,7 +63,7 @@ func TestParseColumnTypeParams(t *testing.T) {
 
 func TestParseDefaultModifier(t *testing.T) {
 	src := `table t (
-  title varchar(255) default("Untitled")
+  title varchar(255) default(Untitled)
 )`
 	prog, err := ParseString(src)
 	if err != nil {

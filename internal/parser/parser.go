@@ -228,8 +228,6 @@ func (p *parser) parseModifier() (ast.Modifier, error) {
 		val := p.advance()
 		var valStr string
 		switch val.Type {
-		case lexer.TOKEN_STRING:
-			valStr = val.Value
 		case lexer.TOKEN_NUMBER:
 			valStr = val.Value
 		case lexer.TOKEN_IDENT:
