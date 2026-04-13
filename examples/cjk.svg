@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2802" height="1070">
+<rect width="2802" height="1070" fill="#F4F6F8"/>
+<g>
+<path d="M 727.60,110.00 H 870.85 V 144.00 H 1026.10" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="731.60" y1="102.00" x2="731.60" y2="118.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1026.10" y1="144.00" x2="1014.10" y2="137.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="1026.10" y1="144.00" x2="1014.10" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 1737.50,120.00 H 1886.75 V 144.00 H 2036.00" fill="none" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="1741.50" y1="112.00" x2="1741.50" y2="128.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="2036.00" y1="144.00" x2="2024.00" y2="137.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="2036.00" y1="144.00" x2="2024.00" y2="151.00" stroke="#3498DB" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,114.00 H 1375.80 V 168.00 H 2036.00" fill="none" stroke="#E74C3C" stroke-width="1.5"/>
+<line x1="731.60" y1="106.00" x2="731.60" y2="122.00" stroke="#E74C3C" stroke-width="1.5"/>
+<line x1="2036.00" y1="168.00" x2="2024.00" y2="161.00" stroke="#E74C3C" stroke-width="1.5"/>
+<line x1="2036.00" y1="168.00" x2="2024.00" y2="175.00" stroke="#E74C3C" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 2607.00,120.00 H 2694.25 V 192.00 H 2607.00" fill="none" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="2611.00" y1="112.00" x2="2611.00" y2="128.00" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="2607.00" y1="192.00" x2="2619.00" y2="185.00" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="2607.00" y1="192.00" x2="2619.00" y2="199.00" stroke="#8E44AD" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,118.00 H 822.35 V 550.00 H 664.00" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="731.60" y1="110.00" x2="731.60" y2="126.00" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="664.00" y1="550.00" x2="676.00" y2="543.00" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="664.00" y1="550.00" x2="676.00" y2="557.00" stroke="#E67E22" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 664.00,526.00 H 845.05 V 534.00 H 1026.10" fill="none" stroke="#16A085" stroke-width="1.5"/>
+<line x1="668.00" y1="518.00" x2="668.00" y2="534.00" stroke="#16A085" stroke-width="1.5"/>
+<line x1="1026.10" y1="534.00" x2="1014.10" y2="527.00" stroke="#16A085" stroke-width="1.5"/>
+<line x1="1026.10" y1="534.00" x2="1014.10" y2="541.00" stroke="#16A085" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,122.00 H 882.85 V 558.00 H 1026.10" fill="none" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="731.60" y1="114.00" x2="731.60" y2="130.00" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="1026.10" y1="558.00" x2="1014.10" y2="551.00" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="1026.10" y1="558.00" x2="1014.10" y2="565.00" stroke="#D4AC0D" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 1664.30,510.00 H 1783.55 V 582.00 H 1664.30" fill="none" stroke="#2C3E50" stroke-width="1.5"/>
+<line x1="1668.30" y1="502.00" x2="1668.30" y2="518.00" stroke="#2C3E50" stroke-width="1.5"/>
+<line x1="1664.30" y1="582.00" x2="1676.30" y2="575.00" stroke="#2C3E50" stroke-width="1.5"/>
+<line x1="1664.30" y1="582.00" x2="1676.30" y2="589.00" stroke="#2C3E50" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,126.00 H 1387.80 V 550.00 H 2036.00" fill="none" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="731.60" y1="118.00" x2="731.60" y2="134.00" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="2036.00" y1="550.00" x2="2024.00" y2="543.00" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="2036.00" y1="550.00" x2="2024.00" y2="557.00" stroke="#C0392B" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 2036.00,526.00 H 1306.20 V 932.00 H 576.40" fill="none" stroke="#2980B9" stroke-width="1.5"/>
+<line x1="2032.00" y1="518.00" x2="2032.00" y2="534.00" stroke="#2980B9" stroke-width="1.5"/>
+<line x1="576.40" y1="932.00" x2="588.40" y2="925.00" stroke="#2980B9" stroke-width="1.5"/>
+<line x1="576.40" y1="932.00" x2="588.40" y2="939.00" stroke="#2980B9" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,130.00 H 841.60 V 956.00 H 576.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="731.60" y1="122.00" x2="731.60" y2="138.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="576.40" y1="956.00" x2="588.40" y2="949.00" stroke="#27AE60" stroke-width="1.5"/>
+<line x1="576.40" y1="956.00" x2="588.40" y2="963.00" stroke="#27AE60" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 576.40,908.00 H 691.65 V 980.00 H 576.40" fill="none" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="580.40" y1="900.00" x2="580.40" y2="916.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="576.40" y1="980.00" x2="588.40" y2="973.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="576.40" y1="980.00" x2="588.40" y2="987.00" stroke="#3498DB" stroke-width="1.5"/>
+</g>
+<rect x="807.85" y="119.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="870.85" y="127.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一位用户可以撰写多篇文章</text>
+<rect x="1823.75" y="124.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1886.75" y="132.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一篇文章可以拥有多条评论</text>
+<rect x="1312.80" y="304.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1375.80" y="312.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一位用户可以发表多条评论</text>
+<rect x="2617.00" y="148.00" width="154.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="2694.25" y="156.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">评论支持多级嵌套回复（自关联）</text>
+<rect x="737.60" y="326.00" width="169.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="822.35" y="334.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1人のユーザーが複数の記事を書ける</text>
+<rect x="765.05" y="522.00" width="160.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="845.05" y="530.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1つの記事に複数のコメントが付く</text>
+<rect x="788.60" y="332.00" width="188.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="882.85" y="340.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1人のユーザーが複数のコメントを書ける</text>
+<rect x="1674.30" y="538.00" width="218.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1783.55" y="546.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">코멘트는 다단계 중첩을 지원한다（자기참조）</text>
+<rect x="1294.05" y="330.00" width="187.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1387.80" y="338.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 사용자가 여러 게시물을 쓸 수 있다</text>
+<rect x="1212.45" y="721.00" width="187.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1306.20" y="729.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 게시물에 여러 댓글이 달릴 수 있다</text>
+<rect x="752.60" y="535.00" width="178.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="841.60" y="543.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 사용자가 여러 댓글을 쓸 수 있다</text>
+<rect x="586.40" y="936.00" width="210.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="691.65" y="944.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">댓글은 자기 참조로 다단계 중첩을 지원한다</text>
+<g>
+  <rect x="30.00" y="30.00" width="697.60" height="246.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="30.00" y="30.00" width="697.60" height="26.00" fill="#2C3E50"/>
+  <text x="378.80" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">用户</text>
+  <rect x="30.00" y="56.00" width="697.60" height="16.00" fill="#34495E"/>
+  <text x="378.80" y="64.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">博客系统数据库模式</text>
+  <rect x="30.00" y="72.00" width="697.60" height="16.00" fill="#34495E"/>
+  <text x="378.80" y="80.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">包含用户、文章和评论三张核心表</text>
+  <rect x="30.00" y="88.00" width="697.60" height="20.00" fill="#ECF0F1"/>
+  <text x="70.00" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="110.00" y1="88.00" x2="110.00" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="159.60" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="209.20" y1="88.00" x2="209.20" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="235.70" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="262.20" y1="88.00" x2="262.20" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="284.20" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="306.20" y1="88.00" x2="306.20" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="336.20" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="366.20" y1="88.00" x2="366.20" y2="276.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="546.90" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="30.00" y="108.00" width="697.60" height="24.00" fill="white"/>
+  <text x="40.00" y="120.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="120.00" y="120.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="235.70" y="120.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="316.20" y="120.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="120.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">自增主键，系统内部唯一标识</text>
+  <line x1="30.00" y1="132.00" x2="727.60" y2="132.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="132.00" width="697.60" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="144.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">用户名</text>
+  <text x="120.00" y="144.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(64)</text>
+  <text x="235.70" y="144.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="284.20" y="144.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="144.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="144.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">登录用户名，全局唯一，不可修改</text>
+  <line x1="30.00" y1="156.00" x2="727.60" y2="156.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="156.00" width="697.60" height="24.00" fill="white"/>
+  <text x="40.00" y="168.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">邮箱</text>
+  <text x="120.00" y="168.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="235.70" y="168.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="284.20" y="168.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="168.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="168.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">注册邮箱，用于接收通知</text>
+  <line x1="30.00" y1="180.00" x2="727.60" y2="180.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="180.00" width="697.60" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="192.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">密码哈希</text>
+  <text x="120.00" y="192.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="284.20" y="192.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="192.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="192.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">bcrypt 加密后的密码哈希值</text>
+  <line x1="30.00" y1="204.00" x2="727.60" y2="204.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="204.00" width="697.60" height="24.00" fill="white"/>
+  <text x="40.00" y="216.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">状態</text>
+  <text x="120.00" y="216.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(16)</text>
+  <text x="284.20" y="216.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="216.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">active</text>
+  <text x="376.20" y="216.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">账号状态：active-活跃 / suspended-暂停 / deleted-已删除</text>
+  <line x1="30.00" y1="228.00" x2="727.60" y2="228.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="228.00" width="697.60" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="240.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">注册时间</text>
+  <text x="120.00" y="240.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="284.20" y="240.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="240.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="376.20" y="240.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="252.00" x2="727.60" y2="252.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="252.00" width="697.60" height="24.00" fill="white"/>
+  <text x="40.00" y="264.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">更新时间</text>
+  <text x="120.00" y="264.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="284.20" y="264.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="264.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="376.20" y="264.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="1026.10" y="30.00" width="711.40" height="270.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="1026.10" y="30.00" width="711.40" height="26.00" fill="#2C3E50"/>
+  <text x="1381.80" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">文章</text>
+  <rect x="1026.10" y="56.00" width="711.40" height="16.00" fill="#34495E"/>
+  <text x="1381.80" y="64.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">文章表</text>
+  <rect x="1026.10" y="72.00" width="711.40" height="16.00" fill="#34495E"/>
+  <text x="1381.80" y="80.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">存储用户发布的所有文章（含草稿）</text>
+  <rect x="1026.10" y="88.00" width="711.40" height="20.00" fill="#ECF0F1"/>
+  <text x="1066.10" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="1106.10" y1="88.00" x2="1106.10" y2="300.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1155.70" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="1205.30" y1="88.00" x2="1205.30" y2="300.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1231.80" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="1258.30" y1="88.00" x2="1258.30" y2="300.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1281.50" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="1304.70" y1="88.00" x2="1304.70" y2="300.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1334.70" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="1364.70" y1="88.00" x2="1364.70" y2="300.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1551.10" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="1026.10" y="108.00" width="711.40" height="24.00" fill="white"/>
+  <text x="1036.10" y="120.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="1116.10" y="120.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="1231.80" y="120.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="1314.70" y="120.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1374.70" y="120.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="1026.10" y1="132.00" x2="1737.50" y2="132.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="132.00" width="711.40" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="144.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">作者ID</text>
+  <text x="1116.10" y="144.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="1231.80" y="144.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="1281.50" y="144.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1314.70" y="144.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1374.70" y="144.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">外键 → 用户.id，标记文章作者</text>
+  <line x1="1026.10" y1="156.00" x2="1737.50" y2="156.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="156.00" width="711.40" height="24.00" fill="white"/>
+  <text x="1036.10" y="168.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">标题</text>
+  <text x="1116.10" y="168.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="1281.50" y="168.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1314.70" y="168.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1374.70" y="168.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">文章标题，最长 255 个字符</text>
+  <line x1="1026.10" y1="180.00" x2="1737.50" y2="180.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="180.00" width="711.40" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="192.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">网址别名</text>
+  <text x="1116.10" y="192.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="1231.80" y="192.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="1281.50" y="192.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1314.70" y="192.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1374.70" y="192.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">URL 友好的短名称，全局唯一</text>
+  <line x1="1026.10" y1="204.00" x2="1737.50" y2="204.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="204.00" width="711.40" height="24.00" fill="white"/>
+  <text x="1036.10" y="216.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">正文</text>
+  <text x="1116.10" y="216.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="1281.50" y="216.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1314.70" y="216.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1374.70" y="216.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="1026.10" y1="228.00" x2="1737.50" y2="228.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="228.00" width="711.40" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="240.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">状态</text>
+  <text x="1116.10" y="240.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(32)</text>
+  <text x="1281.50" y="240.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1314.70" y="240.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">draft</text>
+  <text x="1374.70" y="240.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">发布状态：draft-草稿 / published-已发布 / archived-已归档</text>
+  <line x1="1026.10" y1="252.00" x2="1737.50" y2="252.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="252.00" width="711.40" height="24.00" fill="white"/>
+  <text x="1036.10" y="264.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">发布时间</text>
+  <text x="1116.10" y="264.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="1281.50" y="264.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="1314.70" y="264.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1374.70" y="264.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="1026.10" y1="276.00" x2="1737.50" y2="276.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="276.00" width="711.40" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="288.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">创建时间</text>
+  <text x="1116.10" y="288.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="1281.50" y="288.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1314.70" y="288.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="1374.70" y="288.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="2036.00" y="30.00" width="571.00" height="222.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="2036.00" y="30.00" width="571.00" height="26.00" fill="#2C3E50"/>
+  <text x="2321.50" y="43.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">评论</text>
+  <rect x="2036.00" y="56.00" width="571.00" height="16.00" fill="#34495E"/>
+  <text x="2321.50" y="64.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">评论表</text>
+  <rect x="2036.00" y="72.00" width="571.00" height="16.00" fill="#34495E"/>
+  <text x="2321.50" y="80.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">支持多级嵌套回复（通过 父评论ID 自关联）</text>
+  <rect x="2036.00" y="88.00" width="571.00" height="20.00" fill="#ECF0F1"/>
+  <text x="2076.00" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="2116.00" y1="88.00" x2="2116.00" y2="252.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2155.70" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="2195.40" y1="88.00" x2="2195.40" y2="252.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2221.90" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="2248.40" y1="88.00" x2="2248.40" y2="252.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2271.60" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="2294.80" y1="88.00" x2="2294.80" y2="252.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2324.80" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="2354.80" y1="88.00" x2="2354.80" y2="252.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2480.90" y="98.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="2036.00" y="108.00" width="571.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="120.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="2126.00" y="120.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2221.90" y="120.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="2304.80" y="120.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2364.80" y="120.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2036.00" y1="132.00" x2="2607.00" y2="132.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="132.00" width="571.00" height="24.00" fill="#F8F9FA"/>
+  <text x="2046.00" y="144.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">文章ID</text>
+  <text x="2126.00" y="144.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2221.90" y="144.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="2271.60" y="144.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2304.80" y="144.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2364.80" y="144.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">所属文章</text>
+  <line x1="2036.00" y1="156.00" x2="2607.00" y2="156.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="156.00" width="571.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="168.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">用户ID</text>
+  <text x="2126.00" y="168.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2221.90" y="168.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="2271.60" y="168.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2304.80" y="168.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2364.80" y="168.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">评论作者</text>
+  <line x1="2036.00" y1="180.00" x2="2607.00" y2="180.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="180.00" width="571.00" height="24.00" fill="#F8F9FA"/>
+  <text x="2046.00" y="192.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">父评论ID</text>
+  <text x="2126.00" y="192.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2221.90" y="192.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="2271.60" y="192.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="2304.80" y="192.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2364.80" y="192.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NULL 表示顶层评论；非 NULL 则指向父评论</text>
+  <line x1="2036.00" y1="204.00" x2="2607.00" y2="204.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="204.00" width="571.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="216.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">评论内容</text>
+  <text x="2126.00" y="216.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="2271.60" y="216.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2304.80" y="216.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2364.80" y="216.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2036.00" y1="228.00" x2="2607.00" y2="228.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="228.00" width="571.00" height="24.00" fill="#F8F9FA"/>
+  <text x="2046.00" y="240.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">创建时间</text>
+  <text x="2126.00" y="240.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="2271.60" y="240.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2304.80" y="240.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="2364.80" y="240.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="30.00" y="420.00" width="634.00" height="262.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="30.00" y="420.00" width="634.00" height="26.00" fill="#2C3E50"/>
+  <text x="347.00" y="433.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">記事</text>
+  <rect x="30.00" y="446.00" width="634.00" height="16.00" fill="#34495E"/>
+  <text x="347.00" y="454.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">記事テーブル</text>
+  <rect x="30.00" y="462.00" width="634.00" height="16.00" fill="#34495E"/>
+  <text x="347.00" y="470.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">ユーザーが投稿したブログ記事を管理する</text>
+  <rect x="30.00" y="478.00" width="634.00" height="16.00" fill="#34495E"/>
+  <text x="347.00" y="486.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">下書き・公開・アーカイブの三つのステータスをサポート</text>
+  <rect x="30.00" y="494.00" width="634.00" height="20.00" fill="#ECF0F1"/>
+  <text x="70.00" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="110.00" y1="494.00" x2="110.00" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="159.60" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="209.20" y1="494.00" x2="209.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="235.70" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="262.20" y1="494.00" x2="262.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="284.20" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="306.20" y1="494.00" x2="306.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="336.20" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="366.20" y1="494.00" x2="366.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="515.10" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="30.00" y="514.00" width="634.00" height="24.00" fill="white"/>
+  <text x="40.00" y="526.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="120.00" y="526.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="235.70" y="526.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="316.20" y="526.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="526.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="538.00" x2="664.00" y2="538.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="538.00" width="634.00" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="550.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">著者ID</text>
+  <text x="120.00" y="550.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="235.70" y="550.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="284.20" y="550.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="550.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="550.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">記事の著者（用户テーブルへの外部キー）</text>
+  <line x1="30.00" y1="562.00" x2="664.00" y2="562.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="562.00" width="634.00" height="24.00" fill="white"/>
+  <text x="40.00" y="574.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">タイトル</text>
+  <text x="120.00" y="574.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="284.20" y="574.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="574.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="574.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">記事タイトル（最大 255 文字）</text>
+  <line x1="30.00" y1="586.00" x2="664.00" y2="586.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="586.00" width="634.00" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="598.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">本文</text>
+  <text x="120.00" y="598.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="284.20" y="598.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="598.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="376.20" y="598.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="610.00" x2="664.00" y2="610.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="610.00" width="634.00" height="24.00" fill="white"/>
+  <text x="40.00" y="622.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">ステータス</text>
+  <text x="120.00" y="622.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(32)</text>
+  <text x="284.20" y="622.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="622.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">draft</text>
+  <text x="376.20" y="622.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">公開ステータス: draft / published / archived</text>
+  <line x1="30.00" y1="634.00" x2="664.00" y2="634.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="634.00" width="634.00" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="646.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">作成日時</text>
+  <text x="120.00" y="646.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="284.20" y="646.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="646.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="376.20" y="646.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="658.00" x2="664.00" y2="658.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="658.00" width="634.00" height="24.00" fill="white"/>
+  <text x="40.00" y="670.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">更新日時</text>
+  <text x="120.00" y="670.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="284.20" y="670.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="316.20" y="670.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="376.20" y="670.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="1026.10" y="420.00" width="638.20" height="222.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="1026.10" y="420.00" width="638.20" height="26.00" fill="#2C3E50"/>
+  <text x="1345.20" y="433.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">コメント</text>
+  <rect x="1026.10" y="446.00" width="638.20" height="16.00" fill="#34495E"/>
+  <text x="1345.20" y="454.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">コメントテーブル</text>
+  <rect x="1026.10" y="462.00" width="638.20" height="16.00" fill="#34495E"/>
+  <text x="1345.20" y="470.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">記事に対するコメント。親子関係で入れ子コメントを表現する</text>
+  <rect x="1026.10" y="478.00" width="638.20" height="20.00" fill="#ECF0F1"/>
+  <text x="1071.20" y="488.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="1116.30" y1="478.00" x2="1116.30" y2="642.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1156.00" y="488.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="1195.70" y1="478.00" x2="1195.70" y2="642.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1222.20" y="488.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="1248.70" y1="478.00" x2="1248.70" y2="642.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1271.90" y="488.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="1295.10" y1="478.00" x2="1295.10" y2="642.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1325.10" y="488.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="1355.10" y1="478.00" x2="1355.10" y2="642.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="1509.70" y="488.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="1026.10" y="498.00" width="638.20" height="24.00" fill="white"/>
+  <text x="1036.10" y="510.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="1126.30" y="510.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="1222.20" y="510.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="1305.10" y="510.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1365.10" y="510.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="1026.10" y1="522.00" x2="1664.30" y2="522.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="522.00" width="638.20" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="534.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">記事ID</text>
+  <text x="1126.30" y="534.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="1222.20" y="534.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="1271.90" y="534.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1305.10" y="534.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1365.10" y="534.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">どの記事へのコメントか</text>
+  <line x1="1026.10" y1="546.00" x2="1664.30" y2="546.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="546.00" width="638.20" height="24.00" fill="white"/>
+  <text x="1036.10" y="558.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">ユーザーID</text>
+  <text x="1126.30" y="558.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="1222.20" y="558.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="1271.90" y="558.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1305.10" y="558.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1365.10" y="558.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">誰のコメントか</text>
+  <line x1="1026.10" y1="570.00" x2="1664.30" y2="570.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="570.00" width="638.20" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="582.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">親コメントID</text>
+  <text x="1126.30" y="582.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="1222.20" y="582.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="1271.90" y="582.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="1305.10" y="582.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1365.10" y="582.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NULL なら最上位コメント、非 NULL なら返信コメント</text>
+  <line x1="1026.10" y1="594.00" x2="1664.30" y2="594.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="594.00" width="638.20" height="24.00" fill="white"/>
+  <text x="1036.10" y="606.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">本文</text>
+  <text x="1126.30" y="606.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="1271.90" y="606.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1305.10" y="606.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="1365.10" y="606.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="1026.10" y1="618.00" x2="1664.30" y2="618.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="1026.10" y="618.00" width="638.20" height="24.00" fill="#F8F9FA"/>
+  <text x="1036.10" y="630.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">作成日時</text>
+  <text x="1126.30" y="630.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="1271.90" y="630.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="1305.10" y="630.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="1365.10" y="630.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="2036.00" y="420.00" width="577.00" height="262.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="2036.00" y="420.00" width="577.00" height="26.00" fill="#2C3E50"/>
+  <text x="2324.50" y="433.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">게시물</text>
+  <rect x="2036.00" y="446.00" width="577.00" height="16.00" fill="#34495E"/>
+  <text x="2324.50" y="454.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">게시물 테이블</text>
+  <rect x="2036.00" y="462.00" width="577.00" height="16.00" fill="#34495E"/>
+  <text x="2324.50" y="470.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">사용자가 작성한 블로그 게시물을 관리합니다</text>
+  <rect x="2036.00" y="478.00" width="577.00" height="16.00" fill="#34495E"/>
+  <text x="2324.50" y="486.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">초안, 게시됨, 보관됨 세 가지 상태를 지원합니다</text>
+  <rect x="2036.00" y="494.00" width="577.00" height="20.00" fill="#ECF0F1"/>
+  <text x="2076.00" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="2116.00" y1="494.00" x2="2116.00" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2165.60" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="2215.20" y1="494.00" x2="2215.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2241.70" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="2268.20" y1="494.00" x2="2268.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2290.20" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="2312.20" y1="494.00" x2="2312.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2342.20" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="2372.20" y1="494.00" x2="2372.20" y2="682.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="2492.60" y="504.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="2036.00" y="514.00" width="577.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="526.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="2126.00" y="526.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2241.70" y="526.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="2322.20" y="526.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2382.20" y="526.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2036.00" y1="538.00" x2="2613.00" y2="538.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="538.00" width="577.00" height="24.00" fill="#F8F9FA"/>
+  <text x="2046.00" y="550.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">작성자ID</text>
+  <text x="2126.00" y="550.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="2241.70" y="550.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="2290.20" y="550.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2322.20" y="550.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2382.20" y="550.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">작성자 외래 키 → 用户.id</text>
+  <line x1="2036.00" y1="562.00" x2="2613.00" y2="562.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="562.00" width="577.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="574.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">제목</text>
+  <text x="2126.00" y="574.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(255)</text>
+  <text x="2290.20" y="574.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2322.20" y="574.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2382.20" y="574.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">게시물 제목 (최대 255자)</text>
+  <line x1="2036.00" y1="586.00" x2="2613.00" y2="586.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="586.00" width="577.00" height="24.00" fill="#F8F9FA"/>
+  <text x="2046.00" y="598.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">본문</text>
+  <text x="2126.00" y="598.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="2290.20" y="598.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2322.20" y="598.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="2382.20" y="598.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2036.00" y1="610.00" x2="2613.00" y2="610.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="610.00" width="577.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="622.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">상태</text>
+  <text x="2126.00" y="622.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">varchar(32)</text>
+  <text x="2290.20" y="622.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2322.20" y="622.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">draft</text>
+  <text x="2382.20" y="622.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">상태: draft / published / archived</text>
+  <line x1="2036.00" y1="634.00" x2="2613.00" y2="634.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="634.00" width="577.00" height="24.00" fill="#F8F9FA"/>
+  <text x="2046.00" y="646.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">생성일시</text>
+  <text x="2126.00" y="646.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="2290.20" y="646.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2322.20" y="646.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="2382.20" y="646.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="2036.00" y1="658.00" x2="2613.00" y2="658.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="2036.00" y="658.00" width="577.00" height="24.00" fill="white"/>
+  <text x="2046.00" y="670.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">수정일시</text>
+  <text x="2126.00" y="670.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="2290.20" y="670.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="2322.20" y="670.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="2382.20" y="670.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+<g>
+  <rect x="30.00" y="802.00" width="546.40" height="238.00" fill="none" stroke="#BDC3C7" stroke-width="1"/>
+  <rect x="30.00" y="802.00" width="546.40" height="26.00" fill="#2C3E50"/>
+  <text x="303.20" y="815.00" text-anchor="middle" dominant-baseline="central" fill="white" font-family="sans-serif" font-size="13" font-weight="bold" font-style="normal">댓글</text>
+  <rect x="30.00" y="828.00" width="546.40" height="16.00" fill="#34495E"/>
+  <text x="303.20" y="836.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">댓글 테이블</text>
+  <rect x="30.00" y="844.00" width="546.40" height="16.00" fill="#34495E"/>
+  <text x="303.20" y="852.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">게시물에 달리는 댓글입니다</text>
+  <rect x="30.00" y="860.00" width="546.40" height="16.00" fill="#34495E"/>
+  <text x="303.20" y="868.00" text-anchor="middle" dominant-baseline="central" fill="#BDC3C7" font-family="sans-serif" font-size="10" font-weight="normal" font-style="italic">부모 댓글 ID를 통한 다단계 중첩 댓글을 지원합니다</text>
+  <rect x="30.00" y="876.00" width="546.40" height="20.00" fill="#ECF0F1"/>
+  <text x="70.00" y="886.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">column</text>
+  <line x1="110.00" y1="876.00" x2="110.00" y2="1040.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="149.70" y="886.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">type</text>
+  <line x1="189.40" y1="876.00" x2="189.40" y2="1040.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="215.90" y="886.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">key</text>
+  <line x1="242.40" y1="876.00" x2="242.40" y2="1040.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="265.60" y="886.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">null</text>
+  <line x1="288.80" y1="876.00" x2="288.80" y2="1040.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="318.80" y="886.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">default</text>
+  <line x1="348.80" y1="876.00" x2="348.80" y2="1040.00" stroke="#BDC3C7" stroke-width="0.5"/>
+  <text x="462.60" y="886.00" text-anchor="middle" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="10" font-weight="bold" font-style="normal">comment</text>
+  <rect x="30.00" y="896.00" width="546.40" height="24.00" fill="white"/>
+  <text x="40.00" y="908.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">id</text>
+  <text x="120.00" y="908.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="215.90" y="908.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#C0392B">PK</tspan><tspan fill="#aaa"> </tspan><tspan fill="#2980B9">AI</tspan></text>
+  <text x="298.80" y="908.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="358.80" y="908.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="920.00" x2="576.40" y2="920.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="920.00" width="546.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="932.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">게시물ID</text>
+  <text x="120.00" y="932.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="215.90" y="932.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="265.60" y="932.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="298.80" y="932.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="358.80" y="932.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">어느 게시물의 댓글인가</text>
+  <line x1="30.00" y1="944.00" x2="576.40" y2="944.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="944.00" width="546.40" height="24.00" fill="white"/>
+  <text x="40.00" y="956.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">사용자ID</text>
+  <text x="120.00" y="956.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="215.90" y="956.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="265.60" y="956.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="298.80" y="956.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="358.80" y="956.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">댓글 작성자</text>
+  <line x1="30.00" y1="968.00" x2="576.40" y2="968.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="968.00" width="546.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="980.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">부모댓글ID</text>
+  <text x="120.00" y="980.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">bigint</text>
+  <text x="215.90" y="980.00" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" font-weight="bold"><tspan fill="#27AE60">IDX</tspan></text>
+  <text x="265.60" y="980.00" text-anchor="middle" dominant-baseline="central" fill="#95A5A6" font-family="sans-serif" font-size="12">NULL</text>
+  <text x="298.80" y="980.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="358.80" y="980.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NULL이면 최상위 댓글, 아니면 대댓글</text>
+  <line x1="30.00" y1="992.00" x2="576.40" y2="992.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="992.00" width="546.40" height="24.00" fill="white"/>
+  <text x="40.00" y="1004.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">내용</text>
+  <text x="120.00" y="1004.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">text</text>
+  <text x="265.60" y="1004.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="298.80" y="1004.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <text x="358.80" y="1004.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+  <line x1="30.00" y1="1016.00" x2="576.40" y2="1016.00" stroke="#ECF0F1" stroke-width="0.5"/>
+  <rect x="30.00" y="1016.00" width="546.40" height="24.00" fill="#F8F9FA"/>
+  <text x="40.00" y="1028.00" text-anchor="start" dominant-baseline="central" fill="#2C3E50" font-family="sans-serif" font-size="12" font-weight="bold" font-style="normal">생성일시</text>
+  <text x="120.00" y="1028.00" text-anchor="start" dominant-baseline="central" fill="#555555" font-family="sans-serif" font-size="12" font-weight="normal" font-style="normal">timestamp</text>
+  <text x="265.60" y="1028.00" text-anchor="middle" dominant-baseline="central" fill="#E67E22" font-family="sans-serif" font-size="12" font-weight="bold">NN</text>
+  <text x="298.80" y="1028.00" text-anchor="start" dominant-baseline="central" fill="#8E44AD" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic">NOW()</text>
+  <text x="358.80" y="1028.00" text-anchor="start" dominant-baseline="central" fill="#7F8C8D" font-family="sans-serif" font-size="12" font-weight="normal" font-style="italic"></text>
+</g>
+</svg>

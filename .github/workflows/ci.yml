@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  test-and-render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Build erdn
+        run: go build -o erdn ./cmd/erdn
+
+      - name: Render examples to SVG
+        run: |
+          for f in examples/*.erdn; do
+            out="${f%.erdn}.svg"
+            ./erdn render --out "$out" "$f"
+            echo "rendered: $out"
+          done
+
+      - name: Upload SVG diagrams
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: er-diagrams-svg
+          path: examples/*.svg
+          if-no-files-found: error
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        env:
+          ARTIFACT_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Collect rendered files and their sources
+            const examplesDir = 'examples';
+            const erdn = fs.readdirSync(examplesDir).filter(f => f.endsWith('.erdn'));
+
+            let sections = '';
+            for (const file of erdn) {
+              const name = path.basename(file, '.erdn');
+              const p = path.join(examplesDir, `${name}.svg`);
+              sections += `\n### \`${file}\`\n\n`;
+              if (fs.existsSync(p)) {
+                const kb = (fs.statSync(p).size / 1024).toFixed(1);
+                sections += `- SVG rendered successfully (${kb} KB)\n`;
+              }
+              sections += '\n';
+            }
+
+            const artifactUrl = process.env.ARTIFACT_URL;
+
+            const body = [
+              '## 🗂 ER Diagram Render',
+              '',
+              '✅ **Tests passed** — `go test ./...`',
+              '',
+              sections.trim(),
+              '',
+              '---',
+              `📦 **[Download diagrams](${artifactUrl})** — open the workflow run and expand *Artifacts* to download the SVG archive.`,
+            ].join('\n');
+
+            // Always create a new comment on every completed run
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
