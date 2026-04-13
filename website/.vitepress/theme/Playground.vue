@@ -488,7 +488,9 @@ onUnmounted(() => {
 /* ── Split panels ────────────────────────────────────────────────────── */
 .pg-body {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0,1fr) overrides the default min-content minimum so SVG content
+     cannot inflate the preview column at the editor's expense */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   /* Explicit row prevents the implicit auto row from growing to SVG content height */
   grid-template-rows: 1fr;
   flex: 1;
@@ -504,6 +506,8 @@ onUnmounted(() => {
 
 .pg-editor-pane {
   border-right: 1px solid var(--vp-c-divider);
+  /* Prevent the editor from collapsing when the SVG canvas is large */
+  min-width: 280px;
 }
 
 /* ── Panel header (code-block tab style) ─────────────────────────────── */
@@ -521,12 +525,23 @@ onUnmounted(() => {
   color: var(--vp-c-text-3);
   font-family: var(--vp-font-family-base);
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pg-pane-header > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .pg-preview-actions {
   display: flex;
   align-items: center;
   gap: 6px;
+  /* Never let zoom/download buttons be hidden when pane is narrow */
+  flex-shrink: 0;
+  margin-left: 8px;
 }
 
 /* ── Zoom controls ───────────────────────────────────────────────────── */
