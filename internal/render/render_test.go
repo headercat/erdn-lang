@@ -170,8 +170,9 @@ func TestSVGLinkOneToOneBlue(t *testing.T) {
 	svg := generateSVG(t, `table a (id bigint)
 table b (a_id bigint)
 link one a.id to one b.a_id`)
-	if !strings.Contains(svg, "#3498DB") {
-		t.Error("expected blue (#3498DB) stroke for one-to-one link")
+	// With per-link palette, the first (only) link gets palette[0] = green.
+	if !strings.Contains(svg, "#27AE60") {
+		t.Error("expected palette color #27AE60 for the first link")
 	}
 }
 
@@ -179,8 +180,9 @@ func TestSVGLinkManyToManyRed(t *testing.T) {
 	svg := generateSVG(t, `table a (id bigint)
 table b (a_id bigint)
 link many a.id to many b.a_id`)
-	if !strings.Contains(svg, "#E74C3C") {
-		t.Error("expected red (#E74C3C) stroke for many-to-many link")
+	// With per-link palette, the first (only) link gets palette[0] = green.
+	if !strings.Contains(svg, "#27AE60") {
+		t.Error("expected palette color #27AE60 for the first link")
 	}
 }
 
@@ -323,5 +325,56 @@ link one a.id to many b.a_id`)
 	// The badge rect starts at x - w/2; ensure no rect has a negative x.
 	if strings.Contains(svg, `x="-`) {
 		t.Error("badge rect has negative x coordinate (clipped on left)")
+	}
+}
+
+// TestSVGDistinctLinkColors verifies that multiple links of the same
+// cardinality type get distinct colors from the palette.
+func TestSVGDistinctLinkColors(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+table c (a_id bigint)
+link one a.id to many b.a_id
+link one a.id to many c.a_id`)
+	// Link 0 → palette[0] (#27AE60), Link 1 → palette[1] (#3498DB).
+	if !strings.Contains(svg, "#27AE60") {
+		t.Error("expected palette[0] (#27AE60) for first link")
+	}
+	if !strings.Contains(svg, "#3498DB") {
+		t.Error("expected palette[1] (#3498DB) for second link")
+	}
+}
+
+// TestSVGLinkGroupElement verifies that each link's connector path and
+// cardinality symbols are wrapped in a <g> group element.
+func TestSVGLinkGroupElement(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+link one a.id to many b.a_id`)
+	if !strings.Contains(svg, "<g>") {
+		t.Error("expected <g> group element wrapping link connector")
+	}
+	if !strings.Contains(svg, "</g>") {
+		t.Error("expected closing </g> element")
+	}
+}
+
+// TestSVGBadgeAboveConnectors verifies that link comment badges appear after
+// all connector groups in the SVG output (higher z-index).
+func TestSVGBadgeAboveConnectors(t *testing.T) {
+	svg := generateSVG(t, `table a (id bigint)
+table b (a_id bigint)
+# test badge
+link one a.id to many b.a_id`)
+	// The connector path is inside a <g>…</g> group.  The badge is rendered
+	// in a separate pass after all connectors.  Verify the badge text
+	// appears after the last connector <path element.
+	lastPath := strings.LastIndex(svg, `<path d="M `)
+	badgePos := strings.Index(svg, "test badge")
+	if lastPath < 0 || badgePos < 0 {
+		t.Fatal("could not find connector <path> or badge text in SVG")
+	}
+	if badgePos < lastPath {
+		t.Error("badge text must appear after all connector paths (higher z-index)")
 	}
 }

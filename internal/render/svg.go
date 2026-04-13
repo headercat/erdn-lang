@@ -133,9 +133,18 @@ func GenerateSVG(prog *ast.Program) string {
 	sb.WriteString(svgDefsBlock())
 	fmt.Fprintf(&sb, `<rect width="%.0f" height="%.0f" fill="#F4F6F8"/>`+"\n", cw, ch)
 
-	// Links are drawn first so table boxes appear on top.
-	for _, lnk := range prog.Links {
-		sb.WriteString(renderSVGLink(lnk, ltMap, layouts))
+	// Pass 1: Links (connector paths + cardinality symbols) are drawn first
+	// so table boxes appear on top.  Each link is wrapped in a <g> group so
+	// the path and its arrowhead symbols are a single visual unit.
+	for i, lnk := range prog.Links {
+		color := linkColorByIndex(i)
+		sb.WriteString(renderSVGLinkConnector(lnk, ltMap, layouts, color))
+	}
+	// Pass 2: Link comment badges are drawn after all connectors so they
+	// have a higher z-index and are never obscured by other links' paths.
+	for i, lnk := range prog.Links {
+		color := linkColorByIndex(i)
+		sb.WriteString(renderSVGLinkBadge(lnk, ltMap, layouts, color))
 	}
 	for _, lt := range layouts {
 		sb.WriteString(renderSVGTable(lt))
@@ -462,12 +471,11 @@ func svgLoopOffset(sy, dy, badgeW float64) float64 {
 	return off
 }
 
-// renderSVGLink draws an orthogonal (right-angle) connector between two column
-// ports. Each connector has three segments: horizontal → vertical → horizontal.
-// Only `#` comments are stored in the AST (the parser discards `//` comments),
-// so only those comments are rendered as badges on the connector.
-// Cardinality endpoints are drawn as crow's foot (many) or a single bar (one).
-func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout) string {
+// renderSVGLinkConnector draws the orthogonal connector path and its
+// cardinality symbols (crow's foot or bar) inside a <g> group.  The group
+// keeps the path and its endpoint decorations as a single visual unit so that
+// arrowheads are never separated from the line.
+func renderSVGLinkConnector(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout, color string) string {
 	src := ltMap[lnk.FromTable]
 	dst := ltMap[lnk.ToTable]
 	if src == nil || dst == nil {
@@ -479,10 +487,10 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 		return ""
 	}
 
-	color := linkColor(lnk.FromCardinality, lnk.ToCardinality)
 	badgeW := svgLinkBadgeWidth(lnk)
 
 	var sb strings.Builder
+	sb.WriteString(`<g>` + "\n")
 
 	// ── Self-referential link: rectangular loop on the right side ────────────
 	if lnk.FromTable == lnk.ToTable {
@@ -491,12 +499,9 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 		loopX := sx + loopOffset
 		path := fmt.Sprintf("M %.2f,%.2f H %.2f V %.2f H %.2f", sx, sy, loopX, dy, sx)
 		fmt.Fprintf(&sb, `<path d="%s" fill="none" stroke="%s" stroke-width="1.5"/>`+"\n", path, color)
-		// Both endpoints are on the right edge of the table; symbols extend right.
 		svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, +1, color)
 		svgWriteCardSymbol(&sb, sx, dy, lnk.ToCardinality, +1, color)
-		const bh = 16.0
-		commentY := svgSafeBadgeY((sy+dy)/2, loopX, badgeW/2, bh, layouts)
-		svgWriteLinkComment(&sb, loopX, commentY, lnk)
+		sb.WriteString("</g>\n")
 		return sb.String()
 	}
 
@@ -504,13 +509,13 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 	var sx, dx float64
 	var dirSrc, dirDst float64
 	if src.x+src.width/2 <= dst.x+dst.width/2 {
-		sx = src.x + src.width // right edge of source
-		dx = dst.x             // left edge of destination
+		sx = src.x + src.width
+		dx = dst.x
 		dirSrc = +1
 		dirDst = -1
 	} else {
-		sx = src.x             // left edge of source
-		dx = dst.x + dst.width // right edge of destination
+		sx = src.x
+		dx = dst.x + dst.width
 		dirSrc = -1
 		dirDst = +1
 	}
@@ -522,24 +527,77 @@ func renderSVGLink(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*s
 	svgWriteCardSymbol(&sb, sx, sy, lnk.FromCardinality, dirSrc, color)
 	svgWriteCardSymbol(&sb, dx, dy, lnk.ToCardinality, dirDst, color)
 
-	const bh = 16.0
-	commentY := svgSafeBadgeY((sy+dy)/2, midX, badgeW/2, bh, layouts)
-	svgWriteLinkComment(&sb, midX, commentY, lnk)
-
+	sb.WriteString("</g>\n")
 	return sb.String()
 }
 
-// linkColor returns the stroke color for a connector based on its cardinality pair.
-// One-to-one: blue, Many-to-many: red, One-to-many / Many-to-one: green.
-func linkColor(from, to ast.Cardinality) string {
-	switch {
-	case from == ast.CardOne && to == ast.CardOne:
-		return "#3498DB" // blue – one-to-one
-	case from == ast.CardMany && to == ast.CardMany:
-		return "#E74C3C" // red – many-to-many
-	default:
-		return "#27AE60" // green – one-to-many or many-to-one
+// renderSVGLinkBadge draws only the comment badge for a link.  It is called
+// in a separate pass after all connectors so that badges have a higher z-index
+// and are never obscured by other links' paths.
+func renderSVGLinkBadge(lnk *ast.Link, ltMap map[string]*svgTableLayout, layouts []*svgTableLayout, color string) string {
+	if len(lnk.Comments) == 0 {
+		return ""
 	}
+	src := ltMap[lnk.FromTable]
+	dst := ltMap[lnk.ToTable]
+	if src == nil || dst == nil {
+		return ""
+	}
+	sy, syOK := src.portY[lnk.FromColumn]
+	dy, dyOK := dst.portY[lnk.ToColumn]
+	if !syOK || !dyOK {
+		return ""
+	}
+
+	badgeW := svgLinkBadgeWidth(lnk)
+	const bh = 16.0
+
+	var sb strings.Builder
+
+	if lnk.FromTable == lnk.ToTable {
+		sx := src.x + src.width
+		loopOffset := svgLoopOffset(sy, dy, badgeW)
+		loopX := sx + loopOffset
+		commentY := svgSafeBadgeY((sy+dy)/2, loopX, badgeW/2, bh, layouts)
+		svgWriteLinkComment(&sb, loopX, commentY, lnk)
+		return sb.String()
+	}
+
+	var sx, dx float64
+	if src.x+src.width/2 <= dst.x+dst.width/2 {
+		sx = src.x + src.width
+		dx = dst.x
+	} else {
+		sx = src.x
+		dx = dst.x + dst.width
+	}
+	midX := (sx + dx) / 2
+	commentY := svgSafeBadgeY((sy+dy)/2, midX, badgeW/2, bh, layouts)
+	svgWriteLinkComment(&sb, midX, commentY, lnk)
+	return sb.String()
+}
+
+// linkPalette is a set of visually-distinct colors assigned to links so that
+// overlapping connectors can always be told apart.  The palette is cycled by
+// link index; every link gets a unique color (up to palette length, then it
+// wraps but neighbouring links still differ).
+var linkPalette = [...]string{
+	"#27AE60", // green
+	"#3498DB", // blue
+	"#E74C3C", // red
+	"#8E44AD", // purple
+	"#E67E22", // orange
+	"#16A085", // teal
+	"#D4AC0D", // gold
+	"#2C3E50", // dark blue-grey
+	"#C0392B", // dark red
+	"#2980B9", // steel blue
+}
+
+// linkColorByIndex returns a color from the palette for a given link index
+// so that every link is rendered in a distinct colour.
+func linkColorByIndex(idx int) string {
+	return linkPalette[idx%len(linkPalette)]
 }
 
 // svgWriteCardSymbol draws a crow's-foot (many) or single bar (one) at (x, y).

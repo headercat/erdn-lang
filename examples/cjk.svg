@@ -1,76 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="2802" height="1070">
 <rect width="2802" height="1070" fill="#F4F6F8"/>
+<g>
 <path d="M 727.60,120.00 H 876.85 V 144.00 H 1026.10" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1026.10" y1="144.00" x2="1014.10" y2="137.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="1026.10" y1="144.00" x2="1014.10" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="813.85" y="124.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="876.85" y="132.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一位用户可以撰写多篇文章</text>
-<path d="M 1737.50,120.00 H 1886.75 V 144.00 H 2036.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1741.50" y1="112.00" x2="1741.50" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2036.00" y1="144.00" x2="2024.00" y2="137.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2036.00" y1="144.00" x2="2024.00" y2="151.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="1823.75" y="124.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1886.75" y="132.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一篇文章可以拥有多条评论</text>
-<path d="M 727.60,120.00 H 1381.80 V 168.00 H 2036.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2036.00" y1="168.00" x2="2024.00" y2="161.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2036.00" y1="168.00" x2="2024.00" y2="175.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="1318.80" y="304.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1381.80" y="312.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一位用户可以发表多条评论</text>
-<path d="M 2607.00,120.00 H 2694.25 V 192.00 H 2607.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2611.00" y1="112.00" x2="2611.00" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2607.00" y1="192.00" x2="2619.00" y2="185.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2607.00" y1="192.00" x2="2619.00" y2="199.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="2617.00" y="148.00" width="154.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="2694.25" y="156.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">评论支持多级嵌套回复（自关联）</text>
-<path d="M 30.00,120.00 H 347.00 V 550.00 H 664.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="26.00" y1="112.00" x2="26.00" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="664.00" y1="550.00" x2="676.00" y2="543.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="664.00" y1="550.00" x2="676.00" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="262.25" y="327.00" width="169.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="347.00" y="335.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1人のユーザーが複数の記事を書ける</text>
-<path d="M 664.00,526.00 H 845.05 V 534.00 H 1026.10" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="668.00" y1="518.00" x2="668.00" y2="534.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1026.10" y1="534.00" x2="1014.10" y2="527.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1026.10" y1="534.00" x2="1014.10" y2="541.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="765.05" y="522.00" width="160.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="845.05" y="530.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1つの記事に複数のコメントが付く</text>
-<path d="M 727.60,120.00 H 876.85 V 558.00 H 1026.10" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1026.10" y1="558.00" x2="1014.10" y2="551.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1026.10" y1="558.00" x2="1014.10" y2="565.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="782.60" y="331.00" width="188.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="876.85" y="339.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1人のユーザーが複数のコメントを書ける</text>
-<path d="M 1664.30,510.00 H 1783.55 V 582.00 H 1664.30" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1668.30" y1="502.00" x2="1668.30" y2="518.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1664.30" y1="582.00" x2="1676.30" y2="575.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="1664.30" y1="582.00" x2="1676.30" y2="589.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="1674.30" y="538.00" width="218.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1783.55" y="546.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">코멘트는 다단계 중첩을 지원한다（자기참조）</text>
-<path d="M 727.60,120.00 H 1381.80 V 550.00 H 2036.00" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2036.00" y1="550.00" x2="2024.00" y2="543.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2036.00" y1="550.00" x2="2024.00" y2="557.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="1288.05" y="327.00" width="187.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1381.80" y="335.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 사용자가 여러 게시물을 쓸 수 있다</text>
-<path d="M 2036.00,526.00 H 1306.20 V 932.00 H 576.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="2032.00" y1="518.00" x2="2032.00" y2="534.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="576.40" y1="932.00" x2="588.40" y2="925.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="576.40" y1="932.00" x2="588.40" y2="939.00" stroke="#27AE60" stroke-width="1.5"/>
-<rect x="1212.45" y="721.00" width="187.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
-<text x="1306.20" y="729.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 게시물에 여러 댓글이 달릴 수 있다</text>
+</g>
+<g>
+<path d="M 1737.50,120.00 H 1886.75 V 144.00 H 2036.00" fill="none" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="1741.50" y1="112.00" x2="1741.50" y2="128.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="2036.00" y1="144.00" x2="2024.00" y2="137.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="2036.00" y1="144.00" x2="2024.00" y2="151.00" stroke="#3498DB" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,120.00 H 1381.80 V 168.00 H 2036.00" fill="none" stroke="#E74C3C" stroke-width="1.5"/>
+<line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#E74C3C" stroke-width="1.5"/>
+<line x1="2036.00" y1="168.00" x2="2024.00" y2="161.00" stroke="#E74C3C" stroke-width="1.5"/>
+<line x1="2036.00" y1="168.00" x2="2024.00" y2="175.00" stroke="#E74C3C" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 2607.00,120.00 H 2694.25 V 192.00 H 2607.00" fill="none" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="2611.00" y1="112.00" x2="2611.00" y2="128.00" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="2607.00" y1="192.00" x2="2619.00" y2="185.00" stroke="#8E44AD" stroke-width="1.5"/>
+<line x1="2607.00" y1="192.00" x2="2619.00" y2="199.00" stroke="#8E44AD" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 30.00,120.00 H 347.00 V 550.00 H 664.00" fill="none" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="26.00" y1="112.00" x2="26.00" y2="128.00" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="664.00" y1="550.00" x2="676.00" y2="543.00" stroke="#E67E22" stroke-width="1.5"/>
+<line x1="664.00" y1="550.00" x2="676.00" y2="557.00" stroke="#E67E22" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 664.00,526.00 H 845.05 V 534.00 H 1026.10" fill="none" stroke="#16A085" stroke-width="1.5"/>
+<line x1="668.00" y1="518.00" x2="668.00" y2="534.00" stroke="#16A085" stroke-width="1.5"/>
+<line x1="1026.10" y1="534.00" x2="1014.10" y2="527.00" stroke="#16A085" stroke-width="1.5"/>
+<line x1="1026.10" y1="534.00" x2="1014.10" y2="541.00" stroke="#16A085" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,120.00 H 876.85 V 558.00 H 1026.10" fill="none" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="1026.10" y1="558.00" x2="1014.10" y2="551.00" stroke="#D4AC0D" stroke-width="1.5"/>
+<line x1="1026.10" y1="558.00" x2="1014.10" y2="565.00" stroke="#D4AC0D" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 1664.30,510.00 H 1783.55 V 582.00 H 1664.30" fill="none" stroke="#2C3E50" stroke-width="1.5"/>
+<line x1="1668.30" y1="502.00" x2="1668.30" y2="518.00" stroke="#2C3E50" stroke-width="1.5"/>
+<line x1="1664.30" y1="582.00" x2="1676.30" y2="575.00" stroke="#2C3E50" stroke-width="1.5"/>
+<line x1="1664.30" y1="582.00" x2="1676.30" y2="589.00" stroke="#2C3E50" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 727.60,120.00 H 1381.80 V 550.00 H 2036.00" fill="none" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="731.60" y1="112.00" x2="731.60" y2="128.00" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="2036.00" y1="550.00" x2="2024.00" y2="543.00" stroke="#C0392B" stroke-width="1.5"/>
+<line x1="2036.00" y1="550.00" x2="2024.00" y2="557.00" stroke="#C0392B" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 2036.00,526.00 H 1306.20 V 932.00 H 576.40" fill="none" stroke="#2980B9" stroke-width="1.5"/>
+<line x1="2032.00" y1="518.00" x2="2032.00" y2="534.00" stroke="#2980B9" stroke-width="1.5"/>
+<line x1="576.40" y1="932.00" x2="588.40" y2="925.00" stroke="#2980B9" stroke-width="1.5"/>
+<line x1="576.40" y1="932.00" x2="588.40" y2="939.00" stroke="#2980B9" stroke-width="1.5"/>
+</g>
+<g>
 <path d="M 30.00,120.00 H 303.20 V 956.00 H 576.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="26.00" y1="112.00" x2="26.00" y2="128.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="576.40" y1="956.00" x2="588.40" y2="949.00" stroke="#27AE60" stroke-width="1.5"/>
 <line x1="576.40" y1="956.00" x2="588.40" y2="963.00" stroke="#27AE60" stroke-width="1.5"/>
+</g>
+<g>
+<path d="M 576.40,908.00 H 691.65 V 980.00 H 576.40" fill="none" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="580.40" y1="900.00" x2="580.40" y2="916.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="576.40" y1="980.00" x2="588.40" y2="973.00" stroke="#3498DB" stroke-width="1.5"/>
+<line x1="576.40" y1="980.00" x2="588.40" y2="987.00" stroke="#3498DB" stroke-width="1.5"/>
+</g>
+<rect x="813.85" y="124.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="876.85" y="132.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一位用户可以撰写多篇文章</text>
+<rect x="1823.75" y="124.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1886.75" y="132.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一篇文章可以拥有多条评论</text>
+<rect x="1318.80" y="304.00" width="126.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1381.80" y="312.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">一位用户可以发表多条评论</text>
+<rect x="2617.00" y="148.00" width="154.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="2694.25" y="156.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">评论支持多级嵌套回复（自关联）</text>
+<rect x="262.25" y="327.00" width="169.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="347.00" y="335.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1人のユーザーが複数の記事を書ける</text>
+<rect x="765.05" y="522.00" width="160.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="845.05" y="530.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1つの記事に複数のコメントが付く</text>
+<rect x="782.60" y="331.00" width="188.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="876.85" y="339.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">1人のユーザーが複数のコメントを書ける</text>
+<rect x="1674.30" y="538.00" width="218.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1783.55" y="546.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">코멘트는 다단계 중첩을 지원한다（자기참조）</text>
+<rect x="1288.05" y="327.00" width="187.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1381.80" y="335.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 사용자가 여러 게시물을 쓸 수 있다</text>
+<rect x="1212.45" y="721.00" width="187.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
+<text x="1306.20" y="729.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 게시물에 여러 댓글이 달릴 수 있다</text>
 <rect x="214.20" y="686.00" width="178.00" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="303.20" y="694.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">한 사용자가 여러 댓글을 쓸 수 있다</text>
-<path d="M 576.40,908.00 H 691.65 V 980.00 H 576.40" fill="none" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="580.40" y1="900.00" x2="580.40" y2="916.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="576.40" y1="980.00" x2="588.40" y2="973.00" stroke="#27AE60" stroke-width="1.5"/>
-<line x1="576.40" y1="980.00" x2="588.40" y2="987.00" stroke="#27AE60" stroke-width="1.5"/>
 <rect x="586.40" y="936.00" width="210.50" height="16.00" rx="3" fill="white" stroke="#BDC3C7" stroke-width="0.5"/>
 <text x="691.65" y="944.00" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-family="sans-serif" font-size="10" font-style="italic">댓글은 자기 참조로 다단계 중첩을 지원한다</text>
 <g>
