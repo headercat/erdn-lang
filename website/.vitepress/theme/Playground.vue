@@ -652,7 +652,7 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .pg {
     height: auto;
-    margin: 8px 0;
+    margin: 8px 12px;
   }
 
   .pg-body {
