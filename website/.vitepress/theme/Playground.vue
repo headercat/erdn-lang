@@ -223,7 +223,7 @@ onUnmounted(() => {
 .playground-panels {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 540px;
+  height: clamp(400px, calc(100vh - 220px), 720px);
 }
 
 .playground-editor-panel {
@@ -263,7 +263,7 @@ onUnmounted(() => {
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   tab-size: 2;
-  min-height: 500px;
+  min-height: 0;
 }
 
 .playground-editor::placeholder {
@@ -281,7 +281,7 @@ onUnmounted(() => {
      strokes/text on a white canvas, so the preview must stay light
      regardless of VitePress dark/light mode. */
   background: #ffffff;
-  min-height: 500px;
+  min-height: 0;
 }
 
 .playground-preview :deep(svg) {
@@ -310,11 +310,27 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .playground-panels {
     grid-template-columns: 1fr;
+    height: auto;
   }
 
   .playground-editor-panel {
     border-right: none;
     border-bottom: 1px solid var(--vp-c-divider);
+    min-height: 280px;
+    max-height: 45vh;
+  }
+
+  .playground-preview-panel {
+    min-height: 280px;
+    max-height: 45vh;
+  }
+
+  .playground-editor {
+    min-height: 0;
+  }
+
+  .playground-preview {
+    min-height: 0;
   }
 }
 </style>
