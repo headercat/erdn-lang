@@ -88,7 +88,7 @@ table posts (
   body      text         not-null
   # draft, published, archived
   status    varchar(32)  not-null default("draft")
-  created_at timestamp   not-null default("NOW()")
+  created_at timestamp   not-null default(NOW())
 )
 
 # An author can write many posts

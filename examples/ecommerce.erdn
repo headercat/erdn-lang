@@ -17,8 +17,8 @@ table users (
   # Account state: active, suspended, deleted
   status varchar(16) not-null default("active")
   email_verified_at timestamp nullable
-  created_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -36,7 +36,7 @@ table addresses (
   postal_code varchar(32) not-null
   country_code char(2) not-null default("US")
   is_default bool not-null default("false")
-  created_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -67,8 +67,8 @@ table products (
   # Current stock on hand; goes negative when oversold
   stock_qty int not-null default("0")
   is_active bool not-null default("true")
-  created_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -86,8 +86,8 @@ table orders (
   total_cents int not-null
   currency char(3) not-null default("USD")
   notes text nullable
-  placed_at timestamp not-null default("NOW()")
-  updated_at timestamp not-null default("NOW()")
+  placed_at timestamp not-null default(NOW())
+  updated_at timestamp not-null default(NOW())
 )
 
 table order_items (
@@ -118,7 +118,7 @@ table payments (
   # stripe, paypal, braintree, etc.
   provider varchar(64) not-null
   paid_at timestamp nullable
-  created_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -135,7 +135,7 @@ table reviews (
   headline varchar(255) nullable
   body text nullable
   # Prevent duplicate reviews by same user on same product
-  created_at timestamp not-null default("NOW()")
+  created_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------
@@ -147,7 +147,7 @@ table wishlists (
   id bigint primary-key auto-increment
   user_id bigint not-null indexed
   product_id bigint not-null indexed
-  added_at timestamp not-null default("NOW()")
+  added_at timestamp not-null default(NOW())
 )
 
 // ---------------------------------------------------------------------------

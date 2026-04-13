@@ -127,7 +127,7 @@ table users (
 id         bigint       primary-key auto-increment
 username   varchar(64)  not-null indexed
 bio        text         nullable
-created_at timestamp    not-null default("NOW()")
+created_at timestamp    not-null default(NOW())
 ```
 
 A `#` comment on the line immediately above a column is rendered as the column's annotation in the diagram.
@@ -141,7 +141,7 @@ A `#` comment on the line immediately above a column is rendered as the column's
 | `not-null` | Column must not contain NULL values. |
 | `nullable` | Column explicitly allows NULL values. |
 | `indexed` | Column has a database index. |
-| `default("<value>")` | Specifies a default value expression. |
+| `default(<value>)` | Specifies a default value expression. |
 
 > `nullable` and `not-null` are mutually exclusive on the same column.
 
@@ -188,7 +188,7 @@ table posts (
   body      text         not-null
   # draft, published, archived
   status    varchar(32)  not-null default("draft")
-  created_at timestamp   not-null default("NOW()")
+  created_at timestamp   not-null default(NOW())
 )
 
 # An author can write many posts
