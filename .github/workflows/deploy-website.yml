@@ -34,7 +34,14 @@ jobs:
         run: GOOS=js GOARCH=wasm go build -o website/public/erdn.wasm ./cmd/wasm
 
       - name: Copy wasm_exec.js
-        run: cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" website/public/wasm_exec.js
+        run: |
+          # wasm_exec.js moved from misc/wasm/ (Go ≤1.23) to lib/wasm/ (Go ≥1.24)
+          GOROOT="$(go env GOROOT)"
+          if [ -f "$GOROOT/lib/wasm/wasm_exec.js" ]; then
+            cp "$GOROOT/lib/wasm/wasm_exec.js" website/public/wasm_exec.js
+          else
+            cp "$GOROOT/misc/wasm/wasm_exec.js" website/public/wasm_exec.js
+          fi
 
       - name: Install website dependencies
         run: npm ci
