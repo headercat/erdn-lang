@@ -21,8 +21,17 @@
         ></textarea>
       </div>
       <div class="playground-preview-panel">
-        <div class="panel-label">SVG Preview</div>
-        <div class="playground-preview" v-html="previewHtml"></div>
+        <div class="panel-label">
+          SVG Preview
+          <div class="zoom-controls" v-if="hasSvg">
+            <button class="zoom-btn" @click="zoomOut" title="Zoom out">−</button>
+            <button class="zoom-btn zoom-level" @click="fitZoom" :title="`${Math.round(zoom * 100)}% — click to fit`">{{ Math.round(zoom * 100) }}%</button>
+            <button class="zoom-btn" @click="zoomIn" title="Zoom in">+</button>
+          </div>
+        </div>
+        <div class="playground-preview" ref="previewRef">
+          <div class="svg-scale-wrapper" :style="{ zoom: zoom }" v-html="previewHtml"></div>
+        </div>
         <div v-if="errorText" class="playground-error">{{ errorText }}</div>
       </div>
     </div>
@@ -30,10 +39,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, nextTick, onMounted, onUnmounted } from "vue";
 import { withBase } from "vitepress";
 
 const DEBOUNCE_MS = 300;
+const ZOOM_STEP = 0.25;
+const ZOOM_MIN = 0.1;
+const ZOOM_MAX = 4;
 const WASM_PATH = withBase("/erdn.wasm");
 const WASM_EXEC_PATH = withBase("/wasm_exec.js");
 
@@ -69,9 +81,42 @@ const errorText = ref("");
 const statusText = ref("Loading WASM…");
 const statusClass = ref("");
 const editorRef = ref<HTMLTextAreaElement | null>(null);
+const previewRef = ref<HTMLDivElement | null>(null);
+const zoom = ref(1);
+
+const hasSvg = computed(() => previewHtml.value.includes("<svg"));
 
 let wasmReady = false;
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+function zoomIn() {
+  zoom.value = Math.min(Math.round((zoom.value + ZOOM_STEP) * 100) / 100, ZOOM_MAX);
+}
+
+function zoomOut() {
+  zoom.value = Math.max(Math.round((zoom.value - ZOOM_STEP) * 100) / 100, ZOOM_MIN);
+}
+
+function fitZoom() {
+  const container = previewRef.value;
+  if (!container) return;
+  const svgEl = container.querySelector("svg");
+  if (!svgEl) {
+    zoom.value = 1;
+    return;
+  }
+  // Read natural SVG dimensions from attributes or viewBox
+  const attrW = svgEl.getAttribute("width");
+  const attrH = svgEl.getAttribute("height");
+  const svgW = attrW ? parseFloat(attrW) : svgEl.viewBox.baseVal.width;
+  const svgH = attrH ? parseFloat(attrH) : svgEl.viewBox.baseVal.height;
+  if (!svgW || !svgH) return;
+  // Available area (subtract 32px for 16px padding on each side)
+  const availW = container.clientWidth - 32;
+  const availH = container.clientHeight - 32;
+  const scale = Math.min(availW / svgW, availH / svgH);
+  zoom.value = Math.max(ZOOM_MIN, Math.round(scale * 100) / 100);
+}
 
 function compile() {
   if (!wasmReady) return;
@@ -90,6 +135,7 @@ function compile() {
       errorText.value = "";
       if (result.svg) {
         previewHtml.value = result.svg;
+        nextTick(() => fitZoom());
       } else {
         previewHtml.value =
           '<p class="preview-placeholder">Your diagram will appear here.</p>';
@@ -245,9 +291,43 @@ onUnmounted(() => {
   letter-spacing: 0.05em;
   color: var(--vp-c-text-3);
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-bottom: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.zoom-btn {
+  font-size: 13px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  font-family: var(--vp-font-family-base);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.zoom-btn:hover {
+  border-color: var(--vp-c-text-3);
+  color: var(--vp-c-text-1);
+}
+
+.zoom-level {
+  min-width: 44px;
+  text-align: center;
 }
 
 .playground-editor {
@@ -274,9 +354,6 @@ onUnmounted(() => {
   flex: 1;
   overflow: auto;
   padding: 16px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   /* White background is intentional: SVG diagrams render with dark
      strokes/text on a white canvas, so the preview must stay light
      regardless of VitePress dark/light mode. */
@@ -284,15 +361,16 @@ onUnmounted(() => {
   min-height: 0;
 }
 
-.playground-preview :deep(svg) {
-  max-width: 100%;
-  height: auto;
+.svg-scale-wrapper {
+  display: inline-block;
+  line-height: 0;
 }
 
 .playground-preview :deep(.preview-placeholder) {
   color: #6b7280;
   font-size: 14px;
-  margin: auto;
+  line-height: 1.5;
+  padding: 16px 0;
 }
 
 .playground-error {
