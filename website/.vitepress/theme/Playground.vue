@@ -276,6 +276,9 @@ onUnmounted(() => {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  /* White background is intentional: SVG diagrams render with dark
+     strokes/text on a white canvas, so the preview must stay light
+     regardless of VitePress dark/light mode. */
   background: #ffffff;
   min-height: 500px;
 }
@@ -286,7 +289,7 @@ onUnmounted(() => {
 }
 
 .playground-preview :deep(.preview-placeholder) {
-  color: #8b949e;
+  color: #6b7280;
   font-size: 14px;
   margin: auto;
 }
