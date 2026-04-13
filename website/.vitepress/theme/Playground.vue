@@ -5,7 +5,10 @@
         <span class="pg-dot" :class="statusClass"></span>
         <span class="pg-status-text" :class="statusClass">{{ statusText }}</span>
       </div>
-      <button class="pg-action-btn" @click="loadExample">Load Example</button>
+      <select class="pg-example-select" v-model="selectedExample" @change="onExampleChange">
+        <option value="" disabled>Load Example…</option>
+        <option v-for="ex in EXAMPLES" :key="ex.name" :value="ex.name">{{ ex.name }}</option>
+      </select>
     </div>
     <div class="pg-body">
       <div class="pg-pane pg-editor-pane">
@@ -28,13 +31,29 @@
       <div class="pg-pane pg-preview-pane">
         <div class="pg-pane-header">
           <span>ERD Preview</span>
-          <div class="pg-zoom" v-if="hasSvg">
-            <button class="pg-zoom-btn" @click="zoomOut" title="Zoom out">−</button>
-            <button class="pg-zoom-btn pg-zoom-label" @click="fitZoom" :title="`${Math.round(zoom * 100)}% — click to fit`">{{ Math.round(zoom * 100) }}%</button>
-            <button class="pg-zoom-btn" @click="zoomIn" title="Zoom in">+</button>
+          <div class="pg-preview-actions">
+            <div class="pg-zoom" v-if="hasSvg">
+              <button class="pg-zoom-btn" @click="zoomOut" title="Zoom out">−</button>
+              <button class="pg-zoom-btn pg-zoom-label" @click="fitZoom" :title="`${Math.round(zoom * 100)}% — click to fit`">{{ Math.round(zoom * 100) }}%</button>
+              <button class="pg-zoom-btn" @click="zoomIn" title="Zoom in">+</button>
+            </div>
+            <button
+              v-if="hasSvg"
+              class="pg-zoom-btn pg-download-btn"
+              @click="downloadSvg"
+              title="Download SVG"
+            >↓ SVG</button>
           </div>
         </div>
-        <div class="pg-canvas" ref="previewRef">
+        <div
+          class="pg-canvas"
+          ref="previewRef"
+          :class="{ 'pg-canvas--panning': isPanning }"
+          @pointerdown="onPanStart"
+          @pointermove="onPanMove"
+          @pointerup="onPanEnd"
+          @pointercancel="onPanEnd"
+        >
           <div class="pg-svg-wrap" :style="{ zoom: zoom }" v-html="previewHtml"></div>
         </div>
         <div v-if="errorText" class="pg-error">{{ errorText }}</div>
@@ -54,7 +73,10 @@ const ZOOM_MAX = 4;
 const WASM_PATH = withBase("/erdn.wasm");
 const WASM_EXEC_PATH = withBase("/wasm_exec.js");
 
-const EXAMPLE = `# A simple blog schema
+const EXAMPLES = [
+  {
+    name: "Blog",
+    source: `# A simple blog schema
 
 table authors (
   # Unique identifier
@@ -76,9 +98,96 @@ table posts (
 )
 
 # An author can write many posts
-link one authors.id to many posts.author_id`;
+link one authors.id to many posts.author_id`,
+  },
+  {
+    name: "E-Commerce",
+    source: `# E-commerce schema
 
-const source = ref(EXAMPLE);
+table users (
+  id bigint primary-key auto-increment
+  email varchar(255) not-null indexed
+  name varchar(128) not-null
+  created_at timestamp not-null default("NOW()")
+)
+
+table products (
+  id bigint primary-key auto-increment
+  name varchar(256) not-null
+  description text nullable
+  price decimal(10,2) not-null
+  stock_qty int not-null default("0")
+)
+
+table orders (
+  id bigint primary-key auto-increment
+  user_id bigint not-null indexed
+  # pending, paid, shipped, delivered
+  status varchar(32) not-null default("pending")
+  total decimal(10,2) not-null
+  created_at timestamp not-null default("NOW()")
+)
+
+table order_items (
+  id bigint primary-key auto-increment
+  order_id bigint not-null indexed
+  product_id bigint not-null indexed
+  quantity int not-null
+  unit_price decimal(10,2) not-null
+)
+
+# One user can place many orders
+link one users.id to many orders.user_id
+# One order contains many line items
+link one orders.id to many order_items.order_id
+# One product can appear in many order items
+link one products.id to many order_items.product_id`,
+  },
+  {
+    name: "Library",
+    source: `# Library management schema
+
+table members (
+  id bigint primary-key auto-increment
+  name varchar(128) not-null
+  email varchar(255) not-null indexed
+  joined_at timestamp not-null default("NOW()")
+)
+
+table authors (
+  id bigint primary-key auto-increment
+  name varchar(128) not-null
+  bio text nullable
+)
+
+table books (
+  id bigint primary-key auto-increment
+  author_id bigint not-null indexed
+  title varchar(512) not-null
+  isbn varchar(20) not-null indexed
+  published_year int nullable
+)
+
+table loans (
+  id bigint primary-key auto-increment
+  book_id bigint not-null indexed
+  member_id bigint not-null indexed
+  loaned_at timestamp not-null default("NOW()")
+  due_at timestamp not-null
+  returned_at timestamp nullable
+)
+
+# Each book is written by one author
+link one authors.id to many books.author_id
+# One book can be loaned many times
+link one books.id to many loans.book_id
+# One member can take many loans
+link one members.id to many loans.member_id`,
+  },
+];
+
+const source = ref(EXAMPLES[0].source);
+const selectedExample = ref("");
 const previewHtml = ref(
   '<p class="preview-placeholder">Your diagram will appear here.</p>'
 );
@@ -88,11 +197,14 @@ const statusClass = ref("");
 const editorRef = ref<HTMLTextAreaElement | null>(null);
 const previewRef = ref<HTMLDivElement | null>(null);
 const zoom = ref(1);
+const isPanning = ref(false);
 
 const hasSvg = computed(() => previewHtml.value.includes("<svg"));
 
 let wasmReady = false;
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+// ── Zoom ─────────────────────────────────────────────────────────────────────
 
 function zoomIn() {
   zoom.value = Math.min(Math.round((zoom.value + ZOOM_STEP) * 100) / 100, ZOOM_MAX);
@@ -110,18 +222,58 @@ function fitZoom() {
     zoom.value = 1;
     return;
   }
-  // Read natural SVG dimensions from attributes or viewBox
   const attrW = svgEl.getAttribute("width");
   const attrH = svgEl.getAttribute("height");
   const svgW = attrW ? parseFloat(attrW) : svgEl.viewBox.baseVal.width;
   const svgH = attrH ? parseFloat(attrH) : svgEl.viewBox.baseVal.height;
   if (!svgW || !svgH) return;
-  // Available area (subtract 32px for 16px padding on each side)
   const availW = container.clientWidth - 32;
   const availH = container.clientHeight - 32;
   const scale = Math.min(availW / svgW, availH / svgH);
   zoom.value = Math.max(ZOOM_MIN, Math.round(scale * 100) / 100);
 }
+
+// ── Drag-to-pan ───────────────────────────────────────────────────────────────
+
+let panStartX = 0;
+let panStartY = 0;
+let panScrollLeft = 0;
+let panScrollTop = 0;
+let panMoved = false;
+
+function onPanStart(e: PointerEvent) {
+  if (e.button !== 0) return;
+  const canvas = previewRef.value;
+  if (!canvas) return;
+  isPanning.value = true;
+  panMoved = false;
+  panStartX = e.clientX;
+  panStartY = e.clientY;
+  panScrollLeft = canvas.scrollLeft;
+  panScrollTop = canvas.scrollTop;
+  canvas.setPointerCapture(e.pointerId);
+}
+
+function onPanMove(e: PointerEvent) {
+  if (!isPanning.value) return;
+  const canvas = previewRef.value;
+  if (!canvas) return;
+  const dx = e.clientX - panStartX;
+  const dy = e.clientY - panStartY;
+  if (!panMoved && Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
+  panMoved = true;
+  canvas.scrollLeft = panScrollLeft - dx;
+  canvas.scrollTop = panScrollTop - dy;
+}
+
+function onPanEnd(e: PointerEvent) {
+  if (!isPanning.value) return;
+  isPanning.value = false;
+  const canvas = previewRef.value;
+  if (canvas) canvas.releasePointerCapture(e.pointerId);
+}
+
+// ── Compile ───────────────────────────────────────────────────────────────────
 
 function compile() {
   if (!wasmReady) return;
@@ -170,7 +322,6 @@ function onKeyDown(e: KeyboardEvent) {
     const end = el.selectionEnd;
     const val = el.value;
     source.value = val.substring(0, start) + "  " + val.substring(end);
-    // Restore cursor after Vue updates the textarea
     requestAnimationFrame(() => {
       if (editorRef.value) {
         editorRef.value.selectionStart = editorRef.value.selectionEnd =
@@ -181,10 +332,32 @@ function onKeyDown(e: KeyboardEvent) {
   }
 }
 
-function loadExample() {
-  source.value = EXAMPLE;
+// ── Examples ──────────────────────────────────────────────────────────────────
+
+function onExampleChange() {
+  const ex = EXAMPLES.find((e) => e.name === selectedExample.value);
+  selectedExample.value = "";
+  if (!ex) return;
+  source.value = ex.source;
   onInput();
 }
+
+// ── Download SVG ─────────────────────────────────────────────────────────────
+
+function downloadSvg() {
+  const svgEl = previewRef.value?.querySelector("svg");
+  if (!svgEl) return;
+  const svgContent = new XMLSerializer().serializeToString(svgEl);
+  const blob = new Blob([svgContent], { type: "image/svg+xml" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "diagram.svg";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── WASM bootstrap ────────────────────────────────────────────────────────────
 
 function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -231,7 +404,9 @@ onUnmounted(() => {
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   overflow: hidden;
-  margin: 1.5rem 0;
+  /* Fill the viewport below the nav bar */
+  height: calc(100vh - var(--vp-nav-height, 64px) - 32px);
+  margin: 16px 0;
 }
 
 /* ── Toolbar ─────────────────────────────────────────────────────────── */
@@ -283,29 +458,38 @@ onUnmounted(() => {
   color: var(--vp-c-red-1);
 }
 
-.pg-action-btn {
+.pg-example-select {
   font-size: 13px;
-  padding: 4px 14px;
+  padding: 4px 28px 4px 12px;
   border-radius: 20px;
   border: 1px solid var(--vp-c-divider);
   background: transparent;
   color: var(--vp-c-text-2);
   cursor: pointer;
   font-family: var(--vp-font-family-base);
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-.pg-action-btn:hover {
+.pg-example-select:hover {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
+}
+
+.pg-example-select:focus {
+  outline: none;
+  border-color: var(--vp-c-brand-1);
 }
 
 /* ── Split panels ────────────────────────────────────────────────────── */
 .pg-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: clamp(400px, calc(100vh - 200px), 760px);
+  flex: 1;
   min-height: 0;
 }
 
@@ -334,6 +518,12 @@ onUnmounted(() => {
   color: var(--vp-c-text-3);
   font-family: var(--vp-font-family-base);
   flex-shrink: 0;
+}
+
+.pg-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* ── Zoom controls ───────────────────────────────────────────────────── */
@@ -369,6 +559,11 @@ onUnmounted(() => {
   text-align: center;
 }
 
+.pg-download-btn {
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
 /* ── Editor ──────────────────────────────────────────────────────────── */
 .pg-editor {
   flex: 1;
@@ -399,11 +594,18 @@ onUnmounted(() => {
      with dark strokes/text, so the preview pane must stay light. */
   background: #ffffff;
   min-height: 0;
+  cursor: grab;
+  user-select: none;
+}
+
+.pg-canvas--panning {
+  cursor: grabbing;
 }
 
 .pg-svg-wrap {
   display: inline-block;
   line-height: 0;
+  pointer-events: none;
 }
 
 .pg-canvas :deep(.preview-placeholder) {
@@ -411,6 +613,7 @@ onUnmounted(() => {
   font-size: 14px;
   line-height: 1.5;
   padding: 16px 0;
+  cursor: default;
 }
 
 /* ── Error bar ───────────────────────────────────────────────────────── */
@@ -429,9 +632,13 @@ onUnmounted(() => {
 
 /* ── Mobile ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .pg {
+    height: auto;
+    margin: 8px 0;
+  }
+
   .pg-body {
     grid-template-columns: 1fr;
-    height: auto;
   }
 
   .pg-editor-pane {
@@ -442,7 +649,7 @@ onUnmounted(() => {
   }
 
   .pg-preview-pane {
-    min-height: 280px;
+    min-height: 300px;
     max-height: 50vh;
   }
 }

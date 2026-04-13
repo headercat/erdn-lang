@@ -20,10 +20,6 @@ export default defineConfig({
           { text: "Syntax Specification", link: "/syntax" },
         ],
       },
-      {
-        text: "Tools",
-        items: [{ text: "Playground", link: "/playground" }],
-      },
     ],
     socialLinks: [
       { icon: "github", link: "https://github.com/headercat/erdn-lang" },
