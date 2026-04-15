@@ -10,6 +10,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide" },
       { text: "Syntax Specification", link: "/syntax" },
+      { text: "MCP Server", link: "/mcp" },
       { text: "Playground", link: "/playground" },
     ],
     sidebar: [
@@ -18,6 +19,12 @@ export default defineConfig({
         items: [
           { text: "Guide", link: "/guide" },
           { text: "Syntax Specification", link: "/syntax" },
+        ],
+      },
+      {
+        text: "Integrations",
+        items: [
+          { text: "MCP Server", link: "/mcp" },
         ],
       },
     ],
