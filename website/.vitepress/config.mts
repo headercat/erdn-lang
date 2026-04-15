@@ -11,6 +11,7 @@ export default defineConfig({
       { text: "Guide", link: "/guide" },
       { text: "Syntax Specification", link: "/syntax" },
       { text: "MCP Server", link: "/mcp" },
+      { text: "Recipes", link: "/recipes" },
       { text: "Playground", link: "/playground" },
     ],
     sidebar: [
@@ -25,6 +26,7 @@ export default defineConfig({
         text: "Integrations",
         items: [
           { text: "MCP Server", link: "/mcp" },
+          { text: "Recipes", link: "/recipes" },
         ],
       },
     ],

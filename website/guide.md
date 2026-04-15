@@ -145,3 +145,4 @@ erdn render blog.erdn
 
 - Read the full [Syntax Specification](/syntax) for every language construct.
 - Try the live [Playground](/playground) in your browser.
+- Explore ready-to-use [Recipes](/recipes) for GitHub Actions and other integrations.
