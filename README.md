@@ -15,6 +15,7 @@ Maintaining ERD diagrams is tedious: graphical tools produce binary files that a
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [MCP server](#mcp-server)
 - [Syntax](#syntax)
   - [Comments](#comments)
   - [Tables](#tables)
@@ -98,6 +99,19 @@ erdn sql schema.erdn --dbms postgresql
 # Specify a custom output path
 erdn sql schema.erdn --dbms mssql --out migrations/001_init.sql
 ```
+
+### MCP server
+
+You can run a local Model Context Protocol (MCP) server over stdio:
+
+```sh
+go run ./cmd/erdn-mcp
+```
+
+The server exposes:
+
+- `convert_sql_to_erdn` — converts SQL `CREATE TABLE` / `FOREIGN KEY` schema text into ERDN source.
+- `generate_svg_from_erdn` — validates ERDN and returns generated SVG diagram text.
 
 The generated SQL includes:
 
