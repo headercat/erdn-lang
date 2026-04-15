@@ -106,18 +106,13 @@ erdn sql schema.erdn --dbms mssql --out migrations/001_init.sql
 
 ### MCP server
 
-**erdn-lang** ships a local [Model Context Protocol](https://modelcontextprotocol.io/) server so AI assistants and MCP-compatible editors can convert SQL schemas to ERDN and generate diagrams without requiring a local `git clone`.
+**erdn-lang** ships a local [Model Context Protocol](https://modelcontextprotocol.io/) server so AI assistants and MCP-compatible editors can convert SQL schemas to ERDN and generate diagrams.
 
 #### Install
 
 ```sh
 go install github.com/headercat/erdn-lang/cmd/erdn-mcp@latest
 ```
-
-#### Quick-start (no clone required)
-
-The repository includes a ready-to-use `.mcp.json` that tells any MCP-compatible client how to launch the server on demand:
-
 ```json
 {
   "mcpServers": {
