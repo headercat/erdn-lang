@@ -4,7 +4,7 @@ layout: home
 hero:
   name: erdn-lang
   text: Entity-Relationship Diagrams as Code
-  tagline: Write plain-text .erdn schemas, render clean SVG diagrams. Deterministic, version-control friendly, and validated.
+  tagline: Write plain-text .erdn schemas, render clean SVG diagrams, and export SQL DDL for multiple databases.
   actions:
     - theme: brand
       text: Try the Playground
@@ -17,9 +17,9 @@ features:
   - icon: 📝
     title: Text-Based
     details: Store .erdn files alongside your source code and track changes in version control — no more opaque binary diagram files.
-  - icon: 🔒
-    title: Deterministic
-    details: The same input always produces the same SVG output. Diffs are meaningful, reviews are easy.
+  - icon: 🗃️
+    title: SQL Export
+    details: Generate SQL DDL from your .erdn schema for MySQL, PostgreSQL, SQL Server, Oracle, and SQLite.
   - icon: ✅
     title: Validated
     details: Catch semantic errors — unknown tables, duplicate keys, conflicting modifiers — before you render.
