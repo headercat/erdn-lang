@@ -1,5 +1,6 @@
 # Build outputs
 erdn
+erdn-mcp
 *.wasm
 
 # Website build artifacts (generated during CI)

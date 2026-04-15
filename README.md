@@ -35,7 +35,11 @@ You need [Go 1.21](https://go.dev/dl/) or later.
 ### Install via `go install`
 
 ```sh
+# CLI tool
 go install github.com/headercat/erdn-lang/cmd/erdn@latest
+
+# MCP server
+go install github.com/headercat/erdn-lang/cmd/erdn-mcp@latest
 ```
 
 ### Build from source
@@ -102,13 +106,56 @@ erdn sql schema.erdn --dbms mssql --out migrations/001_init.sql
 
 ### MCP server
 
-You can run a local Model Context Protocol (MCP) server over stdio:
+**erdn-lang** ships a local [Model Context Protocol](https://modelcontextprotocol.io/) server so AI assistants and MCP-compatible editors can convert SQL schemas to ERDN and generate diagrams without requiring a local `git clone`.
+
+#### Install
+
+```sh
+go install github.com/headercat/erdn-lang/cmd/erdn-mcp@latest
+```
+
+#### Quick-start (no clone required)
+
+The repository includes a ready-to-use `.mcp.json` that tells any MCP-compatible client how to launch the server on demand:
+
+```json
+{
+  "mcpServers": {
+    "erdn-lang": {
+      "type": "stdio",
+      "command": "go",
+      "args": ["run", "github.com/headercat/erdn-lang/cmd/erdn-mcp@latest"]
+    }
+  }
+}
+```
+
+Copy this block into your MCP client's configuration file, or use the `.mcp.json` at the root of this repository if your client supports auto-discovery.
+
+If you have already run `go install` above, you can replace the `"command"/"args"` with the installed binary:
+
+```json
+{
+  "mcpServers": {
+    "erdn-lang": {
+      "type": "stdio",
+      "command": "erdn-mcp"
+    }
+  }
+}
+```
+
+#### Running manually
+
+If you do have a local clone you can also run the server directly:
 
 ```sh
 go run ./cmd/erdn-mcp
 ```
 
-The server exposes:
+#### Tools
+
+The server exposes two tools:
 
 - `convert_sql_to_erdn` — converts SQL `CREATE TABLE` / `FOREIGN KEY` schema text into ERDN source.
 - `generate_svg_from_erdn` — validates ERDN and returns generated SVG diagram text.
