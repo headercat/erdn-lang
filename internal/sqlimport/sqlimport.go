@@ -535,7 +535,11 @@ func sanitizeIdentifier(s string) string {
 			out = append(out, '_')
 		}
 	}
-	return strings.Trim(strings.ReplaceAll(string(out), "__", "_"), "_")
+	result := strings.Trim(strings.ReplaceAll(string(out), "__", "_"), "_")
+	if result == "" {
+		return "_"
+	}
+	return result
 }
 
 func cardToText(c ast.Cardinality) string {
