@@ -26,4 +26,7 @@ features:
   - icon: 💬
     title: Readable
     details: "# comments on tables, columns, and links are rendered as subtitle rows directly in the diagram."
+  - icon: 🤖
+    title: MCP Server
+    details: AI-ready — connect Claude, Cursor, or any MCP-compatible assistant to convert SQL and generate diagrams directly from your editor.
 ---
