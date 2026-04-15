@@ -60,8 +60,8 @@ func main() {
 			continue
 		}
 
-		// Notifications do not require responses.
-		if len(req.ID) == 0 {
+		// Notifications do not require responses (missing or null id).
+		if isNotificationID(req.ID) {
 			continue
 		}
 		id := decodeID(req.ID)
@@ -209,6 +209,17 @@ func decodeID(raw json.RawMessage) interface{} {
 	return v
 }
 
+func isNotificationID(raw json.RawMessage) bool {
+	if len(raw) == 0 {
+		return true
+	}
+	var v interface{}
+	if err := json.Unmarshal(raw, &v); err != nil {
+		return false
+	}
+	return v == nil
+}
+
 func readMessage(r *bufio.Reader) ([]byte, error) {
 	headers := map[string]string{}
 	for {
@@ -231,8 +242,11 @@ func readMessage(r *bufio.Reader) ([]byte, error) {
 		return nil, fmt.Errorf("missing content-length header")
 	}
 	n, err := strconv.Atoi(cl)
-	if err != nil || n < 0 {
-		return nil, fmt.Errorf("invalid content-length")
+	if err != nil {
+		return nil, fmt.Errorf("invalid content-length %q: %w", cl, err)
+	}
+	if n < 0 {
+		return nil, fmt.Errorf("invalid content-length %d: must be >= 0", n)
 	}
 	buf := make([]byte, n)
 	if _, err := io.ReadFull(r, buf); err != nil {

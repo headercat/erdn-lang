@@ -9,6 +9,8 @@ import (
 	"github.com/headercat/erdn-lang/internal/parser"
 )
 
+const defaultColumnType = "text"
+
 // ParseDDL parses SQL CREATE TABLE statements and converts them into an ERDN AST.
 // It supports table-level/inline primary keys and foreign keys.
 func ParseDDL(sql string) (*ast.Program, error) {
@@ -225,7 +227,7 @@ func parseColumnDef(part string) (*ast.Column, *ref) {
 		strings.Contains(lower, "generated always as identity") {
 		col.Modifiers = append(col.Modifiers, ast.Modifier{Kind: ast.ModAutoIncrement})
 	}
-	if strings.Contains(lower, " unique") || strings.Contains(lower, " index") {
+	if containsWord(lower, "index") {
 		col.Modifiers = append(col.Modifiers, ast.Modifier{Kind: ast.ModIndexed})
 	}
 
@@ -269,10 +271,11 @@ func parseDefault(s string) string {
 			return `"` + after[1:1+end] + `"`
 		}
 	}
-	if strings.HasPrefix(strings.ToUpper(after), "CURRENT_TIMESTAMP") {
+	upper := strings.ToUpper(after)
+	if strings.HasPrefix(upper, "CURRENT_TIMESTAMP") {
 		return "NOW()"
 	}
-	if strings.HasPrefix(strings.ToUpper(after), "NOW()") {
+	if strings.HasPrefix(upper, "NOW()") {
 		return "NOW()"
 	}
 
@@ -287,7 +290,7 @@ func parseDefault(s string) string {
 func populateType(col *ast.Column, typeExpr string) {
 	typeExpr = strings.TrimSpace(typeExpr)
 	if typeExpr == "" {
-		col.Type = "text"
+		col.Type = defaultColumnType
 		return
 	}
 	open := strings.Index(typeExpr, "(")
@@ -525,21 +528,45 @@ func sanitizeIdentifier(s string) string {
 	}
 	var out []rune
 	for i, r := range []rune(s) {
-		ok := unicode.IsLetter(r) || unicode.IsDigit(r) || r == '_'
+		ok := isWordChar(r)
 		if i == 0 && !(unicode.IsLetter(r) || r == '_') {
 			ok = false
 		}
 		if ok {
 			out = append(out, r)
 		} else {
-			out = append(out, '_')
+			if len(out) == 0 || out[len(out)-1] != '_' {
+				out = append(out, '_')
+			}
 		}
 	}
-	result := strings.Trim(strings.ReplaceAll(string(out), "__", "_"), "_")
+	result := strings.Trim(string(out), "_")
 	if result == "" {
 		return "_"
 	}
 	return result
+}
+
+func containsWord(s, word string) bool {
+	start := 0
+	for {
+		i := strings.Index(s[start:], word)
+		if i < 0 {
+			return false
+		}
+		i += start
+		beforeOK := i == 0 || !isWordChar(rune(s[i-1]))
+		after := i + len(word)
+		afterOK := after >= len(s) || !isWordChar(rune(s[after]))
+		if beforeOK && afterOK {
+			return true
+		}
+		start = i + len(word)
+	}
+}
+
+func isWordChar(r rune) bool {
+	return unicode.IsLetter(r) || unicode.IsDigit(r) || r == '_'
 }
 
 func cardToText(c ast.Cardinality) string {

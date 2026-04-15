@@ -33,11 +33,23 @@ CREATE TABLE posts (
 		t.Fatalf("expected 1 link, got %d", len(prog.Links))
 	}
 	link := prog.Links[0]
-	if link.FromTable != "users" || link.FromColumn != "id" || link.ToTable != "posts" || link.ToColumn != "author_id" {
-		t.Fatalf("unexpected link mapping: %+v", link)
+	if link.FromTable != "users" {
+		t.Fatalf("unexpected from table: %q", link.FromTable)
 	}
-	if link.FromCardinality != ast.CardOne || link.ToCardinality != ast.CardMany {
-		t.Fatalf("unexpected link cardinality: %+v", link)
+	if link.FromColumn != "id" {
+		t.Fatalf("unexpected from column: %q", link.FromColumn)
+	}
+	if link.ToTable != "posts" {
+		t.Fatalf("unexpected to table: %q", link.ToTable)
+	}
+	if link.ToColumn != "author_id" {
+		t.Fatalf("unexpected to column: %q", link.ToColumn)
+	}
+	if link.FromCardinality != ast.CardOne {
+		t.Fatalf("unexpected from cardinality: %v", link.FromCardinality)
+	}
+	if link.ToCardinality != ast.CardMany {
+		t.Fatalf("unexpected to cardinality: %v", link.ToCardinality)
 	}
 	if errs := semantic.Validate(prog); len(errs) > 0 {
 		t.Fatalf("semantic errors: %v", errs)
